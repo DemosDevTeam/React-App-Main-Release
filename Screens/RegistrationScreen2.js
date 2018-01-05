@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Picker,
-} from 'react';
+} from 'react-native';
 
 export default class RegistrationScreen2 extends Component<{}>{
   

@@ -6,7 +6,7 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
-} from 'react';
+} from 'react-native';
 
 export default class RegistrationScreen4 extends Component<{}>{
   

@@ -6,9 +6,9 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
-} from 'react';
+} from 'react-native';
 
-export default class RegistrationScreen extends Component<{}>{
+export default class RegistrationScreen1 extends Component<{}>{
   
   //On submit verify inputs and navigate to next registration screen
   submit = () => {

@@ -12,7 +12,7 @@ import {
 export default class LogIn extends Component<{}>{
   //on press register new account button, navigate to first registration screen.
   registerAccount = () => {
-    this.props.navigation.navigate('RegistrationScreen');
+    this.props.navigation.navigate('RegistrationScreen1');
   };
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {

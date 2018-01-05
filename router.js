@@ -6,7 +6,7 @@ import { TabNavigator, StackNavigator } from 'react-navigation';
 
 import Home from "./Screens/Home";
 import LogIn from "./Screens/LogIn";
-import RegistrationScreen from "./Screens/RegistrationScreen";
+import RegistrationScreen1 from "./Screens/RegistrationScreen1";
 import RegistrationScreen2 from "./Screens/RegistrationScreen2";
 import RegistrationScreen3 from "./Screens/RegistrationScreen3";
 import RegistrationScreen4 from "./Screens/RegistrationScreen4";
@@ -28,8 +28,8 @@ export const Root = StackNavigator({
       title: 'Log In',
     },
   },
-  RegistrationScreen: {
-    screen: RegistrationScreen,
+  RegistrationScreen1: {
+    screen: RegistrationScreen1,
     navigationOptions: {
       title: 'Registration',
     }
@@ -69,6 +69,5 @@ export const Root = StackNavigator({
     navigationOptions: {
       title: 'Your Council',
     }
-  }
-  
-})
+  },
+  }, {headerMode: 'none'})
