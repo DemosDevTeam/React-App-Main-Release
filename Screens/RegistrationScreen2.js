@@ -8,6 +8,7 @@ import {
   TextInput,
   Picker,
 } from 'react-native';
+import {firebaseApp} from '../App'
 
 export default class RegistrationScreen2 extends Component<{}>{
   

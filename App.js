@@ -22,12 +22,13 @@ const firebase = require('firebase');
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "<your-api-key>",
-  authDomain: "<your-auth-domain>",
-  databaseURL: "<your-database-url>",
-  storageBucket: "<your-storage-bucket>",,
+  apiKey: "AIzaSyAAERSrXStyHsU889OZGfrCFe1E2Bit_xs",
+  authDomain: "demos-5e3db.firebaseapp.com",
+  databaseURL: "https://demos-5e3db.firebaseio.com",
+  storageBucket: "demos-5e3db.appspot.com",
 };
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+var firebaseApp = firebase.initializeApp(firebaseConfig);
+
 
 export default class App extends Component<{}> {
   render() {
@@ -36,3 +37,4 @@ export default class App extends Component<{}> {
     );
   }
 }
+export {firebaseApp};

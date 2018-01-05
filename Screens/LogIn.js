@@ -9,6 +9,16 @@ import {
   TextInput,
 } from 'react-native';
 
+const firebase = require('firebase');
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAAERSrXStyHsU889OZGfrCFe1E2Bit_xs",
+  authDomain: "demos-5e3db.firebaseapp.com",
+  databaseURL: "https://demos-5e3db.firebaseio.com",
+  storageBucket: "demos-5e3db.appspot.com",
+};
+
 export default class LogIn extends Component<{}>{
   //on press register new account button, navigate to first registration screen.
   registerAccount = () => {

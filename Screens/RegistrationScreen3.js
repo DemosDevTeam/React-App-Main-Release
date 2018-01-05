@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import {firebaseApp} from '../App'
 
 export default class RegistrationScreen3 extends Component<{}>{
   
