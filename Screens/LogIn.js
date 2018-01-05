@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
   View,
   Button,
-  RectangleButton,
-  Alert
+  Alert,
+  TouchableOpacity,
+  TextInput,
 } from 'react-native';
 
 export default class LogIn extends Component<{}>{
+  //on press register new account button, navigate to first registration screen.
+  registerAccount = () => {
+    this.props.navigation.navigate('RegistrationScreen');
+  };
+  //On press login button, validate inputs, then navigate to MainFeed.
+  login = () => {
+    //TODO: Add validation of inputs to/from firebase
+    this.props.navigation.navigate('MainFeed');
+  }
+
   render() {
     return (
       <View>
         <Text style={styles.instructions}>
           Welcome to the Log In Page.
         </Text>
+        <TextInput
+          placeholder="Email"/>
+        <TextInput
+          placeholder="Password"/>
+        <View>
+          <TouchableOpacity onPress={this.login}><Text>Login</Text></TouchableOpacity>
+          <TouchableOpacity><Text>Login with Google</Text></TouchableOpacity>
+          <TouchableOpacity><Text>Login with Facebook</Text></TouchableOpacity>
+        </View>
+        <Button onPress={this.registerAccount} title="Register New Account"/>
       </View>
     );
   }
