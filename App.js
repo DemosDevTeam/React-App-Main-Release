@@ -1,3 +1,4 @@
+//For code ex. using firebase see https://github.com/davideast/firebase-react-native-sample/blob/master/index.ios.js
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -17,13 +18,16 @@ import {
 
 import {Root} from './router.js';
 import Home from "./Screens/Home";
+const firebase = require('firebase');
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "<your-api-key>",
+  authDomain: "<your-auth-domain>",
+  databaseURL: "<your-database-url>",
+  storageBucket: "<your-storage-bucket>",,
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 export default class App extends Component<{}> {
   render() {
