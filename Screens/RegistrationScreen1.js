@@ -23,23 +23,25 @@ export default class RegistrationScreen1 extends Component<{}>{
   
   //On submit verify inputs and navigate to next registration screen
   submit = () => {
-    newUserPush = this.usersRef.push();
-    newUserPush.set({
-      name: this.state.name,
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email,
-      phone: this.state.phone,
-    })
-    //TODO: validate inputs and write to database
-    //this.props.navigation.navigate('RegistrationScreen2');
-        /*Framework for test case:
-    Alert.alert('name is ' + this.state.name
-               + ' username is ' + this.state.username
-               + ' password is ' + this.state.password
-               + ' email is ' + this.state.email
-               + ' phone number is ' + this.state.phone);
-      */
+    //Validate inputs
+    //TODO: Improve data check and search database to see if this username already exists
+    if(this.state.phone == ''){
+      this.state.phone = "none"
+    }
+    
+    if(this.state.name != '' && this.state.username != '' && this.state.password != '' && this.state.email != ''){
+      //Make a new node and populate with correct info about the user, aquired from this page
+      newUserPush = this.usersRef.child(this.state.username).set({
+        name: this.state.name,
+        password: this.state.password,
+        email: this.state.email,
+        phone: this.state.phone,
+      });
+      //Once new user has been written, navigate to RegistrationScreen2 with the username passed as arg to maintain correct reference in database
+      this.props.navigation.navigate('RegistrationScreen2', {username: this.state.username});
+    }else{
+      Alert.alert("Please ensure that all fields are filled in.");
+    }
   };
 
   //Populate appropriate state fields with data as it is recieved
