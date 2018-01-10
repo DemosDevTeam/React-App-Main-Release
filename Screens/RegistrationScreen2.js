@@ -12,7 +12,7 @@ import {
 import {firebaseApp} from '../App'
 
 export default class RegistrationScreen2 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.username + "/");
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.username + "/"); 
   
   state = {
     race: '',
@@ -22,13 +22,12 @@ export default class RegistrationScreen2 extends Component<{}>{
   }
   //On submit verify inputs and navigate to next registration screen
   submit = () => {
-    //TODO: validate inputs and write to database
     if(this.state.race != "" && this.state.income != "" && this.state.age != "" && this.state.occupation != ""){
       this.userRef.child("race").set(this.state.race);
       this.userRef.child("income").set(this.state.income);
       this.userRef.child("age").set(this.state.age);
       this.userRef.child("occupation").set(this.state.occupation);
-      this.props.navigation.navigate('RegistrationScreen3', {username: this.props.navigation.state.params.username});
+      this.props.navigation.navigate('RegistrationScreen3', {username2: this.props.navigation.state.params.username});
     }else{
       Alert.alert("Please ensure that all fields are filled in correctly.");
     }
