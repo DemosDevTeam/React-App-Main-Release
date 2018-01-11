@@ -9,42 +9,54 @@ import {
   TextInput,
 } from 'react-native';
 
-const firebase = require('firebase');
-
-// Initialize Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAAERSrXStyHsU889OZGfrCFe1E2Bit_xs",
-  authDomain: "demos-5e3db.firebaseapp.com",
-  databaseURL: "https://demos-5e3db.firebaseio.com",
-  storageBucket: "demos-5e3db.appspot.com",
-};
+import {firebaseApp} from '../App'
 
 export default class LogIn extends Component<{}>{
+  usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
   //on press register new account button, navigate to first registration screen.
   registerAccount = () => {
     this.props.navigation.navigate('RegistrationScreen1');
   };
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
+    this.usersRef.once("value").then((snap) => {
+      snap.forEach((child) => {
+        var email = child.val().email;
+        var password = child.val().password;
+        var username = child.val().username;
+        if(this.state.email == email && this.state.password == password){
+            this.setState({username: username});
+        }
+      });
+    }).then(() => {
+        if(this.state.username != undefined){
+          this.props.navigation.navigate('MainFeed', {usermain: this.state.username});
+        }else{
+          Alert.alert("username is " + this.state.username);
+        }
+    })
     //TODO: Add validation of inputs to/from firebase
-    this.props.navigation.navigate('MainFeed');
+    //this.props.navigation.navigate('MainFeed');
   }
-
+  
+  //save email input as state var
+  handleEmail = (text) => {
+    this.setState({email: text});
+  }
+  //Save password input as state var
+  handlePassword = (text) => {
+    this.setState({password: text});
+  }
+  
   render() {
     return (
       <View>
         <Text style={styles.instructions}>
           Welcome to the Log In Page.
         </Text>
-        <TextInput
-          placeholder="Email"/>
-        <TextInput
-          placeholder="Password"/>
-        <View>
+        <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
+        <TextInput placeholder="Password" onChangeText={this.handlePassword}/>
           <TouchableOpacity onPress={this.login}><Text>Login</Text></TouchableOpacity>
-          <TouchableOpacity><Text>Login with Google</Text></TouchableOpacity>
-          <TouchableOpacity><Text>Login with Facebook</Text></TouchableOpacity>
-        </View>
         <Button onPress={this.registerAccount} title="Register New Account"/>
       </View>
     );

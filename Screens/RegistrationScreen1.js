@@ -36,6 +36,7 @@ export default class RegistrationScreen1 extends Component<{}>{
         password: this.state.password,
         email: this.state.email,
         phone: this.state.phone,
+        username: this.state.username,
       });
       //Once new user has been written, navigate to RegistrationScreen2 with the username passed as arg to maintain correct reference in database
       this.props.navigation.navigate('RegistrationScreen2', {username: this.state.username});
