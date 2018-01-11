@@ -19,12 +19,15 @@ export default class LogIn extends Component<{}>{
   };
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
+    //Take snapshot of users node
     this.usersRef.once("value").then((snap) => {
+      //Iterate through users and see if email and password match with the inputs provided by user
       snap.forEach((child) => {
         var email = child.val().email;
         var password = child.val().password;
         var username = child.val().username;
         if(this.state.email == email && this.state.password == password){
+          //If email and password match with a user, set username to that accounts username
             this.setState({username: username});
         }
       });
