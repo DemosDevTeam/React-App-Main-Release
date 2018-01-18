@@ -40,12 +40,15 @@ export default class MainFeed extends Component<{}>{
       })
     }).then(() =>{
       //Need to loop through array of videos and sort them based on their relation to the users preferences
-      userRef.once("value").then((snap) => {
-        var interests = snap.val().interests;
-        for(var i=0; i<interests.length; i++){
-          userPreferences.push(interests[i]);
-        }
+      this.userRef.once("value").then((snap) => {
+          var interests = snap.child("interests");
+          interests.forEach((child) => {
+            console.log(child.key);
+            userPreferences.push(child.key);
+          })
+        })
       }).then(() => {
+      //TODO: Debug this section!!
         //Generate values for matchScore value in every video
         for(var i=0; i<videos.length; i++){//Loop through every video once
           for(var k=0; k<userPreferences.length; k++){//For every user preference, check if the video has that tag.
@@ -79,7 +82,6 @@ export default class MainFeed extends Component<{}>{
         //Once db values have loaded, set "loading" state to false so that rest of page can render
         this.setState({loading: false});
       })
-    })
   }
 
   render() {
