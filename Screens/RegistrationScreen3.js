@@ -42,7 +42,7 @@ export default class RegistrationScreen3 extends Component<{}>{
         <Button title="Food" onPress={() => this.handleSelection("Food")}/>
         <Button title="Social Justice" onPress={() => this.handleSelection("Social Justice")}/>
         <Button title="Security" onPress={() => this.handleSelection("Security")}/>
-        <Button title="Women's rights" onPress={() => this.handleSelection("Women's rights")}/>
+        <Button title="Women's Rights" onPress={() => this.handleSelection("Women's Rights")}/>
         <Button title="Environment" onPress={() => this.handleSelection("Environment")}/>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
       </View>
