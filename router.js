@@ -11,6 +11,7 @@ import RegistrationScreen2 from "./Screens/RegistrationScreen2";
 import RegistrationScreen3 from "./Screens/RegistrationScreen3";
 import RegistrationScreen4 from "./Screens/RegistrationScreen4";
 import RegistrationScreen5 from "./Screens/RegistrationScreen5";
+import textPopupScreen from "./Screens/TextPopupScreen";
 import MainFeed from "./Screens/MainFeed";
 import CouncilScreen from "./Screens/CouncilScreen";
 
@@ -70,4 +71,10 @@ export const Root = StackNavigator({
       title: 'Your Council',
     }
   },
+  TextPopupScreen: {
+    screen: TextPopupScreen,
+    navigationOptions: {
+      title: 'News',
+    }
+  }
   }, {headerMode: 'none'})
