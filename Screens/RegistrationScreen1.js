@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   Button,
   TouchableOpacity,
   TextInput,
@@ -65,6 +66,10 @@ export default class RegistrationScreen1 extends Component<{}>{
   render() {
     return (
       <View>
+        <Image
+          style={{width: 325, height: 325}}
+          source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+        />
         <TextInput onChangeText={this.handleName}placeholder="name"/>
         <TextInput onChangeText={this.handleUsername} placeholder="username"/>
         <TextInput onChangeText={this.handlePassword} placeholder="password"/>
