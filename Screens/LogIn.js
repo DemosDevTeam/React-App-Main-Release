@@ -3,6 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   Button,
   Alert,
   TouchableOpacity,
@@ -54,6 +55,10 @@ export default class LogIn extends Component<{}>{
   render() {
     return (
       <View>
+        <Image
+          style={{width: 325, height: 325}}
+          source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+        />
         <Text style={styles.instructions}>
           Welcome to the Log In Page.
         </Text>
@@ -82,5 +87,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  images: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
