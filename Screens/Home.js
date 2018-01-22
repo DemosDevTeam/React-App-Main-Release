@@ -3,6 +3,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  Image,
   View,
   Button,
   RectangleButton,
@@ -25,6 +26,10 @@ export default class Home extends Component<{}>{
        <Text style={styles.welcome}>
           Welcome to Demos!
         </Text>
+        <Image
+          style={{width: 375, height: 375}}
+          source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+        />
         <Button onPress={this.loginNav} title="Act Now"/>
       </View>
     );
