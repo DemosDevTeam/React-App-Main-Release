@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../App'
 
@@ -65,7 +66,7 @@ export default class RegistrationScreen1 extends Component<{}>{
   
   render() {
     return (
-      <View>
+      <ScrollView>
         <Image
           style={{width: 325, height: 325}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
@@ -76,7 +77,7 @@ export default class RegistrationScreen1 extends Component<{}>{
         <TextInput onChangeText={this.handleEmail} placeholder="email"/>
         <TextInput onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
         <Button onPress={this.submit} title="Continue"/>
-      </View>
+      </ScrollView>
     );
   }
 };

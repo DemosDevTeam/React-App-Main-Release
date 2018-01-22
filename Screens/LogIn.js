@@ -8,6 +8,7 @@ import {
   Alert,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 
 import {firebaseApp} from '../App'
@@ -54,7 +55,7 @@ export default class LogIn extends Component<{}>{
   
   render() {
     return (
-      <View>
+      <ScrollView>
         <Image
           style={{width: 325, height: 325}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
@@ -66,7 +67,7 @@ export default class LogIn extends Component<{}>{
         <TextInput placeholder="Password" onChangeText={this.handlePassword}/>
           <TouchableOpacity onPress={this.login}><Text>Login</Text></TouchableOpacity>
         <Button onPress={this.registerAccount} title="Register New Account"/>
-      </View>
+      </ScrollView>
     );
   }
 }

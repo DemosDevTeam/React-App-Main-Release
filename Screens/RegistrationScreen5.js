@@ -6,6 +6,7 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../App'
 
@@ -28,7 +29,7 @@ export default class RegistrationScreen5 extends Component<{}>{
   
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text>How would you like to recieve updates?</Text>
         <Text>(Choose as many as you'd like)</Text>
         <Button title="Text me!" onPress={() => this.handleSelection("text")}/>
@@ -36,7 +37,7 @@ export default class RegistrationScreen5 extends Component<{}>{
         <Button title="Send me push notifications" onPress={() => this.handleSelection("push notification")}/>
         <Button title="I'll just check the app" onPress={() => this.handleSelection("check app")}/>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
-      </View>
+      </ScrollView>
     )
   }
 }

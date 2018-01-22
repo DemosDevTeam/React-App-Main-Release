@@ -6,7 +6,8 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
-  Alert
+  Alert,
+  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../App'
 
@@ -30,7 +31,7 @@ export default class RegistrationScreen3 extends Component<{}>{
   //TODO: Add handlers for all buttons, in our case acting more as selectors
   render() {
     return (
-      <View>
+      <ScrollView>
         <Button title="Education" onPress={() => this.handleSelection("Education")}/>
         <Button title="Healthcare" onPress={() => this.handleSelection("Healthcare")}/>
         <Button title="LGBTQIA+" onPress={() => this.handleSelection("LGBTQIA+")}/>
@@ -45,7 +46,7 @@ export default class RegistrationScreen3 extends Component<{}>{
         <Button title="Women's Rights" onPress={() => this.handleSelection("Women's Rights")}/>
         <Button title="Environment" onPress={() => this.handleSelection("Environment")}/>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
-      </View>
+      </ScrollView>
     )
   }
 }

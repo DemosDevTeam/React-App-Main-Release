@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../App'
 
-export default class RegistrationScreen1 extends Component<{}>{
+export default class TextPopupScreen extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
   //Button to return to the main feed
   goBack = () => {

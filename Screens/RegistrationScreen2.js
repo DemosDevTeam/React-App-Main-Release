@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TextInput,
   Picker,
-  Alert
+  Alert,
+  ScrollView
 } from 'react-native';
 import {firebaseApp} from '../App'
 
@@ -76,7 +77,7 @@ export default class RegistrationScreen2 extends Component<{}>{
   render() {
     //All picker items with values we wouldn't want to store have value of "placeholder"
     return (
-      <View>
+      <ScrollView>
         <Text>The dēmos team is dedicated to our mission to connect you with unbiased, informative, and relevant local news and updates. We request the demographic information of our users in order to get to know those who are using our platform. The more familiar we are with you and what you value, the more accurate our algorithms are. Please fill in as much information as you feel comfortable sharing with us. We are committed to protecting your privacy.</Text>
         <Picker 
           selectedValue={this.state.gender}
@@ -160,7 +161,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Widowed" value="Widowed"/>
         </Picker>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
-      </View>
+      </ScrollView>
     )
   }
 }

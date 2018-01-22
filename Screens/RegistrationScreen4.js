@@ -6,6 +6,7 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../App'
 
@@ -28,7 +29,7 @@ export default class RegistrationScreen4 extends Component<{}>{
   
   render() {
     return (
-      <View>
+      <ScrollView>
         <Text>What do you want your engagement level to look like?</Text>
         <Text>(Choose as many as you'd like)</Text>
         <Button title="Taking online polls" onPress={() => this.handleSelection("online polls")}/>
@@ -37,7 +38,7 @@ export default class RegistrationScreen4 extends Component<{}>{
         <Button title="Meeting with your council" onPress={() => this.handleSelection("meet with council")}/>
         <Button title="Attending an event" onPress={() => this.handleSelection("events")}/>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
-      </View>
+      </ScrollView>
     )
   }
 }
