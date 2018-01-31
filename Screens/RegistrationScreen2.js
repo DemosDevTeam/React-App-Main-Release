@@ -75,6 +75,7 @@ export default class RegistrationScreen2 extends Component<{}>{
     this.setState({marital: itemValue});
   }
   render() {
+    console.disableYellowBox = true;
     //All picker items with values we wouldn't want to store have value of "placeholder"
     return (
       <ScrollView>
@@ -165,3 +166,31 @@ export default class RegistrationScreen2 extends Component<{}>{
     )
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  images: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    flex: 0,
+    marginBottom: 5,
+  },
+  space: {
+    height: 2,
+  }
+});

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  ScrollView,
 } from 'react-native';
 import {firebaseApp} from '../App'
 import VideoComponent from '../mainFeedComponents/videoComponent'
@@ -91,14 +92,44 @@ export default class MainFeed extends Component<{}>{
   }
 
   render() {
+    console.disableYellowBox = true;
     if (this.state.loading) {
-      return <Text>Loading...</Text>
+      return (<Text>Loading...</Text>)
     }
     return (
-      <View>
+      <ScrollView>
+        <View style={styles.space}></View>
+        <View style={styles.container}>{this.videosArr}</View>
         <Button onPress={this.goToCouncil}title="See my council"/>
-        {this.videosArr}
-      </View>
+      </ScrollView>
     )
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  images: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    flex: 0,
+    marginBottom: 5,
+  },
+  space: {
+    height: 2,
+  }
+});

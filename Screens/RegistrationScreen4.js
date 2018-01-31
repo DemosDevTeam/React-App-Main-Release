@@ -28,17 +28,51 @@ export default class RegistrationScreen4 extends Component<{}>{
   }
   
   render() {
+    console.disableYellowBox = true;
     return (
       <ScrollView>
         <Text>What do you want your engagement level to look like?</Text>
         <Text>(Choose as many as you'd like)</Text>
         <Button title="Taking online polls" onPress={() => this.handleSelection("online polls")}/>
+        <View style={styles.space}></View>
         <Button title="Learning about local government" onPress={() => this.handleSelection("learn about local gov")}/>
+        <View style={styles.space}></View>
         <Button title="Contacting your council" onPress={() => this.handleSelection("contact council")}/>
+        <View style={styles.space}></View>
         <Button title="Meeting with your council" onPress={() => this.handleSelection("meet with council")}/>
+        <View style={styles.space}></View>
         <Button title="Attending an event" onPress={() => this.handleSelection("events")}/>
+        <View style={styles.space}></View>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
       </ScrollView>
     )
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  images: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    flex: 0,
+    marginBottom: 5,
+  },
+  space: {
+    height: 2,
+  }
+});

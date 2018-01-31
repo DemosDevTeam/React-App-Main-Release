@@ -19,6 +19,7 @@ export default class TextPopupScreen extends Component<{}>{
   
   //Just need to pass in text to be displayed for article into the article.
   render() {
+    console.disableYellowBox = true;
     return (
       <View>
         <Text>{this.props.text}</Text>

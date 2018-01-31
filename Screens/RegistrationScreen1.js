@@ -65,6 +65,7 @@ export default class RegistrationScreen1 extends Component<{}>{
   }
   
   render() {
+    console.disableYellowBox = true;
     return (
       <ScrollView>
         <Image
@@ -81,3 +82,31 @@ export default class RegistrationScreen1 extends Component<{}>{
     );
   }
 };
+
+var styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  images: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    flex: 0,
+    marginBottom: 5,
+  },
+  space: {
+    height: 2,
+  }
+});

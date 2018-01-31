@@ -21,25 +21,25 @@ export default class LogIn extends Component<{}>{
   };
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
-    //Take snapshot of users node
-    this.usersRef.once("value").then((snap) => {
-      //Iterate through users and see if email and password match with the inputs provided by user
-      snap.forEach((child) => {
-        var email = child.val().email;
-        var password = child.val().password;
-        var username = child.val().username;
-        if(this.state.email == email && this.state.password == password){
-          //If email and password match with a user, set username to that accounts username
-            this.setState({username: username});
-        }
-      });
-    }).then(() => {
-        if(this.state.username != undefined){
-          this.props.navigation.navigate('MainFeed', {usermain: this.state.username});
-        }else{
-          Alert.alert("username is " + this.state.username);
-        }
-    })
+      //Take snapshot of users node
+      this.usersRef.once("value").then((snap) => {
+        //Iterate through users and see if email and password match with the inputs provided by user
+        snap.forEach((child) => {
+          var email = child.val().email;
+          var password = child.val().password;
+          var username = child.val().username;
+          if(this.state.email == email && this.state.password == password){
+            //If email and password match with a user, set username to that accounts username
+              this.setState({username: username});
+          }
+        });
+      }).then(() => {
+          if(this.state.username != undefined){
+            this.props.navigation.navigate('MainFeed', {usermain: this.state.username});
+          }else{
+            Alert.alert("username is " + this.state.username);
+          }
+      })
     //TODO: Add validation of inputs to/from firebase
     //this.props.navigation.navigate('MainFeed');
   }
@@ -54,30 +54,31 @@ export default class LogIn extends Component<{}>{
   }
   
   render() {
+    console.disableYellowBox = true;
     return (
       <ScrollView>
+        <View style={styles.container}>
         <Image
           style={{width: 325, height: 325}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
-        />
+        /></View>
         <Text style={styles.instructions}>
-          Welcome to the Log In Page.
+          Welcome to the log in Page.
         </Text>
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
         <TextInput placeholder="Password" onChangeText={this.handlePassword}/>
-          <TouchableOpacity onPress={this.login}><Text>Login</Text></TouchableOpacity>
+        <Button style={styles.button} onPress={this.login} title="login"/>
+        <View style={styles.space}></View>
         <Button onPress={this.registerAccount} title="Register New Account"/>
       </ScrollView>
     );
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
   container: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
@@ -93,4 +94,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  button: {
+    flex: 0,
+    marginBottom: 5,
+  },
+  space: {
+    height: 2,
+  }
 });

@@ -21,6 +21,7 @@ export default class Home extends Component<{}>{
   };
   
   render() {
+    console.disableYellowBox = true;
     return (
       <View>
        <Text style={styles.welcome}>
