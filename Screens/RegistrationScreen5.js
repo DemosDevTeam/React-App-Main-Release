@@ -9,17 +9,18 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
+import sha1 from 'sha1';
 import {firebaseApp} from '../App'
 
 export default class RegistrationScreen5 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.username4 + "/");
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hasheamil4 + "/");
   preferences = [];
   //On submit verify inputs and navigate to next registration screen
   submit = () => {
     for(var i=0; i<this.preferences.length; i++){
       this.userRef.child("update preferences").child(this.preferences[i]).set("");
     }
-    this.props.navigation.navigate('MainFeed', {usermain: this.props.navigation.state.params.username4});
+    this.props.navigation.navigate('MainFeed', {emailhashmain: this.props.navigation.state.params.hashemail4});
   }
 
   handleSelection = (text) => {

@@ -9,17 +9,18 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
+import sha1 from 'sha1';
 import {firebaseApp} from '../App'
 
 export default class RegistrationScreen3 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.username2 + "/"); //this.props.naviagation.state.params.username is undefined :/ need to find workaround
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail2 + "/"); //this.props.naviagation.state.params.username is undefined :/ need to find workaround
   preferences = [];
   //On submit verify inputs and navigate to next registration screen
   submit = () => {
     for(var i=0; i<this.preferences.length; i++){
       this.userRef.child("interests").child(this.preferences[i]).set("");
     }
-    this.props.navigation.navigate('RegistrationScreen4', {username3: this.props.navigation.state.params.username2});
+    this.props.navigation.navigate('RegistrationScreen4', {hashemail3: this.props.navigation.state.params.hashemail2});
   }
 
   handleSelection = (text) => {

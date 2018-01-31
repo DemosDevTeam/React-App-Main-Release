@@ -10,8 +10,9 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
+import sha1 from 'sha1';
+import {firebaseApp} from '../App';
 
-import {firebaseApp} from '../App'
 
 export default class LogIn extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
@@ -21,10 +22,22 @@ export default class LogIn extends Component<{}>{
   };
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
+    console.log(sha1(this.state.email));
+    console.log(sha1(this.state.password));
       //Take snapshot of users node
       this.usersRef.once("value").then((snap) => {
-        //Iterate through users and see if email and password match with the inputs provided by user
-        snap.forEach((child) => {
+        //Check hash of email to see if user exists in the database
+        if(snap.hasChild(sha1(this.state.email))){
+          if(snap.child(sha1(this.state.email)).val().password == sha1(this.state.password)){
+            this.props.navigation.navigate('MainFeed', {usermain: this.state.username});
+          }else{
+            Alert.alert("password incorrect, please check and try again");
+          }
+        }else{ //Then use the hash of the password to check if the password is correct
+          Alert.alert("we have no record of an account with this email");
+        }
+        
+        /*snap.forEach((child) => {
           var email = child.val().email;
           var password = child.val().password;
           var username = child.val().username;
@@ -32,20 +45,21 @@ export default class LogIn extends Component<{}>{
             //If email and password match with a user, set username to that accounts username
               this.setState({username: username});
           }
-        });
-      }).then(() => {
+        });*/
+      })/*.then(() => {
           if(this.state.username != undefined){
-            this.props.navigation.navigate('MainFeed', {usermain: this.state.username});
+            this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
           }else{
             Alert.alert("username is " + this.state.username);
           }
-      })
+      })*/
     //TODO: Add validation of inputs to/from firebase
     //this.props.navigation.navigate('MainFeed');
   }
   
   //save email input as state var
   handleEmail = (text) => {
+    
     this.setState({email: text});
   }
   //Save password input as state var

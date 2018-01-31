@@ -10,6 +10,7 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
+import sha1 from 'sha1';
 import {firebaseApp} from '../App'
 
 export default class RegistrationScreen1 extends Component<{}>{
@@ -32,16 +33,23 @@ export default class RegistrationScreen1 extends Component<{}>{
     }
     
     if(this.state.name != '' && this.state.username != '' && this.state.password != '' && this.state.email != ''){
-      //Make a new node and populate with correct info about the user, aquired from this page
-      newUserPush = this.usersRef.child(this.state.username).set({
-        name: this.state.name,
-        password: this.state.password,
-        email: this.state.email,
-        phone: this.state.phone,
-        username: this.state.username,
-      });
-      //Once new user has been written, navigate to RegistrationScreen2 with the username passed as arg to maintain correct reference in database
-      this.props.navigation.navigate('RegistrationScreen2', {username: this.state.username});
+      //Check and make sure user with this email is not already on file
+      if(userRefs.hasChild(sha1(this.state.email))){
+        Alert.alert("this email is already on file");
+      }
+      
+      else{
+        //Make a new node and populate with correct info about the user, aquired from this page
+        newUserPush = this.usersRef.child(sha1(this.state.email)).set({
+          name: this.state.name,
+          password: sha1(this.state.password),
+          email: this.state.email,
+          phone: this.state.phone,
+          username: this.state.username,
+        });
+        //Once new user has been written, navigate to RegistrationScreen2 with the username passed as arg to maintain correct reference in database
+        this.props.navigation.navigate('RegistrationScreen2', {hashemail: sha1(this.state.email)});
+      }
     }else{
       Alert.alert("Please ensure that all fields are filled in.");
     }

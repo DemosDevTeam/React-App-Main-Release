@@ -14,7 +14,7 @@ import VideoComponent from '../mainFeedComponents/videoComponent'
 import TextComponent from '../mainFeedComponents/textComponent'
 
 export default class MainFeed extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.usermain + "/");
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailhashmain + "/");
   videosArr = [];
   //on click See my council button, navigate to CouncilScreen
   goToCouncil = () => {

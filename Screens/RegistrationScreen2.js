@@ -10,10 +10,11 @@ import {
   Alert,
   ScrollView
 } from 'react-native';
-import {firebaseApp} from '../App'
+import sha1 from 'sha1';
+import {firebaseApp} from '../App';
 
 export default class RegistrationScreen2 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.username + "/"); 
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail + "/"); 
   
   state = {
     gender: '',
@@ -36,7 +37,7 @@ export default class RegistrationScreen2 extends Component<{}>{
       this.userRef.child("education").set(this.state.education);
       this.userRef.child("children").set(this.state.children);
       this.userRef.child("marital").set(this.state.marital);
-      this.props.navigation.navigate('RegistrationScreen3', {username2: this.props.navigation.state.params.username});
+      this.props.navigation.navigate('RegistrationScreen3', {hashemail2: this.props.navigation.state.params.hashemail});
     }else{
       Alert.alert("Please ensure that all fields are filled in correctly.");
     }
