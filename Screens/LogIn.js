@@ -29,7 +29,7 @@ export default class LogIn extends Component<{}>{
         //Check hash of email to see if user exists in the database
         if(snap.hasChild(sha1(this.state.email))){
           if(snap.child(sha1(this.state.email)).val().password == sha1(this.state.password)){
-            this.props.navigation.navigate('MainFeed', {usermain: this.state.username});
+            this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
           }else{
             Alert.alert("password incorrect, please check and try again");
           }

@@ -15,10 +15,15 @@ import TextComponent from '../mainFeedComponents/textComponent'
 
 export default class MainFeed extends Component<{}>{
   userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailhashmain + "/");
+  emailHashMain = this.props.navigation.state.params.emailhashmain;
   videosArr = [];
   //on click See my council button, navigate to CouncilScreen
   goToCouncil = () => {
     this.props.navigation.navigate('CouncilScreen');
+  }
+
+  logout = () => {
+    this.props.navigation.navigate('Home');
   }
   
   componentWillMount() {
@@ -80,9 +85,11 @@ export default class MainFeed extends Component<{}>{
           /*After each video url and pic url has been added to array and the array has been sorted based on matching with user preferences
           push to global array with relevant component*/
           for(var i=0; i<videos.length; i++){
+            console.log("videoName to be inserted into video component is " + videos[i][2]);
             this.videosArr.push(
-              <VideoComponent  videoUrl={videos[i][0]} picUrl={videos[i][1]} videoName={videos[i][2]}/>
+              <VideoComponent  videoUrl={videos[i][0]} picUrl={videos[i][1]} videoName={videos[i][2]} emailHash={this.emailHashMain}/>
             );
+            console.log("successfully added a video!");
           }
         }).then(() => {
           //Once db values have loaded, set "loading" state to false so that rest of page can render
@@ -100,7 +107,9 @@ export default class MainFeed extends Component<{}>{
       <ScrollView>
         <View style={styles.space}></View>
         <View style={styles.container}>{this.videosArr}</View>
-        <Button onPress={this.goToCouncil}title="See my council"/>
+        <Button onPress={this.goToCouncil} title="See my council"/>
+        <View style={styles.space}></View>
+        <Button onPress={this.logout} title="log out"/>
       </ScrollView>
     )
   }
