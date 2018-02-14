@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -16,7 +16,7 @@ export default class VideoComponent extends Component<{}>{
   videoName = this.props.videoName; //Set to a local var so that it is accessible within functions
   //This component will take a url as a prop argument when created that will redirect to the youtube video corresponding to this news piece on the feed
   //Will also get url for youtube thumbnail, the video name and a reference to a user node in firebase for use in functionality
-  
+
   positiveReaction = () => {
   //Need to increment a reactions node for the actual video corresponding to positive reactions
     firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
@@ -30,11 +30,22 @@ export default class VideoComponent extends Component<{}>{
       reaction: "negative",
     })
   }
+
+  openVideoPlayer = () => {
+    var vidIdStartIndex = this.props.videoUrl.indexOf("=");
+    var videoId = this.props.videoUrl.slice(vidIdStartIndex+1, this.props.videoUrl.length);
+    console.log("videoId is" + videoId);
+    console.log("emailHashVideoPlayer is " + this.props.emailHash);
+    console.log("videoName is " + this.videoName);
+    this.props.navigation.navigate('VideoPlayer', {videoId: videoId, emailHashVideoPlayer: this.props.emailHash, videoName: this.videoName});
+  }
+
   
+  //() => Linking.openURL(this.props.videoUrl) - former onPress for whole component
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => Linking.openURL(this.props.videoUrl)}>
+        <TouchableOpacity onPress={this.openVideoPlayer}>
           <Image source={{uri: this.props.picUrl}} style={{width: 100, height: 100}}/>
           <Text>{this.props.videoName}</Text>
         </TouchableOpacity>

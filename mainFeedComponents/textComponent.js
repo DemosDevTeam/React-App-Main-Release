@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   Linking,
-  Image
+  Image,
 } from 'react-native';
 
 export default class TextComponent extends Component<{}>{
@@ -21,6 +21,6 @@ export default class TextComponent extends Component<{}>{
       </View>
     )
   }
-  
-  
+
+
 }

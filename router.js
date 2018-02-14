@@ -10,9 +10,10 @@ import RegistrationScreen2 from "./Screens/RegistrationScreen2";
 import RegistrationScreen3 from "./Screens/RegistrationScreen3";
 import RegistrationScreen4 from "./Screens/RegistrationScreen4";
 import RegistrationScreen5 from "./Screens/RegistrationScreen5";
-import TextPopupScreen from "./Screens/TextPopupScreen";
 import MainFeed from "./Screens/MainFeed";
 import CouncilScreen from "./Screens/CouncilScreen";
+import TextView from "./Popups/TextView";
+import VideoPlayer from "./Popups/VideoPlayer";
 
 export const Root = StackNavigator({
   Home: {
@@ -70,10 +71,16 @@ export const Root = StackNavigator({
       title: 'Your Council',
     }
   },
-  TextPopupScreen: {
-    screen: TextPopupScreen,
+  TextView: {
+    screen: TextView,
     navigationOptions: {
-      title: 'News',
+      title: 'Article View'
+    }
+  },
+  VideoPlayer: {
+    screen: VideoPlayer,
+    navigationOptions: {
+      title: 'Video Viewer'
     }
   }
   }, {headerMode: 'none'})
