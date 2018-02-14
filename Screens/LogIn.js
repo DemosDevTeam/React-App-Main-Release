@@ -55,17 +55,20 @@ export default class LogIn extends Component<{}>{
       <ScrollView>
         <View style={styles.container}>
         <Image
-          style={{width: 325, height: 325}}
+          style={{width: 200, height: 200, marginTop: 75, marginBottom: 40}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
-        /></View>
+        />
+
         <Text style={styles.instructions}>
-          Welcome to the log in Page.
+          Please log in or choose to make an account.
         </Text>
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
         <TextInput placeholder="Password" onChangeText={this.handlePassword}/>
+        <View style={styles.space2}></View>
         <Button style={styles.button} onPress={this.login} title="login"/>
+        </View>
         <View style={styles.space}></View>
-        <Button onPress={this.registerAccount} title="Register New Account"/>
+        <Button style={styles.button} onPress={this.registerAccount} title="Register New Account"/>
       </ScrollView>
     );
   }
@@ -75,6 +78,7 @@ var styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: '#F5FCFF',
   },
   welcome: {
     fontSize: 20,
@@ -84,7 +88,9 @@ var styles = StyleSheet.create({
   instructions: {
     textAlign: 'center',
     color: '#333333',
-    marginBottom: 5,
+    marginBottom: 40,
+    // backgroundColor: '#F5FCFF',
+
   },
   images: {
     justifyContent: 'center',
@@ -93,8 +99,17 @@ var styles = StyleSheet.create({
   button: {
     flex: 0,
     marginBottom: 5,
+    marginTop: 10,
+    // backgroundColor: '#F5FCFF',
+
   },
   space: {
     height: 2,
+    // backgroundColor: '#F5FCFF',
+  },
+  space2: {
+    height: 20,
+    // backgroundColor: '#F5FCFF',
   }
 });
+
