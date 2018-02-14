@@ -7,7 +7,6 @@ import {
   Image,
   View,
   Button,
-  RectangleButton,
   Alert
 } from 'react-native';
 
