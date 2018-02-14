@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 import {
   Platform,
   StyleSheet,
@@ -23,15 +24,22 @@ export default class Home extends Component<{}>{
   render() {
     console.disableYellowBox = true;
     return (
-      <View>
-       <Text style={styles.welcome}>
-          Welcome to Demos!
-        </Text>
+      <View style = {styles.container}>
         <Image
-          style={{width: 375, height: 375}}
+          style={{width: 170, height: 170, paddingTop: 20}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
-        <Button onPress={this.loginNav} title="Act Now"/>
+        <Image
+          style={{width: 200, height: 120}}
+          source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
+        />
+        <Text style={styles.welcome2}>
+        Your voice, your local government.
+        </Text>
+        <Button
+          onPress={this.loginNav}
+          title="Act Now"
+          />
       </View>
     );
   }
@@ -48,6 +56,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+  },
+  welcome2: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    paddingBottom: 80,
   },
   instructions: {
     textAlign: 'center',
