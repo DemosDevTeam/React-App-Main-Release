@@ -32,8 +32,13 @@ export default class RegistrationScreen4 extends Component<{}>{
     console.disableYellowBox = true;
     return (
       <ScrollView>
+      <View style={styles.container}>
+      <Image
+        style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
+        source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+      />
         <Text>What do you want your engagement level to look like?</Text>
-        <Text>(Choose as many as you'd like)</Text>
+        <Text>(Choose as many as you would like)</Text>
         <Button title="Taking online polls" onPress={() => this.handleSelection("online polls")}/>
         <View style={styles.space}></View>
         <Button title="Learning about local government" onPress={() => this.handleSelection("learn about local gov")}/>
@@ -45,6 +50,7 @@ export default class RegistrationScreen4 extends Component<{}>{
         <Button title="Attending an event" onPress={() => this.handleSelection("events")}/>
         <View style={styles.space}></View>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+      </View>
       </ScrollView>
     )
   }
@@ -72,8 +78,16 @@ var styles = StyleSheet.create({
   button: {
     flex: 0,
     marginBottom: 5,
+    marginTop: 10,
   },
   space: {
     height: 2,
+  },
+  space2: {
+    height: 20,
+  },
+  userInputs: {
+    marginTop: 15,
+    marginBottom: 15,
   }
 });
