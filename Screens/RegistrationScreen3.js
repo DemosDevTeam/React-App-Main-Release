@@ -40,6 +40,7 @@ export default class RegistrationScreen3 extends Component<{}>{
         source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
       />
       <Text>Please select some of the issues that mean the most to you.</Text>
+      <Text>(Choose as many as you would like)</Text>
       </View>
         <Button title="Education" onPress={() => this.handleSelection("Education")}/>
         <View style={styles.space}></View>
