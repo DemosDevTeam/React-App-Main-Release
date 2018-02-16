@@ -33,8 +33,14 @@ export default class RegistrationScreen5 extends Component<{}>{
     console.disableYellowBox = true;
     return (
       <ScrollView>
+      <View style={styles.container}>
+      <Image
+        style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
+        source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+      />
         <Text>How would you like to recieve updates?</Text>
-        <Text>(Choose as many as you'd like)</Text>
+        <Text>(Choose as many as you would like)</Text>
+      </View>
         <Button title="Text me!" onPress={() => this.handleSelection("text")}/>
         <View style={styles.space}></View>
         <Button title="Email me" onPress={() => this.handleSelection("email")}/>
@@ -71,8 +77,16 @@ var styles = StyleSheet.create({
   button: {
     flex: 0,
     marginBottom: 5,
+    marginTop: 10,
   },
   space: {
     height: 2,
+  },
+  space2: {
+    height: 20,
+  },
+  userInputs: {
+    marginTop: 15,
+    marginBottom: 15,
   }
 });
