@@ -39,6 +39,7 @@ export default class RegistrationScreen4 extends Component<{}>{
       />
         <Text>What do you want your engagement level to look like?</Text>
         <Text>(Choose as many as you would like)</Text>
+      </View>
         <Button title="Taking online polls" onPress={() => this.handleSelection("online polls")}/>
         <View style={styles.space}></View>
         <Button title="Learning about local government" onPress={() => this.handleSelection("learn about local gov")}/>
@@ -50,7 +51,6 @@ export default class RegistrationScreen4 extends Component<{}>{
         <Button title="Attending an event" onPress={() => this.handleSelection("events")}/>
         <View style={styles.space}></View>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
-      </View>
       </ScrollView>
     )
   }
