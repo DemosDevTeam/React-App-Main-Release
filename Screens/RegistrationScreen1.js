@@ -76,16 +76,18 @@ export default class RegistrationScreen1 extends Component<{}>{
     console.disableYellowBox = true;
     return (
       <ScrollView>
+        <View style={styles.container}>
         <Image
-          style={{width: 325, height: 325}}
+          style={{width: 200, height: 200, marginTop: 75, marginBottom: 20}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
-        <TextInput onChangeText={this.handleName}placeholder="name"/>
-        <TextInput onChangeText={this.handleUsername} placeholder="username"/>
-        <TextInput onChangeText={this.handlePassword} placeholder="password"/>
-        <TextInput onChangeText={this.handleEmail} placeholder="email"/>
-        <TextInput onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
-        <Button onPress={this.submit} title="Continue"/>
+        <TextInput style={styles.userInputs} onChangeText={this.handleName}placeholder="name"/>
+        <TextInput style={styles.userInputs} onChangeText={this.handleUsername} placeholder="username"/>
+        <TextInput style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
+        <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
+        <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
+        <Button style={styles.button} onPress={this.submit} title="Continue"/>
+        </View>
       </ScrollView>
     );
   }
@@ -113,8 +115,16 @@ var styles = StyleSheet.create({
   button: {
     flex: 0,
     marginBottom: 5,
+    marginTop: 10,
   },
   space: {
     height: 2,
+  },
+  space2: {
+    height: 20,
+  },
+  userInputs: {
+    marginTop: 15,
+    marginBottom: 15,
   }
 });
