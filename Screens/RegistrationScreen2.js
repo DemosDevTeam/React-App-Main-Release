@@ -80,8 +80,14 @@ export default class RegistrationScreen2 extends Component<{}>{
     //All picker items with values we wouldn't want to store have value of "placeholder"
     return (
       <ScrollView>
+      <View style={styles.container}>
+        <Image
+          style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
+          source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+        />
         <Text>The dēmos team is dedicated to our mission to connect you with unbiased, informative, and relevant local news and updates. We request the demographic information of our users in order to get to know those who are using our platform. The more familiar we are with you and what you value, the more accurate our algorithms are. Please fill in as much information as you feel comfortable sharing with us. We are committed to protecting your privacy.</Text>
         <Picker 
+          style={styles.userInputs}
           selectedValue={this.state.gender}
           onValueChange={(itemValue, itemIndex) => this.handleGender(itemValue)}>
           <Picker.Item label="Select Gender" value="placeholder"/>
@@ -92,6 +98,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Prefer not to respond" value="NoResponse"/>
         </Picker>
         <Picker 
+          style={styles.userInputs}
           selectedValue={this.state.race}
           onValueChange={(itemValue, itemIndex) => this.handleRace(itemValue)}>
           <Picker.Item label="Select Race" value="placeholder"/>
@@ -102,6 +109,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Prefer not to respond" value="NoResponse"/>
         </Picker>
         <Picker 
+          style={styles.userInputs}
           selectedValue={this.state.income}
           onValueChange={(itemValue, itemIndex) => this.handleIncome(itemValue)}>
           <Picker.Item label="Select Household Income Range" value="placeholder"/>
@@ -113,6 +121,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="100,000+" value="10,000+"/>
         </Picker>
         <Picker
+          style={styles.userInputs}
           selectedValue={this.state.age}
           onValueChange={(itemValue, itemIndex) => this.handleAge(itemValue)}>
           <Picker.Item label="Select Age Range" value="placeholder"/>
@@ -124,6 +133,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="40+" value="40+"/>
         </Picker>
         <Picker
+          style={styles.userInputs}
           selectedValue={this.state.occupation}
           onValueChange={(itemValue, itemIndex) =>this.handleOccupation(itemValue)}>
           <Picker.Item label="Select Employment Area" value="placeholder"/>
@@ -133,6 +143,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Employed, with multiple jobs" value="Employed-multiple"/>
         </Picker>
         <Picker
+          style={styles.userInputs}
           selectedValue={this.state.education}
           onValueChange={(itemValue, itemIndex) =>this.handleEducation(itemValue)}>
           <Picker.Item label="Select Education Level" value="placeholder"/>
@@ -144,6 +155,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="PhD" value="PhD"/>
         </Picker>
         <Picker
+          style={styles.userInputs}
           selectedValue={this.state.children}
           onValueChange={(itemValue, itemIndex) =>this.handleChildren(itemValue)}>
           <Picker.Item label="Number of Children" value="placeholder"/>
@@ -153,6 +165,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="6+" value="6+"/>
         </Picker>
         <Picker
+          style={styles.userInputs}
           selectedValue={this.state.marital}
           onValueChange={(itemValue, itemIndex) =>this.handleMarital(itemValue)}>
           <Picker.Item label="Select Marital Status" value="placeholder"/>
@@ -163,6 +176,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Widowed" value="Widowed"/>
         </Picker>
         <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+        </View>
       </ScrollView>
     )
   }
@@ -190,8 +204,16 @@ var styles = StyleSheet.create({
   button: {
     flex: 0,
     marginBottom: 5,
+    marginTop: 10,
   },
   space: {
     height: 2,
+  },
+  space2: {
+    height: 20,
+  },
+  userInputs: {
+    marginTop: 15,
+    marginBottom: 15,
   }
 });
