@@ -3,6 +3,8 @@ package com.demos;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.react.rnspinkit.RNSpinkitPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import ar.com.ezequielaceto.reactnative.library.youtubeplayer.YoutubePlayerPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new LinearGradientPackage(),
+            new RNSpinkitPackage(),
             new ReactNativeYouTube(),
             new YoutubePlayerPackage()
       );

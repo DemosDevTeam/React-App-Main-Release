@@ -12,8 +12,14 @@ import RegistrationScreen4 from "./Screens/RegistrationScreen4";
 import RegistrationScreen5 from "./Screens/RegistrationScreen5";
 import MainFeed from "./Screens/MainFeed";
 import CouncilScreen from "./Screens/CouncilScreen";
+import UpdateProfile from "./Screens/UpdateProfile";
 import TextView from "./Popups/TextView";
 import VideoPlayer from "./Popups/VideoPlayer";
+import UpdateDemographics from "./Popups/UpdateDemographics";
+import UpdateInterests from "./Popups/UpdateInterests";
+import UpdateUpdatePreferences from "./Popups/UpdateUpdatePreferences";
+
+
 
 export const Root = StackNavigator({
   Home: {
@@ -82,5 +88,29 @@ export const Root = StackNavigator({
     navigationOptions: {
       title: 'Video Viewer'
     }
-  }
+  },
+  UpdateProfile: {
+    screen: UpdateProfile,
+    navigationOptions: {
+      title: 'Update Profile'
+    }
+  },
+  UpdateDemographics: {
+    screen: UpdateDemographics,
+    navigationOptions: {
+      title: "Update Demographics"
+    }
+  },
+  UpdateInterests: {
+    screen: UpdateInterests,
+    navigationOptions: {
+      title: "Update Interest"
+    }
+  },
+  UpdateUpdatePreferences: {
+    screen: UpdateUpdatePreferences,
+    navigationOptions: {
+      title: "Update Navigation Preferences"
+    }
+  },
   }, {headerMode: 'none'})

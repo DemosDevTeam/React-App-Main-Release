@@ -26,6 +26,10 @@ export default class MainFeed extends Component<{}>{
     this.props.navigation.navigate('Home');
   }
   
+  upadateProfile = () => {
+    this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHashMain})
+  }
+  
   componentWillMount() {
     //Set loading state to true so that asynchronous calls to db can be made before page loads
     this.setState({loading: true});
@@ -110,6 +114,8 @@ export default class MainFeed extends Component<{}>{
         <Button onPress={this.goToCouncil} title="See my council"/>
         <View style={styles.space}></View>
         <Button onPress={this.logout} title="log out"/>
+        <View style={styles.space}></View>
+        <Button onPress={this.updateProfile} title="Profile"/>
       </ScrollView>
     )
   }

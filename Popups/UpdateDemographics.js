@@ -14,34 +14,18 @@ import {
 import sha1 from 'sha1';
 import {firebaseApp} from '../App';
 
-export default class RegistrationScreen2 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail + "/"); 
+export default class UpdateDemographics extends Component<{}>{
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashUpdateDemographics + "/"); 
+  emailHash = this.props.navigation.state.params.emailHashUpdateDemographics;
   
   state = {
     gender: '',
-    race: '',
     income: '',
     age: '',
     occupation: '',
     education: '',
     children: '',
     marital: '',
-  }
-  //On submit verify inputs and navigate to next registration screen
-  submit = () => {
-    if(this.state.gender != "" && this.state.race != "" && this.state.income != "" && this.state.age != "" && this.state.occupation != "" && this.state.education != " " && this.state.children != " " && this.state.marital != " "){
-      this.userRef.child("gender").set(this.state.gender);
-      this.userRef.child("race").set(this.state.race);
-      this.userRef.child("income").set(this.state.income);
-      this.userRef.child("age").set(this.state.age);
-      this.userRef.child("occupation").set(this.state.occupation);
-      this.userRef.child("education").set(this.state.education);
-      this.userRef.child("children").set(this.state.children);
-      this.userRef.child("marital").set(this.state.marital);
-      this.props.navigation.navigate('RegistrationScreen3', {hashemail2: this.props.navigation.state.params.hashemail});
-    }else{
-      Alert.alert("Please ensure that all fields are filled in correctly.");
-    }
   }
 
   //Store gender as state value based on input from user
@@ -76,7 +60,24 @@ export default class RegistrationScreen2 extends Component<{}>{
   handleMarital = (itemValue) => {
     this.setState({marital: itemValue});
   }
-  render() {
+
+  //On submit verify inputs and navigate to next registration screen
+  submit = () => {
+    if(this.state.gender != "" && this.state.income != "" && this.state.age != "" && this.state.occupation != "" && this.state.education != " " && this.state.children != " "&& this.state.marital != " "){
+      this.userRef.child("gender").set(this.state.gender);
+      this.userRef.child("income").set(this.state.income);
+      this.userRef.child("age").set(this.state.age);
+      this.userRef.child("occupation").set(this.state.occupation);
+      this.userRef.child("education").set(this.state.education);
+      this.userRef.child("children").set(this.state.children);
+      this.userRef.child("marital").set(this.state.marital);
+      this.props.navigation.navigate('RegistrationScreen3', {hashemail2: this.props.navigation.state.params.hashemail});
+    }else{
+      Alert.alert("Please ensure that all fields are filled in correctly.");
+    }
+  }
+  
+    render() {
     console.disableYellowBox = true;
     //All picker items with values we wouldn't want to store have value of "placeholder"
     return (
@@ -96,17 +97,6 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Male" value="Male"/>
           <Picker.Item label="Non-binary" value="Non-binary"/>
           <Picker.Item label="Other" value="Other"/>
-          <Picker.Item label="Prefer not to respond" value="NoResponse"/>
-        </Picker>
-        <Picker 
-          style={styles.userInputs}
-          selectedValue={this.state.race}
-          onValueChange={(itemValue, itemIndex) => this.handleRace(itemValue)}>
-          <Picker.Item label="Select Race" value="placeholder"/>
-          <Picker.Item label="Black / African American" value="African-American"/>
-          <Picker.Item label="Caucasian" value="Caucasian"/>
-          <Picker.Item label="Asian / Pacific Islander" value="Asian"/>
-          <Picker.Item label="Hispanic / Latinx" value="Latino/Hispanic"/>
           <Picker.Item label="Prefer not to respond" value="NoResponse"/>
         </Picker>
         <Picker 
@@ -218,3 +208,4 @@ var styles = StyleSheet.create({
     marginBottom: 15,
   }
 });
+  
