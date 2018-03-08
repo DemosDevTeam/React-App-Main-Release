@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import sha1 from 'sha1';
 import {firebaseApp} from '../App';
-
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
+import {GoogleSignIn} from 'react-native-google-sign-in';
 
 export default class LogIn extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
@@ -37,6 +38,61 @@ export default class LogIn extends Component<{}>{
           Alert.alert("we have no record of an account with this email");
         }
       })
+  }
+  
+  doNothing = () =>{
+    console.log("entered doNothing");
+  }
+  
+  //Login using facebook login
+  fbAuth() {
+    console.log(this.usersRef);
+    var loginToken;
+    LoginManager.logInWithReadPermissions(['public_profile']).then(
+       (result) => {
+        if (result.isCancelled) {
+          console.log('Login was cancelled');
+        } else {
+          AccessToken.getCurrentAccessToken().then((data) => {
+            console.log("about to output access token");
+            console.log(data.accessToken.toString());
+            console.log("the following is data provided from api");
+            console.log(data);
+            loginToken = data.userID;
+            console.log("after the navigation call");
+          })
+        }
+      },
+      function (error) {
+        console.log('Login failed with error: ' + error);
+      }
+    ).then(() => {
+      /**After login is complete, wait 2 sec. for asynchronous call to complete
+        then if user exists, navigate to main feed; if they don't exist nav to registration2
+      **/
+        setTimeout(() => {
+          console.log("inside of callback for firebase writing");
+          console.log("loginToken is as follows:");
+          console.log(loginToken);
+          console.log(this.usersRef);
+          console.log("this:");
+          console.log(this);
+          this.usersRef.once("value").then((snap) => {
+            if(snap.hasChild(loginToken)){
+              this.props.navigation.navigate('MainFeed', {emailhashmain: loginToken})
+            }else{
+              this.usersRef.child(loginToken).set({
+                name: "name coming in future",
+                password: "using fb login",
+                email: "using fb login",
+                phone: "using fb login",
+                username: "using fb login",
+              })
+              this.props.navigation.navigate('RegistrationScreen2', {hashemail: loginToken})
+            }
+          })
+      }, 2000);
+    })
   }
 
   //save email input as state var
@@ -67,6 +123,9 @@ export default class LogIn extends Component<{}>{
         <View style={styles.space2}></View>
         <Button style={styles.button} onPress={this.login} title="login"/>
         </View>
+        <View style={styles.space}></View>
+        <Button style={styles.button} onPress={this.fbAuth.bind(this)} title="Login with Facebook"/>
+        <View style={styles.space}></View>
         <View style={styles.space}></View>
         <Button style={styles.button} onPress={this.registerAccount} title="Register New Account"/>
       </ScrollView>
