@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  Image,
 } from 'react-native';
 import sha1 from 'sha1';
 import {firebaseApp} from '../App'

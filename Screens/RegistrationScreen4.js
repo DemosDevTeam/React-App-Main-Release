@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  Image,
 } from 'react-native';
 import sha1 from 'sha1';
 import {firebaseApp} from '../App'
@@ -21,13 +22,13 @@ export default class RegistrationScreen4 extends Component<{}>{
     }
     this.props.navigation.navigate('RegistrationScreen5', {hashemail4: this.props.navigation.state.params.hashemail3});
   }
-  
+
   handleSelection = (text) => {
     if(this.preferences.indexOf(text) < 0){
       this.preferences.push(text);
     }
   }
-  
+
   render() {
     console.disableYellowBox = true;
     return (

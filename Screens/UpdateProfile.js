@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -18,77 +18,92 @@ export default class UpdateProfile extends Component<{}>{
   engagementArr = [];
   upadatePrefArr = [];
   demographicsArr = [];
-  
+
   componentWillMount() {
     //Set loading state to true so that asynchronous calls to db can be made before page loads
     this.setState({loading: true});
-    
+    console.log("inside of componentWillMount");
+
     this.userRef.once("value").then((snap) => {
+      console.log("inside of call to userRef");
+      console.log("the following is the value of snap");
+      console.log(snap);
       //Get the users interests and populate interestsArr with relevant information; repeat thsi process with engagement, updatePref, and demographics
       var interests = snap.child("interests");
       interests.forEach((child) => {
         this.interestsArr.push(child.key);
       })
-      
+
       var engagements = snap.child("engagement");
       engagements.forEach((child) => {
         this.engagementArr.push(child.key);
       })
-      
+
       var updatePreferences = snap.child("update preferences");
       updatePreferences.forEach((child) => {
         this.updatePrefArr.push(child.key);
       })
-      
+
       snap.forEach((child) => {
         if(child.key == "age" || child.key == "children" || child.key == "education" || child.key == "income" || child.key == "marital"){
           this.demographicsArr.push(child.val());
         }
       })
     }).then(() => {
+      console.log("inside of ui update")
       //Need to update the UI with all this info
-      for(var i=0; i<this.interestsArr.length; i++){
-        this.interestsArr[i] = <View><View style={styles.space}></View><Text>{this.interestsArr[i]}</Text></View>
+      if(this.interestsArr.length != undefined){
+        for(var i=0; i<this.interestsArr.length; i++){
+          this.interestsArr[i] = <View><View style={styles.space}></View><Text>{this.interestsArr[i]}</Text></View>
+        }
       }
-      
-      for(var i=0; i<this.engagementArr.length; i++){
-        this.engagementArr[i] = <View><View style={styles.space}></View><Text>{this.engagementArr[i]}</Text></View>
+
+      if(this.engagementArr != undefined){
+        for(var i=0; i<this.engagementArr.length; i++){
+          this.engagementArr[i] = <View><View style={styles.space}></View><Text>{this.engagementArr[i]}</Text></View>
+        }
       }
-      
-      for(var i=0; i<this.updatePrefArr.length; i++){
-        this.updatePrefArr[i] = <View><View style={styles.space}></View><Text>{this.updatePrefArr[i]}</Text></View>
+
+      if(this.updatePrefArr != undefined){
+        for(var i=0; i<this.updatePrefArr.length; i++){
+          this.updatePrefArr[i] = <View><View style={styles.space}></View><Text>{this.updatePrefArr[i]}</Text></View>
+        }
       }
-      
-      for(var i=0; i<this.demographicsArr.length; i++){
-        this.demographicsArr[i] = <View><View style={styles.space}></View><Text>{this.demographicsArr[i]}</Text></View>
+
+      if(this.demographicsArr != undefined){
+        for(var i=0; i<this.demographicsArr.length; i++){
+          this.demographicsArr[i] = <View><View style={styles.space}></View><Text>{this.demographicsArr[i]}</Text></View>
+        }
       }
+    }).then(() => {
+      this.setState({loading: false});
     });
   }
-  
+
   updateInterests = () => {
     this.props.navigation.navigate('UpdateInterests', {emailHashUpdateInterests: this.emailHash});
   }
-  
+
   updateEngagement = () => {
     this.props.navigation.navigate('UpdateEngagement', {emailHashUpdateEngagement: this.emailHash});
   }
-  
+
   updatePreferences = () => {
     this.props.navigation.navigate('UpdateDemographics', {emailHashUpdateDemographics: this.emailHash});
   }
-  
+
   updateDemographics = () => {
     this.props.navigation.navigate('UpdateUpdatePreferences', {emailHashUpdateUpdatePreferences: this.emailHash});
   }
-  
+
   goToCouncil = () => {
     this.props.navigation.navigate('CouncilScreen');
   }
-  
+
   logout = () => {
     this.props.navigation.navigate('Home');
   }
-  
+
   render() {
     console.disableYellowBox = true;
     if (this.state.loading) {

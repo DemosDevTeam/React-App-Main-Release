@@ -18,6 +18,7 @@ import VideoPlayer from "./Popups/VideoPlayer";
 import UpdateDemographics from "./Popups/UpdateDemographics";
 import UpdateInterests from "./Popups/UpdateInterests";
 import UpdateUpdatePreferences from "./Popups/UpdateUpdatePreferences";
+import AggregateFeedback from "./Screens/AggregateFeedback";
 
 
 
@@ -113,4 +114,10 @@ export const Root = StackNavigator({
       title: "Update Navigation Preferences"
     }
   },
+  AggregateFeedback: {
+    screen: AggregateFeedback,
+    navigationOptions: {
+      title: "Your feedback"
+    }
+  }
   }, {headerMode: 'none'})

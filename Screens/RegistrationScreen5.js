@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  Image,
 } from 'react-native';
 import sha1 from 'sha1';
 import {firebaseApp} from '../App'
@@ -28,7 +29,7 @@ export default class RegistrationScreen5 extends Component<{}>{
       this.preferences.push(text);
     }
   }
-  
+
   render() {
     console.disableYellowBox = true;
     return (

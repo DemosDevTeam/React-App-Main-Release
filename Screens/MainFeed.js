@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -25,11 +25,17 @@ export default class MainFeed extends Component<{}>{
   logout = () => {
     this.props.navigation.navigate('Home');
   }
-  
-  upadateProfile = () => {
+
+  updateProfile = () => {
     this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHashMain})
+    console.log("inside of updateProfile");
   }
-  
+
+  updateFeedback = () => {
+    this.props.navigation.navigate('AggregateFeedback', {emailHashAggregateFeedback: this.emailHashMain});
+    console.log("inside of updateFeedback");
+  }
+
   componentWillMount() {
     //Set loading state to true so that asynchronous calls to db can be made before page loads
     this.setState({loading: true});
@@ -116,6 +122,8 @@ export default class MainFeed extends Component<{}>{
         <Button onPress={this.logout} title="log out"/>
         <View style={styles.space}></View>
         <Button onPress={this.updateProfile} title="Profile"/>
+        <View style={styles.space}></View>
+        <Button onPress={this.updateFeedback} title="See my feedback"></Button>
       </ScrollView>
     )
   }

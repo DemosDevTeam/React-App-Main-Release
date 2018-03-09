@@ -1,3 +1,4 @@
+//https://www.codementor.io/microsem31/react-native-google-and-facebook-authentication-cohpznykf - link to fb and google login implementation
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -13,10 +14,13 @@ import {
 import sha1 from 'sha1';
 import {firebaseApp} from '../App';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
-import {GoogleSignIn} from 'react-native-google-sign-in';
 
 export default class LogIn extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+  
+  componentDidMount() {
+    //this.setupGoogleSignin();
+  }
   //on press register new account button, navigate to first registration screen.
   registerAccount = () => {
     this.props.navigation.navigate('RegistrationScreen1');
@@ -53,9 +57,10 @@ export default class LogIn extends Component<{}>{
         if (result.isCancelled) {
           console.log('Login was cancelled');
         } else {
+          console.log(result);
           AccessToken.getCurrentAccessToken().then((data) => {
             console.log("about to output access token");
-            console.log(data.accessToken.toString());
+            console.log(data);
             console.log("the following is data provided from api");
             console.log(data);
             loginToken = data.userID;
@@ -125,7 +130,6 @@ export default class LogIn extends Component<{}>{
         </View>
         <View style={styles.space}></View>
         <Button style={styles.button} onPress={this.fbAuth.bind(this)} title="Login with Facebook"/>
-        <View style={styles.space}></View>
         <View style={styles.space}></View>
         <Button style={styles.button} onPress={this.registerAccount} title="Register New Account"/>
       </ScrollView>
