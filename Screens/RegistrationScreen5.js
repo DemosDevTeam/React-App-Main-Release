@@ -50,7 +50,7 @@ export default class RegistrationScreen5 extends Component<{}>{
         <View style={styles.space}></View>
         <Button title="I'll just check the app" onPress={() => this.handleSelection("check app")}/>
         <View style={styles.space}></View>
-        <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.submit}><Text style={{marginBottom: 30, textAlign: 'center'}}>Submit and continue</Text></TouchableOpacity>
       </ScrollView>
     )
   }
