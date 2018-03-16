@@ -71,7 +71,7 @@ export default class RegistrationScreen3 extends Component<{}>{
         <View style={styles.space}></View>
         <Button title="Economy" onPress={() => this.handleSelection("Economy")}/>
         <View style={styles.space}></View>
-        <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.submit}><Text style={{marginBottom: 30, textAlign: 'center'}}>Submit and continue</Text></TouchableOpacity>
       </ScrollView>
     )
   }
