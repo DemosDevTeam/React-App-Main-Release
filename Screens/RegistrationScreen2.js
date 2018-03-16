@@ -216,8 +216,8 @@ var styles = StyleSheet.create({
     height: 20,
   },
   userInputs: {
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 1,
+    marginBottom: 1,
     width: 300,
   }
 });
