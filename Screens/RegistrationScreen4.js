@@ -51,7 +51,7 @@ export default class RegistrationScreen4 extends Component<{}>{
         <View style={styles.space}></View>
         <Button title="Attending an event" onPress={() => this.handleSelection("events")}/>
         <View style={styles.space}></View>
-        <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.submit}><Text style={{marginBottom: 30, textAlign: 'center'}}>Submit and continue</Text></TouchableOpacity>
       </ScrollView>
     )
   }
