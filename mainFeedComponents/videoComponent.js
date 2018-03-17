@@ -5,6 +5,8 @@ import {
   View,
   Button,
   TouchableOpacity,
+  TouchableHighlight,
+  ScrollView,
   TextInput,
   Linking,
   Image
@@ -40,28 +42,56 @@ export default class VideoComponent extends Component<{}>{
     this.props.navigation.navigate('VideoPlayer', {videoId: videoId, emailHashVideoPlayer: this.props.emailHash, videoName: this.videoName});
   }
 
-  
+
   //() => Linking.openURL(this.props.videoUrl) - former onPress for whole component
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity onPress={this.openVideoPlayer}>
-          <Image source={{uri: this.props.picUrl}} style={{width: 300, height: 165}}/>
-          <Text>{this.props.videoName}</Text>
-        </TouchableOpacity>
-        <TouchableHighlight onPress={this.positiveReaction}>
-          <Image
-            style={styles.button}
-            source={{uri: 'https://user-images.githubusercontent.com/18129905/37549908-9838279e-295b-11e8-92cf-ee3de1972d5b.png'}}
-          />
-        </TouchableHighlight>
-        <TouchableHighlight onPress={this.negativeReaction}>
-          <Image
-            style={styles.button}
-            source={{uri: 'https://user-images.githubusercontent.com/18129905/37549914-a6982960-295b-11e8-9493-f24db3c1e13a.png'}}
-          />
-        </TouchableHighlight>
-      </View>
+      <ScrollView style={styles.containerz}>
+        <View style={styles.stepz}>
+          <View style={{flex:1}}>
+          <View style={styles.container}>
+            <TouchableOpacity onPress={this.openVideoPlayer}>
+              <Image source={{uri: this.props.picUrl}} style={{width: 300, height: 168}}/>
+              <Text>{this.props.videoName}</Text>
+            </TouchableOpacity>
+          </View>
+            <View style={styles.pickContainerz}>
+              <TouchableHighlight onPress={this.positiveReaction} style={{flex:1}}>
+                <View style={styles.pickWrapperz}>
+                  <View style={styles.circlePin}>
+                    <Image
+                      source={{uri: 'https://user-images.githubusercontent.com/18129905/37549920-b3cc89f0-295b-11e8-9c7d-4128f639ddb2.png'}}
+                      style={styles.arrowWinz}
+                    />
+                  </View>
+                </View>
+              </TouchableHighlight>
+
+              <TouchableHighlight onPress={this.positiveReaction}  style={{flex:1}}>
+                <View style={styles.pickWrapperz}>
+                  <View style={styles.circlePositive}>
+                    <Image
+                      source={{uri: 'https://user-images.githubusercontent.com/18129905/37549908-9838279e-295b-11e8-92cf-ee3de1972d5b.png'}}
+                      style={styles.arrowDrawz}
+                    />
+                  </View>
+                </View>
+              </TouchableHighlight>
+
+              <TouchableHighlight onPress={this.negativeReaction}  style={{flex:1}}>
+                <View style={styles.pickWrapperz}>
+                  <View style={styles.circleNegative}>
+                    <Image
+                      source={{uri: 'https://user-images.githubusercontent.com/18129905/37549914-a6982960-295b-11e8-9493-f24db3c1e13a.png'}}
+                      style={styles.arrowWinz}
+                    />
+                  </View>
+                </View>
+              </TouchableHighlight>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
     )
   }
 }
@@ -91,5 +121,83 @@ var styles = StyleSheet.create({
   },
   space: {
     height: 2,
-  }
+  },
+  containerz: {
+  flex: 1,
+  backgroundColor: '#e1e1e1'
+},
+stepz: {
+  backgroundColor: '#ffffff',
+  borderRadius: 4,
+  flex: 1,
+  marginLeft: 10,
+  marginRight: 10,
+  marginBottom: 10,
+  paddingLeft: 15,
+  paddingRight: 10,
+  paddingTop: 15,
+  paddingBottom: 15,
+  shadowOffset: {
+    width: 0,
+    height: 2,
+  },
+  shadowRadius: 2,
+  shadowOpacity: 0.2,
+  shadowColor: 'black',
+  textAlign: 'center',
+},
+headingz: {
+  textAlign: 'center',
+  fontWeight: 'bold',
+  fontSize: 15,
+  color: '#333333',
+},
+pickContainerz: {
+  flex:1,
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+},
+pickWrapperz: {
+  flex: 1,
+  flexDirection: 'row',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+  marginTop: 10,
+},
+circlePin: {
+  height: 33,
+  borderRadius: 30,
+  width: 33,
+  backgroundColor: '#A2A1A1',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+circlePositive: {
+  height: 33,
+  borderRadius: 30,
+  width: 33,
+  backgroundColor: '#49C7E3',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+circleNegative: {
+  height: 33,
+  borderRadius: 30,
+  width: 33,
+  backgroundColor: '#EE4C50',
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+circleActivez: {
+  backgroundColor: 'red',
+},
+arrowWinz: {
+  width: 20,
+  height: 20,
+},
+arrowDrawz: {
+  width: 20,
+  height: 20,
+},
 });
