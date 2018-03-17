@@ -46,11 +46,21 @@ export default class VideoComponent extends Component<{}>{
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.openVideoPlayer}>
-          <Image source={{uri: this.props.picUrl}} style={{width: 100, height: 100}}/>
+          <Image source={{uri: this.props.picUrl}} style={{width: 300, height: 165}}/>
           <Text>{this.props.videoName}</Text>
         </TouchableOpacity>
-        <Button onPress={this.positiveReaction} title="Loved this! (icon to come)"/>
-        <Button onPress={this.negativeReaction} title="Not a fan (icon to come)"/>
+        <TouchableHighlight onPress={this.positiveReaction}>
+          <Image
+            style={styles.button}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/37549908-9838279e-295b-11e8-92cf-ee3de1972d5b.png'}}
+          />
+        </TouchableHighlight>
+        <TouchableHighlight onPress={this.negativeReaction}>
+          <Image
+            style={styles.button}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/37549914-a6982960-295b-11e8-9493-f24db3c1e13a.png'}}
+          />
+        </TouchableHighlight>
       </View>
     )
   }
