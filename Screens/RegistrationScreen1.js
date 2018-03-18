@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -15,7 +15,7 @@ import {firebaseApp} from '../App'
 
 export default class RegistrationScreen1 extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
-  
+
   state = {
     name: '',
     username: '',
@@ -23,7 +23,7 @@ export default class RegistrationScreen1 extends Component<{}>{
     email: '',
     phone: '',
   }
-  
+
   //On submit verify inputs and navigate to next registration screen
   submit = () => {
     //Validate inputs
@@ -31,11 +31,11 @@ export default class RegistrationScreen1 extends Component<{}>{
     if(this.state.phone == ''){
       this.state.phone = "none"
     }
-    
+
     if(this.state.name != '' && this.state.username != '' && this.state.password != '' && this.state.email != ''){
       //Check and make sure user with this email is not already on file
       this.usersRef.once("value").then((snap) => {
-      
+
         if(snap.hasChild(sha1(this.state.email))){
           Alert.alert("this email is already on file");
         }else{
@@ -72,7 +72,7 @@ export default class RegistrationScreen1 extends Component<{}>{
   handlePhone = (text) => {
     this.setState({phone: text})
   }
-  
+
   render() {
     console.disableYellowBox = true;
     return (
@@ -87,7 +87,11 @@ export default class RegistrationScreen1 extends Component<{}>{
         <TextInput style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
         <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
-        <Button style={styles.button} onPress={this.submit} title="Continue"/>
+        <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.submit}>
+            <Text style={{fontSize: 16}}>Continue</Text>
+          </TouchableOpacity>
+        </View>
         </View>
       </ScrollView>
     );
@@ -127,5 +131,21 @@ var styles = StyleSheet.create({
   userInputs: {
     marginTop: 15,
     marginBottom: 15,
+  },
+  pickWrapperz: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  buttonz: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    backgroundColor: '#49C7E3',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
+
