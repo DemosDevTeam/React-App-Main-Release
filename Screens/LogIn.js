@@ -17,7 +17,7 @@ import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 export default class LogIn extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
-  
+
   componentDidMount() {
     //this.setupGoogleSignin();
   }
@@ -43,11 +43,11 @@ export default class LogIn extends Component<{}>{
         }
       })
   }
-  
+
   doNothing = () =>{
     console.log("entered doNothing");
   }
-  
+
   //Login using facebook login
   fbAuth() {
     console.log(this.usersRef);
@@ -126,12 +126,49 @@ export default class LogIn extends Component<{}>{
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
         <TextInput placeholder="Password" onChangeText={this.handlePassword}/>
         <View style={styles.space2}></View>
-        <Button style={styles.button} onPress={this.login} title="login"/>
+
+        <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.login}>
+            <Text style={{fontSize: 16}}>Log In</Text>
+          </TouchableOpacity>
         </View>
+
+        <View style={styles.space3}></View>
+
+        <Text style={styles.orrr}>
+          or
+        </Text>
+
+        <View style={styles.space3}></View>
+
+        <View style={styles.buttonzFB}>
+          <TouchableOpacity onPress={this.fbAuth.bind(this)}>
+            <Text style={{fontSize: 16, color: '#ffffff'}}>Login with Facebook</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.space3}></View>
         <View style={styles.space}></View>
-        <Button style={styles.button} onPress={this.fbAuth.bind(this)} title="Login with Facebook"/>
+        <Text style={styles.linez}>
+          ______________________________________________________________________
+        </Text>
+        <View style={styles.space3}></View>
+        <View style={styles.space3}></View>
+        <View style={styles.space3}></View>
+        <View style={styles.space3}></View>
+        <Text style={styles.orrr}>
+          New here?
+        </Text>
         <View style={styles.space}></View>
-        <Button style={styles.button} onPress={this.registerAccount} title="Register New Account"/>
+        <View style={styles.space}></View>
+
+        <View style={styles.buttonzNew}>
+          <TouchableOpacity onPress={this.registerAccount}>
+            <Text style={{fontSize: 16}}>Register New Account</Text>
+          </TouchableOpacity>
+        </View>
+
+        </View>
       </ScrollView>
     );
   }
@@ -153,7 +190,18 @@ var styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 40,
     // backgroundColor: '#F5FCFF',
-
+  },
+  orrr: {
+    textAlign: 'center',
+    color: '#333333',
+    fontSize: 16,
+    // backgroundColor: '#F5FCFF',
+  },
+  linez: {
+    textAlign: 'center',
+    color: '#A2A1A1',
+    fontSize: 10,
+    // backgroundColor: '#F5FCFF',
   },
   images: {
     justifyContent: 'center',
@@ -173,6 +221,33 @@ var styles = StyleSheet.create({
   space2: {
     height: 20,
     // backgroundColor: '#F5FCFF',
+  },
+  space3: {
+    height: 4,
+    // backgroundColor: '#F5FCFF',
+  },
+  buttonz: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    backgroundColor: '#49C7E3',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonzFB: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    backgroundColor: '#3B5998',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonzNew: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    backgroundColor: '#EE4C50',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
-
