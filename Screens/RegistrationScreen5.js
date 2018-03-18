@@ -50,7 +50,13 @@ export default class RegistrationScreen5 extends Component<{}>{
         <View style={styles.space}></View>
         <Button title="I'll just check the app" onPress={() => this.handleSelection("check app")}/>
         <View style={styles.space}></View>
-        <TouchableOpacity onPress={this.submit}><Text style={{marginBottom: 30, textAlign: 'center'}}>Submit and continue</Text></TouchableOpacity>
+        <View style={styles.container}>
+        <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.submit}>
+            <Text style={{fontSize: 16, textAlign: 'center'}}>Submit and Continue</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
       </ScrollView>
     )
   }
@@ -89,5 +95,13 @@ var styles = StyleSheet.create({
   userInputs: {
     marginTop: 15,
     marginBottom: 15,
+  },
+  buttonz: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    backgroundColor: '#49C7E3',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
