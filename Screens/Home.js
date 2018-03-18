@@ -3,6 +3,7 @@ import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'rea
 import {
   Platform,
   StyleSheet,
+  TouchableOpacity,
   Text,
   Image,
   View,
@@ -11,15 +12,15 @@ import {
 } from 'react-native';
 
 export default class Home extends Component<{}>{
-  //changeText makes use of the prop provided by this being in a navigation stack 
+  //changeText makes use of the prop provided by this being in a navigation stack
   //This allows us to navigate to another sheet within the stack
   //The stack is defined in router.js
-  
+
   //When login button is pressed, navigate to 'log in' screen
   loginNav = () => {
     this.props.navigation.navigate('LogIn');
   };
-  
+
   render() {
     console.disableYellowBox = true;
     return (
@@ -35,10 +36,11 @@ export default class Home extends Component<{}>{
         <Text style={styles.welcome2}>
         Your voice, your local government.
         </Text>
-        <Button
-          onPress={this.loginNav}
-          title="Act Now"
-          />
+          <View style={styles.buttonz}>
+            <TouchableOpacity onPress={this.loginNav}>
+              <Text style={{fontSize: 18}}>Act Now</Text>
+            </TouchableOpacity>
+          </View>
       </View>
     );
   }
@@ -67,4 +69,12 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  buttonz: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    backgroundColor: '#49C7E3',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
