@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -15,8 +15,8 @@ import sha1 from 'sha1';
 import {firebaseApp} from '../App';
 
 export default class RegistrationScreen2 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail + "/"); 
-  
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail + "/");
+
   state = {
     gender: '',
     race: '',
@@ -87,8 +87,8 @@ export default class RegistrationScreen2 extends Component<{}>{
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
         <Text style={{marginLeft: 30, marginRight: 30, textAlign: 'center'}}>The dēmos team is dedicated to our mission to connect you with unbiased, informative, and relevant local news and updates. We request the demographic information of our users in order to get to know those who are using our platform. The more familiar we are with you and what you value, the more accurate our algorithms are. Please fill in as much information as you feel comfortable sharing with us. We are committed to protecting your privacy.</Text>
-      <View>  
-      <Picker 
+      <View>
+      <Picker
           style={styles.userInputs}
           selectedValue={this.state.gender}
           onValueChange={(itemValue, itemIndex) => this.handleGender(itemValue)}>
@@ -99,7 +99,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Other" value="Other"/>
           <Picker.Item label="Prefer not to respond" value="NoResponse"/>
         </Picker>
-        <Picker 
+        <Picker
           style={styles.userInputs}
           selectedValue={this.state.race}
           onValueChange={(itemValue, itemIndex) => this.handleRace(itemValue)}>
@@ -110,7 +110,7 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Hispanic / Latinx" value="Latino/Hispanic"/>
           <Picker.Item label="Prefer not to respond" value="NoResponse"/>
         </Picker>
-        <Picker 
+        <Picker
           style={styles.userInputs}
           selectedValue={this.state.income}
           onValueChange={(itemValue, itemIndex) => this.handleIncome(itemValue)}>
@@ -178,7 +178,11 @@ export default class RegistrationScreen2 extends Component<{}>{
           <Picker.Item label="Widowed" value="Widowed"/>
         </Picker>
         </View>
-        <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+        <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.submit}>
+            <Text style={{fontSize: 16, textAlign: 'center'}}>Submit and Continue</Text>
+          </TouchableOpacity>
+        </View>
         </View>
       </ScrollView>
     )
@@ -219,5 +223,15 @@ var styles = StyleSheet.create({
     marginTop: 1,
     marginBottom: 1,
     width: 300,
+  },
+  buttonz: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    marginBottom: 30,
+    backgroundColor: '#49C7E3',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 });
+
