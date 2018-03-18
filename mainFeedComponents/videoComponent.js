@@ -51,14 +51,14 @@ export default class VideoComponent extends Component<{}>{
           <View style={{flex:1}}>
           <View style={styles.container}>
             <TouchableOpacity onPress={this.openVideoPlayer}>
-              <Image source={{uri: this.props.picUrl}} style={{width: 300, height: 168}}/>
-              <Text>{this.props.videoName}</Text>
+              <Text style={{fontSize: 10, marginLeft: 7, marginTop: -7, marginBottom: 3}}>{this.props.videoName}</Text>
+              <Image source={{uri: this.props.picUrl}} style={{width: 348, height: 196}}/>
             </TouchableOpacity>
           </View>
             <View style={styles.pickContainerz}>
               <TouchableHighlight onPress={this.positiveReaction} style={{flex:1}}>
                 <View style={styles.pickWrapperz}>
-                  <View style={styles.circlePin}>
+                  <View style={styles.circ}>
                     <Image
                       source={{uri: 'https://user-images.githubusercontent.com/18129905/37549920-b3cc89f0-295b-11e8-9c7d-4128f639ddb2.png'}}
                       style={styles.arrowWinz}
@@ -69,7 +69,7 @@ export default class VideoComponent extends Component<{}>{
 
               <TouchableHighlight onPress={this.positiveReaction}  style={{flex:1}}>
                 <View style={styles.pickWrapperz}>
-                  <View style={styles.circlePositive}>
+                  <View style={styles.circ}>
                     <Image
                       source={{uri: 'https://user-images.githubusercontent.com/18129905/37549908-9838279e-295b-11e8-92cf-ee3de1972d5b.png'}}
                       style={styles.arrowDrawz}
@@ -80,7 +80,7 @@ export default class VideoComponent extends Component<{}>{
 
               <TouchableHighlight onPress={this.negativeReaction}  style={{flex:1}}>
                 <View style={styles.pickWrapperz}>
-                  <View style={styles.circleNegative}>
+                  <View style={styles.circ}>
                     <Image
                       source={{uri: 'https://user-images.githubusercontent.com/18129905/37549914-a6982960-295b-11e8-9493-f24db3c1e13a.png'}}
                       style={styles.arrowWinz}
@@ -130,13 +130,13 @@ stepz: {
   backgroundColor: '#ffffff',
   borderRadius: 4,
   flex: 1,
-  marginLeft: 10,
-  marginRight: 10,
+  marginLeft: 5,
+  marginRight: 5,
   marginBottom: 10,
-  paddingLeft: 15,
-  paddingRight: 10,
-  paddingTop: 15,
-  paddingBottom: 15,
+  paddingLeft: 0,
+  paddingRight: 0,
+  paddingTop: 10,
+  paddingBottom: 10,
   shadowOffset: {
     width: 0,
     height: 2,
@@ -164,6 +164,14 @@ pickWrapperz: {
   justifyContent: 'space-around',
   alignItems: 'center',
   marginTop: 10,
+},
+circ: {
+  height: 33,
+  borderRadius: 30,
+  width: 33,
+  backgroundColor: '#ffffff',
+  alignItems: 'center',
+  justifyContent: 'center',
 },
 circlePin: {
   height: 33,
@@ -201,3 +209,4 @@ arrowDrawz: {
   height: 20,
 },
 });
+
