@@ -8,6 +8,7 @@ import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
@@ -78,14 +79,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNGoogleSigninPackage(),
             new ReactNativeYouTube(),
-            new RNGoogleSigninPackage(),
-            new FBSDKPackage(),
             new LinearGradientPackage(),
-            new RNSpinkitPackage(),
-            new ReactNativeYouTube(),
-            new RNGoogleSigninPackage(),
             new FBSDKPackage(mCallbackManager),
-            new LinearGradientPackage(),
             new RNSpinkitPackage()
       );
     }

@@ -16,7 +16,7 @@ import com.android.build.OutputFile
  *   bundleAssetName: "index.android.bundle",
  *
  *   // the entry file for bundle generation
- *   entryFile: "index.android.js",
+ *   entryFile: "index.js",
  *
  *   // whether to bundle JS and assets in debug mode
  *   bundleInDebug: false,
@@ -95,7 +95,7 @@ def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.demos"
@@ -105,6 +105,16 @@ android {
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                storeFile file(MYAPP_RELEASE_STORE_FILE)
+                storePassword MYAPP_RELEASE_STORE_PASSWORD
+                keyAlias MYAPP_RELEASE_KEY_ALIAS
+                keyPassword MYAPP_RELEASE_KEY_PASSWORD
+            }
         }
     }
     splits {
@@ -134,55 +144,28 @@ android {
             }
         }
     }
+    buildTypes{
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 dependencies {
     compile project(':react-native-google-signin')
     compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
     compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-youtube')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-linear-gradient')
-    compile project(':react-native-spinkit')
-    compile project(':react-native-google-signin')
-    compile project(':react-native-fbsdk')
-    compile project(':react-native-youtube')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-spinkit')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
+}
+
+configurations.all {
+        resolutionStrategy {
+                force 'com.android.support:support-v4:26+'
+        }
 }
 
 // Run this once to be able to run the application with BUCK

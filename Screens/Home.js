@@ -23,6 +23,7 @@ export default class Home extends Component<{}>{
 
   render() {
     console.disableYellowBox = true;
+    console.log("Successfully reached the home.js render function");
     return (
       <View style = {styles.container}>
         <Image

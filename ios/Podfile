@@ -7,20 +7,8 @@ target 'Demos' do
 
   # Pods for Demos
   pod 'Firebase'
-  pod 'GoogleSignIn'
-
-  target 'Demos-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-  target 'DemosTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end
-
-target 'Demos-tvOS' do
+  pod 'FirebaseCore'
+  pod 'FirebaseInstanceID'
+  pod 'Google/SignIn'
 
 end
