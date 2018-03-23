@@ -181,6 +181,10 @@ export default class VideoPlayer extends Component<{}>{
   })
 }
 
+  goBack = () => {
+    this.props.navigation.navigate('MainFeed', {emailhasmain: this.emailHash})
+  }
+
   render() {
     console.log("embedded url is:" + this.state.embeddedUrl);
     return (
@@ -193,6 +197,7 @@ export default class VideoPlayer extends Component<{}>{
         <Button onPress={this.submitFeedback} title="Submit Feedback"/>
         <Button onPress={this.submitPositiveReaction} title="I loved it!"/>
         <Button onPress={this.submitNegativeReaction} title="Not a fan"/>
+        <Button onPress={this.goBack} title="Back to main feed"/>
       </View>
     )
   }
