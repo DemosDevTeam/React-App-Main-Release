@@ -80,11 +80,8 @@ export default class MainFeed extends Component<{}>{
           }
         }).then(() => {
           //Need to sort the videos array based on the matchScore.
-        console.log("entered sorting of videos array based on the matchScore");
           for(var i=0; i<videos.length; i++){
             for(var k=0; k<videos.length-1; k++){
-              console.log("videos[k][4]");
-              console.log(videos[k][4]);
               if(videos[k][4] < videos[k+1][4]){
                 var temp = videos[k];
                 videos[k] = videos[k+1];
@@ -97,7 +94,6 @@ export default class MainFeed extends Component<{}>{
           /*After each video url and pic url has been added to array and the array has been sorted based on matching with user preferences
           push to global array with relevant component*/
           for(var i=0; i<videos.length; i++){
-            console.log("videoName to be inserted into video component is " + videos[i][2]);
             this.videosArr.push(
               <VideoComponent  navigation={this.props.navigation} videoUrl={videos[i][0]} picUrl={videos[i][1]} videoName={videos[i][2]} emailHash={this.emailHashMain}/>
             );

@@ -35,11 +35,12 @@ export default class VideoComponent extends Component<{}>{
 
   openVideoPlayer = () => {
     var vidIdStartIndex = this.props.videoUrl.indexOf("=");
-    var videoId = this.props.videoUrl.slice(vidIdStartIndex+1, this.props.videoUrl.length);
-    console.log("videoId is" + videoId);
+    var videoID = this.props.videoUrl.slice(vidIdStartIndex+1, this.props.videoUrl.length);
+    console.log(videoID);
+    console.log("videoId is" + videoID);
     console.log("emailHashVideoPlayer is " + this.props.emailHash);
     console.log("videoName is " + this.videoName);
-    this.props.navigation.navigate('VideoPlayer', {videoId: videoId, emailHashVideoPlayer: this.props.emailHash, videoName: this.videoName});
+    this.props.navigation.navigate('VideoPlayer', {VideoPlayerVideoId: videoID, VideoPlayerEmailHashVideoPlayer: this.props.emailHash, VideoPlayerVideoName: this.videoName});
   }
 
 
@@ -209,4 +210,3 @@ arrowDrawz: {
   height: 20,
 },
 });
-

@@ -19,7 +19,10 @@ export default class LogIn extends Component<{}>{
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
 
   componentDidMount() {
-    //this.setupGoogleSignin();
+    this.setState({
+      email: "",
+      password: "",
+    })
   }
   //on press register new account button, navigate to first registration screen.
   registerAccount = () => {
