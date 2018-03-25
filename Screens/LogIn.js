@@ -127,7 +127,7 @@ export default class LogIn extends Component<{}>{
           Please log in or choose to make an account.
         </Text>
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
-        <TextInput placeholder="Password" onChangeText={this.handlePassword}/>
+        <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword}/>
         <View style={styles.space2}></View>
 
         <View style={styles.buttonz}>
