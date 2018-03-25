@@ -8,7 +8,8 @@ import {
   Image,
   View,
   Button,
-  Alert
+  Alert, 
+  ImageBackground,
 } from 'react-native';
 
 export default class Home extends Component<{}>{
@@ -25,24 +26,25 @@ export default class Home extends Component<{}>{
     console.disableYellowBox = true;
     console.log("Successfully reached the home.js render function");
     return (
-      <View style = {styles.container}>
-        <Image
-          style={{width: 170, height: 170, paddingTop: 20}}
-          source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
-        />
-        <Image
-          style={{width: 200, height: 120}}
-          source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
-        />
-        <Text style={styles.welcome2}>
-        Your voice, your local government.
-        </Text>
-          <View style={styles.buttonz}>
-            <TouchableOpacity onPress={this.loginNav}>
-              <Text style={{fontSize: 18}}>Act Now</Text>
-            </TouchableOpacity>
-          </View>
-      </View>
+      <ImageBackground source={{uri: 'https://user-images.githubusercontent.com/18129905/37871334-c108bd32-2fb9-11e8-9d65-a5692497386b.png'}}
+      style={styles.backgroundImage}>
+          <Image
+            style={{width: 170, height: 170}}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+          />
+          <Image
+            style={{width: 200, height: 120}}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
+          />
+          <Text style={styles.welcome2}>
+          Your voice, your local government.
+          </Text>
+            <View style={styles.buttonz}>
+              <TouchableOpacity onPress={this.loginNav}>
+                <Text style={{fontSize: 18}}>Act Now</Text>
+              </TouchableOpacity>
+            </View>
+      </ImageBackground>
     );
   }
 }
@@ -54,6 +56,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+    width: null,
+    height: null,
+    resizeMode: 'cover'
+  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
@@ -63,7 +74,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    paddingBottom: 80,
+    paddingTop: -20,
+    paddingBottom: 90,
   },
   instructions: {
     textAlign: 'center',
@@ -77,5 +89,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#49C7E3',
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 5,
+    shadowOpacity: 0.5
   }
 });
