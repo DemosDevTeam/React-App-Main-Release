@@ -84,7 +84,7 @@ export default class RegistrationScreen1 extends Component<{}>{
         />
         <TextInput style={styles.userInputs} onChangeText={this.handleName}placeholder="name"/>
         <TextInput style={styles.userInputs} onChangeText={this.handleUsername} placeholder="username"/>
-        <TextInput style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
+        <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
         <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
         <View style={styles.buttonz}>
