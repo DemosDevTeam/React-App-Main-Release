@@ -51,6 +51,10 @@ export default class UpdateProfile extends Component<{}>{
       })
     }).then(() => {
       console.log("inside of ui update")
+      console.log(this.demographicsArr);
+      console.log(this.engagementArr);
+      console.log(this.updatePrefArr);
+      console.log(this.interestsArr);
       //Need to update the UI with all this info
       if(this.interestsArr.length != undefined){
         for(var i=0; i<this.interestsArr.length; i++){
@@ -89,11 +93,11 @@ export default class UpdateProfile extends Component<{}>{
   }
 
   updatePreferences = () => {
-    this.props.navigation.navigate('UpdateDemographics', {emailHashUpdateDemographics: this.emailHash});
+    this.props.navigation.navigate('UpdateUpdatePreferences', {emailHashUpdateUpdatePreferences: this.emailHash});
   }
 
   updateDemographics = () => {
-    this.props.navigation.navigate('UpdateUpdatePreferences', {emailHashUpdateUpdatePreferences: this.emailHash});
+    this.props.navigation.navigate('UpdateDemographics', {emailHashUpdateDemographics: this.emailHash});
   }
 
   goToCouncil = () => {
@@ -102,6 +106,10 @@ export default class UpdateProfile extends Component<{}>{
 
   logout = () => {
     this.props.navigation.navigate('Home');
+  }
+
+  back = () => {
+    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash})
   }
 
   render() {
@@ -122,11 +130,13 @@ export default class UpdateProfile extends Component<{}>{
         <Button onPress={this.updatePreferences} title="Update notification preferences"/>
         <View style={styles.space}></View>
         <View style={styles.container}>{this.demographicsArr}</View>
-        <Button onPress={this.updateDemographcis} title="Update demographic information"/>
+        <Button onPress={this.updateDemographics} title="Update demographic information"/>
         <View style={styles.space}></View>
         <Button onPress={this.goToCouncil} title="See my council"/>
         <View style={styles.space}></View>
         <Button onPress={this.logout} title="log out"/>
+        <View style={styles.space}></View>
+        <Button onPress={this.back} title="Back"/>
       </ScrollView>
     )
   }

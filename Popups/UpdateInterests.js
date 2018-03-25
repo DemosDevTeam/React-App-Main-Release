@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -19,14 +19,14 @@ export default class UpdateInterests extends Component<{}>{
   goToCouncil = () => {
     this.props.navigation.navigate('CouncilScreen');
   }
-  
+
   handleSelection = (text) => {
     //Check and see if preference has already been selected
     if(this.interests.indexOf(text) < 0){
       this.interests.push(text);
     }
   }
-  
+
   submit = () => {
     this.userRef.set("");
     for(var i=0; i<this.preferences.length; i++){
@@ -34,7 +34,7 @@ export default class UpdateInterests extends Component<{}>{
     }
     this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHash});
   }
-  
+
   render() {
     return (
       <ScrollView>
@@ -74,3 +74,39 @@ export default class UpdateInterests extends Component<{}>{
     )
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+  instructions: {
+    textAlign: 'center',
+    color: '#333333',
+    marginBottom: 5,
+  },
+  images: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    flex: 0,
+    marginBottom: 5,
+    marginTop: 10,
+  },
+  space: {
+    height: 2,
+  },
+  space2: {
+    height: 20,
+  },
+  userInputs: {
+    marginTop: 15,
+    marginBottom: 15,
+  }
+});

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
   Text,
   View,
@@ -15,9 +15,9 @@ import sha1 from 'sha1';
 import {firebaseApp} from '../App';
 
 export default class UpdateDemographics extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashUpdateDemographics + "/"); 
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashUpdateDemographics + "/");
   emailHash = this.props.navigation.state.params.emailHashUpdateDemographics;
-  
+
   state = {
     gender: '',
     income: '',
@@ -71,12 +71,12 @@ export default class UpdateDemographics extends Component<{}>{
       this.userRef.child("education").set(this.state.education);
       this.userRef.child("children").set(this.state.children);
       this.userRef.child("marital").set(this.state.marital);
-      this.props.navigation.navigate('RegistrationScreen3', {hashemail2: this.props.navigation.state.params.hashemail});
+      this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHash});
     }else{
       Alert.alert("Please ensure that all fields are filled in correctly.");
     }
   }
-  
+
     render() {
     console.disableYellowBox = true;
     //All picker items with values we wouldn't want to store have value of "placeholder"
@@ -88,7 +88,7 @@ export default class UpdateDemographics extends Component<{}>{
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
         <Text>The dēmos team is dedicated to our mission to connect you with unbiased, informative, and relevant local news and updates. We request the demographic information of our users in order to get to know those who are using our platform. The more familiar we are with you and what you value, the more accurate our algorithms are. Please fill in as much information as you feel comfortable sharing with us. We are committed to protecting your privacy.</Text>
-        <Picker 
+        <Picker
           style={styles.userInputs}
           selectedValue={this.state.gender}
           onValueChange={(itemValue, itemIndex) => this.handleGender(itemValue)}>
@@ -99,7 +99,7 @@ export default class UpdateDemographics extends Component<{}>{
           <Picker.Item label="Other" value="Other"/>
           <Picker.Item label="Prefer not to respond" value="NoResponse"/>
         </Picker>
-        <Picker 
+        <Picker
           style={styles.userInputs}
           selectedValue={this.state.income}
           onValueChange={(itemValue, itemIndex) => this.handleIncome(itemValue)}>
@@ -166,7 +166,11 @@ export default class UpdateDemographics extends Component<{}>{
           <Picker.Item label="Married" value="Married"/>
           <Picker.Item label="Widowed" value="Widowed"/>
         </Picker>
-        <TouchableOpacity onPress={this.submit}><Text>Submit and continue</Text></TouchableOpacity>
+        <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.submit}>
+            <Text style={{fontSize: 16, textAlign: 'center'}}>Submit and Continue</Text>
+          </TouchableOpacity>
+        </View>
         </View>
       </ScrollView>
     )
@@ -206,6 +210,6 @@ var styles = StyleSheet.create({
   userInputs: {
     marginTop: 15,
     marginBottom: 15,
+    width:300
   }
 });
-  
