@@ -43,33 +43,17 @@ export default class RegistrationScreen3 extends Component<{}>{
       <Text>Please select some of the issues that mean the most to you.</Text>
       <Text>(Choose as many as you would like)</Text>
       </View>
-        <Button title="Education" onPress={() => this.handleSelection("Education")}/>
-        <View style={styles.space}></View>
-        <Button title="Healthcare" onPress={() => this.handleSelection("Healthcare")}/>
-        <View style={styles.space}></View>
-        <Button title="LGBTQIA+" onPress={() => this.handleSelection("LGBTQIA+")}/>
-        <View style={styles.space}></View>
         <Button title="Housing" onPress={() => this.handleSelection("Housing")}/>
         <View style={styles.space}></View>
-        <Button title="Lifestyle" onPress={() => this.handleSelection("Lifestyle")}/>
+        <Button title="Public Spaces" onPress={() => this.handleSelection("Public Spaces")}/>
         <View style={styles.space}></View>
-        <Button title="UNC" onPress={() => this.handleSelection("UNC")}/>
+        <Button title="Health and Wellness" onPress={() => this.handleSelection("Health and Wellness")}/>
         <View style={styles.space}></View>
-        <Button title="Democratic Party" onPress={() => this.handleSelection("Democratic Party")}/>
-        <View style={styles.space}></View>
-        <Button title="Republican Party" onPress={() => this.handleSelection("Republican Party")}/>
-        <View style={styles.space}></View>
-        <Button title="Food" onPress={() => this.handleSelection("Food")}/>
-        <View style={styles.space}></View>
-        <Button title="Social Justice" onPress={() => this.handleSelection("Social Justice")}/>
-        <View style={styles.space}></View>
-        <Button title="Security" onPress={() => this.handleSelection("Security")}/>
-        <View style={styles.space}></View>
-        <Button title="Women's Rights" onPress={() => this.handleSelection("Women's Rights")}/>
+        <Button title="Transportation" onPress={() => this.handleSelection("Transportation")}/>
         <View style={styles.space}></View>
         <Button title="Environment" onPress={() => this.handleSelection("Environment")}/>
         <View style={styles.space}></View>
-        <Button title="Economy" onPress={() => this.handleSelection("Economy")}/>
+        <Button title="Economic Development" onPress={() => this.handleSelection("Economic Development")}/>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz}>

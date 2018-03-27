@@ -97,6 +97,7 @@ export default class MainFeed extends Component<{}>{
             this.videosArr.push(
               <VideoComponent  navigation={this.props.navigation} videoUrl={videos[i][0]} picUrl={videos[i][1]} videoName={videos[i][2]} emailHash={this.emailHashMain}/>
             );
+            console.log(videos[i][1]);
             console.log("successfully added a video!");
           }
         }).then(() => {
