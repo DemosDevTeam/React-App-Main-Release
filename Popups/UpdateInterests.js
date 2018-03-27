@@ -14,7 +14,7 @@ import {firebaseApp} from '../App'
 export default class UpdateInterests extends Component<{}>{
   userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashUpdateInterests + "/");
   emailHash = this.props.navigation.state.params.emailHashUpdateInterests
-  interest = []
+  interests = []
   //on click See my council button, navigate to CouncilScreen
   goToCouncil = () => {
     this.props.navigation.navigate('CouncilScreen');
@@ -28,9 +28,9 @@ export default class UpdateInterests extends Component<{}>{
   }
 
   submit = () => {
-    this.userRef.set("");
-    for(var i=0; i<this.preferences.length; i++){
-      this.userRef.child("interests").child(this.preferences[i]).set("");
+    this.userRef.child("interests").set("");
+    for(var i=0; i<this.interests.length; i++){
+      this.userRef.child("interests").child(this.interests[i]).set("");
     }
     this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHash});
   }

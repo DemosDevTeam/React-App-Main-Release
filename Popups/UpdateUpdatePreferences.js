@@ -27,7 +27,7 @@ export default class UpdateUpdatePreferences extends Component<{}>{
     this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHash});
   }
 
-    handleSelection = (text) => {
+  handleSelection = (text) => {
     if(this.preferences.indexOf(text) < 0){
       this.preferences.push(text);
     }

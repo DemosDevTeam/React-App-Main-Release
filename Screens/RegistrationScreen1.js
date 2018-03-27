@@ -148,4 +148,3 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
-

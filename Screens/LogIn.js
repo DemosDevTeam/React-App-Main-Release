@@ -37,7 +37,26 @@ export default class LogIn extends Component<{}>{
         //Check hash of email to see if user exists in the database
         if(snap.hasChild(sha1(this.state.email))){
           if(snap.child(sha1(this.state.email)).val().password == sha1(this.state.password)){
-            this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
+
+            firebaseApp.database().ref('/Users/' + sha1(this.state.email) + '/').once("value").then((snap) => {
+              if(!(snap.hasChild('age') && snap.hasChild('children') && snap.hasChild('education') && snap.hasChild('gender') &&
+                  snap.hasChild('income') && snap.hasChild('marital') && snap.hasChild('occupation') && snap.hasChild('race'))){
+                    //Need to fill out demographic info, redirect to RegistrationScreen2
+                    Alert.alert("Please finish filling out your registration information");
+                    this.props.navigation.navigate('RegistrationScreen2', {hashemail: sha1(this.state.email)});
+              }else if(!snap.hasChild('interests')){
+                //Need to fill in interest preferences, redirect to RegistrationScreen3
+                Alert.alert("Please finish filling out your registration information");
+                this.props.navigation.navigate('RegistrationScreen3', {hashemail2: sha1(this.state.email)});
+              }else if(!snap.hasChild('engagement')){
+                //Need to fill in engagement preferences, redirect to RegistrationScreen4
+                Alert.alert("Please finish filling out your registration information");
+                this.props.navigation.navigate('RegistrationScreen4', {hashemail3: sha1(this.state.email)});
+              }else{
+                this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
+              }
+
+            })
           }else{
             Alert.alert("password incorrect, please check and try again");
           }

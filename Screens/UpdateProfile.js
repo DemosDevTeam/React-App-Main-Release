@@ -16,18 +16,14 @@ export default class UpdateProfile extends Component<{}>{
   emailHash = this.props.navigation.state.params.emailHashUpdateProfile;
   interestsArr = [];
   engagementArr = [];
-  upadatePrefArr = [];
+  updatePrefArr = [];
   demographicsArr = [];
 
   componentWillMount() {
     //Set loading state to true so that asynchronous calls to db can be made before page loads
     this.setState({loading: true});
-    console.log("inside of componentWillMount");
 
     this.userRef.once("value").then((snap) => {
-      console.log("inside of call to userRef");
-      console.log("the following is the value of snap");
-      console.log(snap);
       //Get the users interests and populate interestsArr with relevant information; repeat thsi process with engagement, updatePref, and demographics
       var interests = snap.child("interests");
       interests.forEach((child) => {
@@ -50,11 +46,6 @@ export default class UpdateProfile extends Component<{}>{
         }
       })
     }).then(() => {
-      console.log("inside of ui update")
-      console.log(this.demographicsArr);
-      console.log(this.engagementArr);
-      console.log(this.updatePrefArr);
-      console.log(this.interestsArr);
       //Need to update the UI with all this info
       if(this.interestsArr.length != undefined){
         for(var i=0; i<this.interestsArr.length; i++){
