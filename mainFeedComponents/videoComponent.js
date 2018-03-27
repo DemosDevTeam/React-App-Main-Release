@@ -15,21 +15,104 @@ import {firebaseApp} from '../App'
 
 export default class VideoComponent extends Component<{}>{
   userRef = firebaseApp.database().ref('/Users/' + this.props.emailHash + "/");
+  emailHash = this.props.emailHash;
   videoName = this.props.videoName; //Set to a local var so that it is accessible within functions
   //This component will take a url as a prop argument when created that will redirect to the youtube video corresponding to this news piece on the feed
   //Will also get url for youtube thumbnail, the video name and a reference to a user node in firebase for use in functionality
 
   positiveReaction = () => {
-  //Need to increment a reactions node for the actual video corresponding to positive reactions
-    firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
-      reaction: "positive",
+    //Need to increment a reactions node for the actual video corresponding to positive reactions
+    console.log("inside positiveReaction listener");
+    var reactionChanged = false;
+    this.userRef.once("value").then((snap) => {
+      if(snap.hasChild("Reactions")){
+        if(snap.child("Reactions").hasChild(this.videoName)){
+          var reaction = snap.child("Reactions").child(this.videoName).val().reaction;
+          if(reaction == "negative"){
+            reactionChanged = true;
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+          }
+        }else{
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+        }
+      }else{
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+      }
+
+    }).then(() => {
+      firebaseApp.database().ref('/videos/' + this.videoName + '/').once("value").then((snap) => {
+        if(snap.hasChild("Positive Reactions")){
+          if(reactionChanged){
+            var currentPositiveVal = snap.child("Positive Reactions").val();
+            currentPositiveVal = currentPositiveVal + 1;
+            firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveVal);
+
+            var currentNegativeVal = snap.child("Negative Reactions").val();
+            currentNegativeVal = currentNegativeVal - 1;
+            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
+          }
+
+        }else{
+          if(reactionChanged){
+            var currentNegativeVal = snap.child("Negative Reactions").val();
+            currentNegativeVal = currentNegativeVal - 1;
+            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
+          }
+          firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
+        }
+      }).then(() => {
+        firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
+          reaction: "positive",
+        })
+      })
     })
   }
 
   negativeReaction = () => {
     //Need to increment a reactions node for the actual video corresponding to negative reactions
-    firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
-      reaction: "negative",
+    console.log("inside positiveReaction listener");
+    var reactionChanged = false;
+    this.userRef.once("value").then((snap) => {
+      if(snap.hasChild("Reactions")){
+        if(snap.child("Reactions").hasChild(this.videoName)){
+          var reaction = snap.child("Reactions").child(this.videoName).val().reaction;
+          if(reaction == "positive"){
+            reactionChanged = true;
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+          }
+        }else{
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+        }
+      }else{
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+      }
+
+    }).then(() => {
+      firebaseApp.database().ref('/videos/' + this.videoName + '/').once("value").then((snap) => {
+        if(snap.hasChild("Negative Reactions")){
+          if(reactionChanged){
+            var currentPositiveVal = snap.child("Positive Reactions").val();
+            currentPositiveVal = currentPositiveVal - 1;
+            firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveVal);
+
+            var currentNegativeVal = snap.child("Negative Reactions").val();
+            currentNegativeVal = currentNegativeVal + 1;
+            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
+          }
+
+        }else{
+          if(reactionChanged){
+            var currentPositiveVal = snap.child("Positive Reactions").val();
+            currentPositiveVal = currentPositiveVal - 1;
+            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentPositiveVal);
+          }
+          firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
+        }
+      }).then(() => {
+        firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
+          reaction: "negative",
+        })
+      })
     })
   }
 
