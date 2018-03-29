@@ -41,15 +41,50 @@ export default class RegistrationScreen4 extends Component<{}>{
         <Text>What do you want your engagement level to look like?</Text>
         <Text>(Choose as many as you would like)</Text>
       </View>
-        <Button title="Taking online polls" onPress={() => this.handleSelection("online polls")}/>
         <View style={styles.space}></View>
-        <Button title="Learning about local government" onPress={() => this.handleSelection("learn about local gov")}/>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("online polls")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Taking Online Polls</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("learn about local gov")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Learning about Local Government</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("contact council")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Contacting Your Council</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("meet with council")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Meeting with Your Council</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("events")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Attending an Event</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
         <View style={styles.space}></View>
-        <Button title="Contacting your council" onPress={() => this.handleSelection("contact council")}/>
-        <View style={styles.space}></View>
-        <Button title="Meeting with your council" onPress={() => this.handleSelection("meet with council")}/>
-        <View style={styles.space}></View>
-        <Button title="Attending an event" onPress={() => this.handleSelection("events")}/>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz}>
@@ -90,6 +125,9 @@ var styles = StyleSheet.create({
   space: {
     height: 2,
   },
+  bspace: {
+    height: 0,
+  },
   space2: {
     height: 20,
   },
@@ -104,5 +142,15 @@ var styles = StyleSheet.create({
     backgroundColor: '#49C7E3',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  buttonz2: {
+    height: 29,
+    borderRadius: 4,
+    width: 320,
+    marginTop: 3,
+    marginBottom: 3,
+    backgroundColor: '#c9c9c9',
+    alignItems: 'center',
+    justifyContent: 'center',
+}
 });
