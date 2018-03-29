@@ -33,7 +33,7 @@ export default class RegistrationScreen5 extends Component<{}>{
   render() {
     console.disableYellowBox = true;
     return (
-      <ScrollView>
+     <ScrollView>
       <View style={styles.container}>
       <Image
         style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
@@ -42,13 +42,43 @@ export default class RegistrationScreen5 extends Component<{}>{
         <Text>How would you like to recieve updates?</Text>
         <Text>(Choose as many as you would like)</Text>
       </View>
-        <Button title="Text me!" onPress={() => this.handleSelection("text")}/>
+      <View style={styles.space}></View>
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("text")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Text me!</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("email")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Email me</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("push notification")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Send me push notifications</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("check app")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>I will just check the app</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
         <View style={styles.space}></View>
-        <Button title="Email me" onPress={() => this.handleSelection("email")}/>
-        <View style={styles.space}></View>
-        <Button title="Send me push notifications" onPress={() => this.handleSelection("push notification")}/>
-        <View style={styles.space}></View>
-        <Button title="I'll just check the app" onPress={() => this.handleSelection("check app")}/>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz}>
@@ -89,6 +119,9 @@ var styles = StyleSheet.create({
   space: {
     height: 2,
   },
+  bspace: {
+    height: 0,
+  },
   space2: {
     height: 20,
   },
@@ -103,5 +136,15 @@ var styles = StyleSheet.create({
     backgroundColor: '#49C7E3',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  buttonz2: {
+    height: 29,
+    borderRadius: 4,
+    width: 320,
+    marginTop: 3,
+    marginBottom: 3,
+    backgroundColor: '#c9c9c9',
+    alignItems: 'center',
+    justifyContent: 'center',
+}
 });
