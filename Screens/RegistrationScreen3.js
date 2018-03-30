@@ -34,7 +34,7 @@ export default class RegistrationScreen3 extends Component<{}>{
   render() {
     console.disableYellowBox = true;
     return (
-      <ScrollView>
+       <ScrollView>
       <View style={styles.container}>
       <Image
         style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
@@ -43,17 +43,61 @@ export default class RegistrationScreen3 extends Component<{}>{
       <Text>Please select some of the issues that mean the most to you.</Text>
       <Text>(Choose as many as you would like)</Text>
       </View>
-        <Button title="Housing" onPress={() => this.handleSelection("Housing")}/>
         <View style={styles.space}></View>
-        <Button title="Public Spaces" onPress={() => this.handleSelection("Public Spaces")}/>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Housing")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Housing</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Public Spaces")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Public Spaces</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Health and Wellness")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Health and Wellness</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Transportation")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Transportation</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Environment")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Environment</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Economic Development")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Economic Development</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
         <View style={styles.space}></View>
-        <Button title="Health and Wellness" onPress={() => this.handleSelection("Health and Wellness")}/>
-        <View style={styles.space}></View>
-        <Button title="Transportation" onPress={() => this.handleSelection("Transportation")}/>
-        <View style={styles.space}></View>
-        <Button title="Environment" onPress={() => this.handleSelection("Environment")}/>
-        <View style={styles.space}></View>
-        <Button title="Economic Development" onPress={() => this.handleSelection("Economic Development")}/>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz}>
@@ -93,6 +137,9 @@ var styles = StyleSheet.create({
   space: {
     height: 2,
   },
+  bspace: {
+    height: 0,
+  },
   space2: {
     height: 20,
   },
@@ -108,5 +155,15 @@ var styles = StyleSheet.create({
     backgroundColor: '#49C7E3',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  buttonz2: {
+    height: 29,
+    borderRadius: 4,
+    width: 320,
+    marginTop: 3,
+    marginBottom: 3,
+    backgroundColor: '#c9c9c9',
+    alignItems: 'center',
+    justifyContent: 'center',
+}
 });
