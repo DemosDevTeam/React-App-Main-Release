@@ -9,7 +9,7 @@ import {
   TextInput,
   Alert,
   ScrollView,
-  Image
+  Image,
 } from 'react-native';
 import {firebaseApp} from '../App'
 import VideoComponent from '../mainFeedComponents/videoComponent'

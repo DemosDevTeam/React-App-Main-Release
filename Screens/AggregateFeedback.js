@@ -8,6 +8,8 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  TouchableHighlight,
+  Image
 } from 'react-native';
 import {firebaseApp} from '../App'
 import VideoComponent from '../mainFeedComponents/videoComponent';
@@ -50,9 +52,11 @@ export default class AggregateFeedback extends Component<{}>{
         }
       }).then(() => {
         for(var i=0; i<feedback.length; i++){
+          console.log("added a video");
+          console.log(feedback[i]);
           this.videosArr.push(
             <View>
-            <VideoComponent navigation={this.props.navigation} videoUrl={feedback[i][3]} picUrl={feedback[i][2]} videoName={feedback[i][3]} emailHash={this.emailHashMain}/>
+            <VideoComponent navigation={this.props.navigation} videoUrl={feedback[i][3]} picUrl={feedback[i][2]} videoName={feedback[i][4]} emailHash={this.emailHashMain}/>
             <Text>{feedback[i][1]}</Text>
             </View>
           )
