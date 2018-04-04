@@ -55,10 +55,7 @@ export default class AggregateFeedback extends Component<{}>{
           console.log("added a video");
           console.log(feedback[i]);
           this.videosArr.push(
-            <View>
             <VideoComponent navigation={this.props.navigation} videoUrl={feedback[i][3]} picUrl={feedback[i][2]} videoName={feedback[i][4]} emailHash={this.emailHashMain}/>
-            <Text>{feedback[i][1]}</Text>
-            </View>
           )
         }
       }).then(() => {
@@ -119,16 +116,15 @@ export default class AggregateFeedback extends Component<{}>{
 
 
       <ScrollView>
-        <View style={styles.space}></View>
-        <View style={styles.space}></View>
-        <Text style={{fontSize: 14, textAlign: 'center'}}>This page allows for you to view your personal feedback for previously viewed videos.</Text>
-        <View style={styles.space}></View>
-
-        <View style={styles.container}>{this.videosArr}</View>
-        <View style={styles.space}></View>
-        <Button onPress={this.goBack} title="Back"></Button>
-        <View style={styles.space2}></View>
-      </ScrollView>
+         <View style={styles.space}></View>
+         <View style={styles.space}></View>
+         <Text style={{fontSize: 14, textAlign: 'center'}}>This page allows for you to view your personal feedback for previously viewed videos.</Text>
+          <View style={styles.space}></View>
+         <View style={styles.container}>{this.videosArr}</View>
+         <View style={styles.space}></View>
+  	     <Button onPress={this.goBack} title="Back"></Button>
+         <View style={styles.space2}></View>
+	      </ScrollView>
 
 
 
