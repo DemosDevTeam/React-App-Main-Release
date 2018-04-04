@@ -22,6 +22,8 @@ export default class VideoComponent extends Component<{}>{
 
   positiveReaction = () => {
     //Need to increment a reactions node for the actual video corresponding to positive reactions
+    console.log("email hash:")
+    console.log(this.props.emailHash);
     console.log("inside positiveReaction listener");
     var reactionChanged = false;
     this.userRef.once("value").then((snap) => {
@@ -61,7 +63,7 @@ export default class VideoComponent extends Component<{}>{
           firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
         }
       }).then(() => {
-        firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
           reaction: "positive",
         })
       })
@@ -109,7 +111,7 @@ export default class VideoComponent extends Component<{}>{
           firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
         }
       }).then(() => {
-        firebaseApp.database().ref('/Users/' + this.props.emailHash + '/Reactions/' + this.videoName + '/').set({
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
           reaction: "negative",
         })
       })
