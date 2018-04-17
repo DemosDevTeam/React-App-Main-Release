@@ -19,6 +19,7 @@ import UpdateDemographics from "./Popups/UpdateDemographics";
 import UpdateInterests from "./Popups/UpdateInterests";
 import UpdateUpdatePreferences from "./Popups/UpdateUpdatePreferences";
 import AggregateFeedback from "./Screens/AggregateFeedback";
+import RegistrationScreen6 from "./Screens/RegistrationScreen6";
 
 
 
@@ -118,6 +119,12 @@ export const Root = StackNavigator({
     screen: AggregateFeedback,
     navigationOptions: {
       title: "Your feedback"
+    }
+  },
+  RegistrationScreen6: {
+    screen: RegistrationScreen6,
+    navigationOptions: {
+      title: "Customize your location"
     }
   }
   }, {headerMode: 'none'})

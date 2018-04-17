@@ -21,7 +21,7 @@ export default class RegistrationScreen5 extends Component<{}>{
     for(var i=0; i<this.preferences.length; i++){
       this.userRef.child("update preferences").child(this.preferences[i]).set("");
     }
-    this.props.navigation.navigate('MainFeed', {emailhashmain: this.props.navigation.state.params.hashemail4});
+    this.props.navigation.navigate('RegistrationScreen6', {hashemail5: this.props.navigation.state.params.hashemail4});
   }
 
   handleSelection = (text) => {
