@@ -35,8 +35,12 @@ export default class RegistrationScreen6 extends Component<{}>{
       })
     }).then(() => {
       for(var i=0; i<cities.length; i++){
+        console.log("cities[i]:");
+        console.log(cities[i]);
         //Debugging the following line
-        this.cityComponents.push(<View><View style={styles.space}></View><TouchableOpacity onPress={this.addCity(cities[i])}>{cities[i]}</TouchableOpacity></View>);
+        this.cityComponents.push(
+          <View><TouchableOpacity key={cities[i]} onPress={this.addCity(cities[i])}><Text>{cities[i]}</Text></TouchableOpacity></View>
+        );
       }
     }).then(() => {
       this.setState({loading: false});
@@ -52,9 +56,9 @@ export default class RegistrationScreen6 extends Component<{}>{
     if(this.state.cityChosen == false){
       Alert.alert("Please choose at least one city");
     }else{
-      firebaseApp.database().ref('/Users/' + emailHash + '/cities/').set(" ");
+      firebaseApp.database().ref('/Users/' + this.emailHash + '/cities/').set(" ");
       for(var i=0; i<this.citiesChosen.length; i++){
-        firebaseApp.database().ref('/Users/' + emailHash + '/cities/').child(this.citiesChosen[i]).set(" ");
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/cities/').child(this.citiesChosen[i]).set(" ");
       }
       this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash});
     }

@@ -118,6 +118,10 @@ export default class VideoComponent extends Component<{}>{
     })
   }
 
+  pin = () => {
+    firebaseApp.database().ref('/Users/' + this.emailHash + '/Pinned/' + this.videoName + '/').set("");
+  }
+
   openVideoPlayer = () => {
     var vidIdStartIndex = this.props.videoUrl.indexOf("=");
     var videoID = this.props.videoUrl.slice(vidIdStartIndex+1, this.props.videoUrl.length);
@@ -142,7 +146,7 @@ export default class VideoComponent extends Component<{}>{
             </TouchableOpacity>
           </View>
             <View style={styles.pickContainerz}>
-              <TouchableHighlight onPress={this.positiveReaction} style={{flex:1}}>
+              <TouchableHighlight onPress={this.pin} style={{flex:1}}>
                 <View style={styles.pickWrapperz}>
                   <View style={styles.circ}>
                     <Image
