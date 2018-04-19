@@ -30,22 +30,16 @@ export default class VideoComponent extends Component<{}>{
           var reaction = snap.child("Reactions").child(this.videoName).val().reaction;
           if(reaction == "negative"){
             reactionChanged = true;
-            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-              reaction: "positive",
-              city: this.city,
-            })
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
           }
         }else{
-          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-            reaction: "positive",
-            city: this.city,
-          })
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
         }
       }else{
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-          reaction: "positive",
-          city: this.city,
-        })
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
       }
 
     }).then(() => {
@@ -70,10 +64,8 @@ export default class VideoComponent extends Component<{}>{
           firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(1);
         }
       }).then(() => {
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-          reaction: "positive",
-          city: this.city,
-        })
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
       })
     })
   }
@@ -88,23 +80,17 @@ export default class VideoComponent extends Component<{}>{
           var reaction = snap.child("Reactions").child(this.videoName).val().reaction;
           if(reaction == "positive"){
             reactionChanged = true;
-            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-              reaction: "negative",
-              city: this.city,
-            })
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
           }
 
         }else{
-          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-            reaction: "negative",
-            city: this.city,
-          })
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
         }
     }else{
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-          reaction: "negative",
-          city: this.city,
-        })
+      firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+      firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
     }
 
     }).then(() => {
@@ -129,10 +115,8 @@ export default class VideoComponent extends Component<{}>{
           firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(1);
         }
       }).then(() => {
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
-          reaction: "negative",
-          city: this.city,
-        })
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/city/').set(this.city);
       })
     })
   }

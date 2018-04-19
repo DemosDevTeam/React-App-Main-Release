@@ -71,26 +71,26 @@ export default class VideoPlayer extends Component<{}>{
           }).then(() => {
             //If the reaction changed we need to decrement negative reactions and increment positive reactions
             if(reactionChanged){
-              firebaseApp.database().ref('/videos/' + this.videoName + '/').once('value').then((snap) => {
+              firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/').once('value').then((snap) => {
                 var currentNegativeReviews = snap.child("Negative Reactions").val();
                 currentNegativeReviews = currentNegativeReviews - 1;
 
                 //Increment the count for negative feedback
-                firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
+                firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
                 if(snap.hasChild("Positive Reactions")){
 
                   var currentPositiveReviews = snap.child("Positive Reactions").val();
                   currentPositiveReviews = currentPositiveReviews +1;
-                  firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
+                  firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
                 }else{
-                  firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
+                  firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(1);
                 }
               })
           }else{
-            firebaseApp.database().ref('/videos/' + this.videoName + '/').once("value").then((snap) => {
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/').once("value").then((snap) => {
               //If there is no change to the reaction, but no reaction was recorded previously, we should create positive reactions node and set to one in video
               if(!snap.hasChild('Positive Reactions')){
-                firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
+                firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(1);
               }
             })
           }
@@ -99,19 +99,19 @@ export default class VideoPlayer extends Component<{}>{
         //Need to create value for reaction under user in firebase
         firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
         //Need to update value for reaction under video in firebase
-        firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').once('value').then((snap) => {
+        firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').once('value').then((snap) => {
           var currentPositiveReviews = snap.val();
           currentPositiveReviews = currentPositiveReviews+1;
-          firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
+          firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
         })
       }
     }else{
       //Need to increment the count for this video of positive reactions and set the user reaction to "postiive"
       firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
-      firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').once('value').then((snap) => {
+      firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').once('value').then((snap) => {
         var currentPositiveReviews = snap.val();
         currentPositiveReviews = currentPositiveReviews+1;
-        firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
+        firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
       })
     }
   })
@@ -136,26 +136,26 @@ export default class VideoPlayer extends Component<{}>{
           }).then(() => {
             //If the reaction changed we need to decrement positive reactions and increment negative reactions
             if(reactionChanged){
-              firebaseApp.database().ref('/videos/' + this.videoName + '/').once('value').then((snap) => {
+              firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/').once('value').then((snap) => {
                 var currentPositiveReviews = snap.child("Positive Reactions").val();
                 currentPositiveReviews = currentPositiveReviews - 1;
 
                 //Increment the count for negative feedback
-                firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
+                firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(currentPositiveReviews);
                 if(snap.hasChild("Negative Reactions")){
 
                   var currentNegativeReviews = snap.child("Negaitve Reactions").val();
                   currentNegativeReviews = currentNegativeReviews +1;
-                  firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
+                  firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
                 }else{
-                  firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(1);
+                  firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(1);
                 }
               })
           }else{
-            firebaseApp.database().ref('/videos/' + this.videoName + '/').once("value").then((snap) => {
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/').once("value").then((snap) => {
               //If there is no change to the reaction, but no reaction was recorded previously, we should create negative reactions node and set to one in video
               if(!snap.hasChild('Negative Reactions')){
-                firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(1);
+                firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(1);
               }
             })
           }
@@ -164,19 +164,19 @@ export default class VideoPlayer extends Component<{}>{
         //Need to create value for reaction under user in firebase
         firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
         //Need to update value for reaction under video in firebase
-        firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').once('value').then((snap) => {
+        firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').once('value').then((snap) => {
           var currentNegativeReviews = snap.val();
           currentNegativeReviews = currentNegativeReviews+1;
-          firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
+          firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
         })
       }
     }else{
       //Need to increment the count for this video of negative reactions and set the user reaction to "negative"
       firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
-      firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').once('value').then((snap) => {
+      firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').once('value').then((snap) => {
         var currentNegativeReviews = snap.val();
         currentNegativeReviews = currentNegativeReviews+1;
-        firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
+        firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeReviews);
       })
     }
   })
