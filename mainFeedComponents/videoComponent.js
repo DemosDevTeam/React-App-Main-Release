@@ -17,14 +17,12 @@ export default class VideoComponent extends Component<{}>{
   userRef = firebaseApp.database().ref('/Users/' + this.props.emailHash + "/");
   emailHash = this.props.emailHash;
   videoName = this.props.videoName; //Set to a local var so that it is accessible within functions
+  city = this.props.videoCity;
   //This component will take a url as a prop argument when created that will redirect to the youtube video corresponding to this news piece on the feed
   //Will also get url for youtube thumbnail, the video name and a reference to a user node in firebase for use in functionality
 
   positiveReaction = () => {
     //Need to increment a reactions node for the actual video corresponding to positive reactions
-    console.log("email hash:")
-    console.log(this.props.emailHash);
-    console.log("inside positiveReaction listener");
     var reactionChanged = false;
     this.userRef.once("value").then((snap) => {
       if(snap.hasChild("Reactions")){
@@ -32,39 +30,49 @@ export default class VideoComponent extends Component<{}>{
           var reaction = snap.child("Reactions").child(this.videoName).val().reaction;
           if(reaction == "negative"){
             reactionChanged = true;
-            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
+              reaction: "positive",
+              city: this.city,
+            })
           }
         }else{
-          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
+            reaction: "positive",
+            city: this.city,
+          })
         }
       }else{
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("positive");
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
+          reaction: "positive",
+          city: this.city,
+        })
       }
 
     }).then(() => {
-      firebaseApp.database().ref('/videos/' + this.videoName + '/').once("value").then((snap) => {
+      firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/').once("value").then((snap) => {
         if(snap.hasChild("Positive Reactions")){
           if(reactionChanged){
             var currentPositiveVal = snap.child("Positive Reactions").val();
             currentPositiveVal = currentPositiveVal + 1;
-            firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveVal);
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(currentPositiveVal);
 
             var currentNegativeVal = snap.child("Negative Reactions").val();
             currentNegativeVal = currentNegativeVal - 1;
-            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
           }
 
         }else{
           if(reactionChanged){
             var currentNegativeVal = snap.child("Negative Reactions").val();
             currentNegativeVal = currentNegativeVal - 1;
-            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
           }
-          firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
+          firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(1);
         }
       }).then(() => {
         firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
           reaction: "positive",
+          city: this.city,
         })
       })
     })
@@ -80,39 +88,50 @@ export default class VideoComponent extends Component<{}>{
           var reaction = snap.child("Reactions").child(this.videoName).val().reaction;
           if(reaction == "positive"){
             reactionChanged = true;
-            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+            firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
+              reaction: "negative",
+              city: this.city,
+            })
           }
+
         }else{
-          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
+          firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
+            reaction: "negative",
+            city: this.city,
+          })
         }
-      }else{
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/reaction/').set("negative");
-      }
+    }else{
+        firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
+          reaction: "negative",
+          city: this.city,
+        })
+    }
 
     }).then(() => {
-      firebaseApp.database().ref('/videos/' + this.videoName + '/').once("value").then((snap) => {
+      firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/').once("value").then((snap) => {
         if(snap.hasChild("Negative Reactions")){
           if(reactionChanged){
             var currentPositiveVal = snap.child("Positive Reactions").val();
             currentPositiveVal = currentPositiveVal - 1;
-            firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(currentPositiveVal);
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(currentPositiveVal);
 
             var currentNegativeVal = snap.child("Negative Reactions").val();
             currentNegativeVal = currentNegativeVal + 1;
-            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentNegativeVal);
           }
 
         }else{
           if(reactionChanged){
             var currentPositiveVal = snap.child("Positive Reactions").val();
             currentPositiveVal = currentPositiveVal - 1;
-            firebaseApp.database().ref('/videos/' + this.videoName + '/Negative Reactions/').set(currentPositiveVal);
+            firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Negative Reactions/').set(currentPositiveVal);
           }
-          firebaseApp.database().ref('/videos/' + this.videoName + '/Positive Reactions/').set(1);
+          firebaseApp.database().ref('/videos/' + this.city + '/' + this.videoName + '/Positive Reactions/').set(1);
         }
       }).then(() => {
         firebaseApp.database().ref('/Users/' + this.emailHash + '/Reactions/' + this.videoName + '/').set({
           reaction: "negative",
+          city: this.city,
         })
       })
     })
@@ -125,11 +144,7 @@ export default class VideoComponent extends Component<{}>{
   openVideoPlayer = () => {
     var vidIdStartIndex = this.props.videoUrl.indexOf("=");
     var videoID = this.props.videoUrl.slice(vidIdStartIndex+1, this.props.videoUrl.length);
-    console.log(videoID);
-    console.log("videoId is" + videoID);
-    console.log("emailHashVideoPlayer is " + this.props.emailHash);
-    console.log("videoName is " + this.videoName);
-    this.props.navigation.navigate('VideoPlayer', {VideoPlayerVideoId: videoID, VideoPlayerEmailHashVideoPlayer: this.props.emailHash, VideoPlayerVideoName: this.videoName});
+    this.props.navigation.navigate('VideoPlayer', {VideoPlayerVideoId: videoID, VideoPlayerEmailHashVideoPlayer: this.props.emailHash, VideoPlayerVideoName: this.videoName, VideoCity: this.city});
   }
 
 

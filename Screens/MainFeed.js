@@ -44,65 +44,87 @@ export default class MainFeed extends Component<{}>{
     var videosRef = firebaseApp.database().ref('/videos/');
     var videos = [];
     var userPreferences = [];
-    //Get snapshot of databse
-    videosRef.once("value").then((snap) => {
-      //Iterate through each video
+    var userCities = [];
+
+    firebaseApp.database().ref('/Users/' + this.emailHashMain + '/cities/').once("value").then((snap) => {
       snap.forEach((child) => {
-        var videoURL = child.val().urlvideo;
-        var picURL = child.val().urlpic;
-        var videoName = child.val().name;
-        var tags = [];//Array with tags pertaining to the interests that the video may encapsulate
-        child.child("tags").forEach((child) => {
-          tags.push(child.key);
-        })
-        var matchScore = 0; //Represents how closely a given video matches with a users preferences
-        var video = [videoURL, picURL, videoName, tags, matchScore];
-        videos.push(video);
+        userCities.push(child.key);
+        console.log("just pushed the following to user city");
+        console.log(child.key);
       })
-    }).then(() =>{
-      //Need to loop through array of videos and sort them based on their relation to the users preferences
-      this.userRef.once("value").then((snap) => {
-        var interests = snap.child("interests");
-          interests.forEach((child) => {
-            userPreferences.push(child.key);
-          })
-        }).then(() => {
-        //TODO: Debug this section!!
-        //Generate values for matchScore value in every video
-          for(var i=0; i<videos.length; i++){//Loop through every video once
-            for(var k=0; k<userPreferences.length; k++){//For every user preference, check if the video has that tag.
-              for(var j=0; j<videos[i][3].length; j++){
-                if(userPreferences[k] == videos[i][3][j]){
-                  videos[i][4] = videos[i][4] + 1;
+    }).then(() => {
+      //Get snapshot of databse
+      videosRef.once("value").then((snap) => {
+        console.log("inside of videosRef call");
+        console.log(snap.val());
+        //Iterate through each video
+        snap.forEach((child) => {
+          console.log("inside of snap.forEach loop");
+          console.log(child.val());
+          console.log(child.key);
+          if(userCities.includes(child.key)){
+            var cityName = child.key;
+            console.log("inside of userCities includes");
+            child.forEach((secondChild) => {
+              var videoURL = secondChild.val().urlvideo;
+              var picURL = secondChild.val().urlpic;
+              var videoName = secondChild.val().name;
+              var tags = [];//Array with tags pertaining to the interests that the video may encapsulate
+              secondChild.child("tags").forEach((child) => {
+                tags.push(child.key);
+              })
+              var matchScore = 0; //Represents how closely a given video matches with a users preferences
+              var video = [videoURL, picURL, videoName, tags, matchScore, cityName];
+              videos.push(video);
+            })
+          }
+
+        })
+      }).then(() =>{
+          //Need to loop through array of videos and sort them based on their relation to the users preferences
+          this.userRef.once("value").then((snap) => {
+            var interests = snap.child("interests");
+              interests.forEach((child) => {
+                userPreferences.push(child.key);
+              })
+            }).then(() => {
+            //TODO: Debug this section!!
+            //Generate values for matchScore value in every video
+              for(var i=0; i<videos.length; i++){//Loop through every video once
+                for(var k=0; k<userPreferences.length; k++){//For every user preference, check if the video has that tag.
+                  for(var j=0; j<videos[i][3].length; j++){
+                    if(userPreferences[k] == videos[i][3][j]){
+                      videos[i][4] = videos[i][4] + 1;
+                    }
+                  }
                 }
               }
-            }
-          }
-        }).then(() => {
-          //Need to sort the videos array based on the matchScore.
-          for(var i=0; i<videos.length; i++){
-            for(var k=0; k<videos.length-1; k++){
-              if(videos[k][4] < videos[k+1][4]){
-                var temp = videos[k];
-                videos[k] = videos[k+1];
-                videos[k+1] = temp;
+            }).then(() => {
+              //Need to sort the videos array based on the matchScore.
+              for(var i=0; i<videos.length; i++){
+                for(var k=0; k<videos.length-1; k++){
+                  if(videos[k][4] < videos[k+1][4]){
+                    var temp = videos[k];
+                    videos[k] = videos[k+1];
+                    videos[k+1] = temp;
+                  }
+                }
               }
-            }
-          }
-        console.log("finished for loop for sorting videos based on match score");
-        }).then(() => {
-          /*After each video url and pic url has been added to array and the array has been sorted based on matching with user preferences
-          push to global array with relevant component*/
-          for(var i=0; i<videos.length; i++){
-            this.videosArr.push(
-              <VideoComponent  navigation={this.props.navigation} videoUrl={videos[i][0]} picUrl={videos[i][1]} videoName={videos[i][2]} emailHash={this.emailHashMain}/>
-            );
-            console.log(videos[i][1]);
-            console.log("successfully added a video!");
-          }
-        }).then(() => {
-          //Once db values have loaded, set "loading" state to false so that rest of page can render
-          this.setState({loading: false});
+            console.log("finished for loop for sorting videos based on match score");
+            }).then(() => {
+              /*After each video url and pic url has been added to array and the array has been sorted based on matching with user preferences
+              push to global array with relevant component*/
+              for(var i=0; i<videos.length; i++){
+                this.videosArr.push(
+                  <VideoComponent  videoCity={videos[i][5]} navigation={this.props.navigation} videoUrl={videos[i][0]} picUrl={videos[i][1]} videoName={videos[i][2]} emailHash={this.emailHashMain}/>
+                );
+                console.log(videos[i][1]);
+                console.log("successfully added a video!");
+              }
+            }).then(() => {
+              //Once db values have loaded, set "loading" state to false so that rest of page can render
+              this.setState({loading: false});
+            })
         })
     })
   }

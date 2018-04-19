@@ -20,6 +20,7 @@ export default class VideoPlayer extends Component<{}>{
   videoId = this.props.navigation.state.params.VideoPlayerVideoId;
   emailHash = this.props.navigation.state.params.VideoPlayerEmailHashVideoPlayer;
   videoName = this.props.navigation.state.params.VideoPlayerVideoName;
+  city = this.props.navigation.state.params.VideoCity; //city associated with video is passed to video component from feed
 
 
   componentWillMount() {
@@ -47,7 +48,7 @@ export default class VideoPlayer extends Component<{}>{
     var videoName = this.state.videoName;
     if(this.state.feedback != ""){
       firebaseApp.database().ref('/Users/' + emailHash + '/Reactions/' + videoName + '/feedback/').set(this.state.feedback);
-      firebaseApp.database().ref('/videos/' + videoName + '/feedback/' + emailHash + '/').set(this.state.feedback);
+      firebaseApp.database().ref('/videos/' + this.city + '/' + videoName + '/feedback/' + emailHash + '/').set(this.state.feedback);
     }
   }
 
