@@ -119,12 +119,18 @@ export default class AggregateFeedback extends Component<{}>{
          <View style={styles.space}></View>
          <View style={styles.space}></View>
          <Text style={{fontSize: 14, textAlign: 'center'}}>This page allows for you to view your personal feedback for previously viewed videos.</Text>
-          <View style={styles.space}></View>
+         <View style={styles.space}></View>
          <View style={styles.container}>{this.videosArr}</View>
          <View style={styles.space}></View>
-  	     <Button onPress={this.goBack} title="Back"></Button>
-         <View style={styles.space2}></View>
-	      </ScrollView>
+	 <View style={styles.container}>
+         <View style={styles.buttonzRed}>
+           <TouchableOpacity onPress={this.goBack}>
+             <Text style={{fontSize: 16, textAlign: 'center'}}>Back</Text>
+           </TouchableOpacity>
+         </View>
+         </View>
+	 <View style={styles.space2}></View>
+	 </ScrollView>
 
 
 
@@ -324,4 +330,13 @@ var styles = StyleSheet.create({
     width: 22,
     height: 22,
   },
+  buttonzRed: {
+    height: 40,
+    borderRadius: 4,
+    width: 320,
+    marginBottom: 30,
+    backgroundColor: '#EE4C50',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
