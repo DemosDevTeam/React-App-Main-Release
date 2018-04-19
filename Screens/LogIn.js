@@ -52,6 +52,12 @@ export default class LogIn extends Component<{}>{
                 //Need to fill in engagement preferences, redirect to RegistrationScreen4
                 Alert.alert("Please finish filling out your registration information");
                 this.props.navigation.navigate('RegistrationScreen4', {hashemail3: sha1(this.state.email)});
+              }else if(!snap.hasChild('cities')){
+                //Need to fill out what city/cities individual is interested in
+                Alert.alert("Please finish filling out your registration information");
+                this.props.navigation.navigate('RegistrationScreen6', {hashemail5: sha1(this.state.email)});
+              }
+
               }else{
                 this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
               }
