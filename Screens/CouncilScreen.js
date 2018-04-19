@@ -6,6 +6,7 @@ import {
   Image,
   Button,
   TouchableOpacity,
+  TouchableHighlight,
   TextInput,
   ScrollView,
 } from 'react-native';
