@@ -38,6 +38,10 @@ export default class MainFeed extends Component<{}>{
     console.log("inside of updateFeedback");
   }
 
+  pinnedPosts = () => {
+    
+  }
+
   componentWillMount() {
     //Set loading state to true so that asynchronous calls to db can be made before page loads
     this.setState({loading: true});
@@ -64,11 +68,12 @@ export default class MainFeed extends Component<{}>{
           console.log(child.key);
           if(userCities.includes(child.key)){
             var cityName = child.key;
-            console.log("inside of userCities includes");
+
             child.forEach((secondChild) => {
               var videoURL = secondChild.val().urlvideo;
               var picURL = secondChild.val().urlpic;
               var videoName = secondChild.val().name;
+              console.log(videoName);
               var tags = [];//Array with tags pertaining to the interests that the video may encapsulate
               secondChild.child("tags").forEach((child) => {
                 tags.push(child.key);
@@ -179,6 +184,8 @@ export default class MainFeed extends Component<{}>{
       <ScrollView>
         <View style={styles.space2}></View>
         <View style={styles.container}>{this.videosArr}</View>
+        <View style={styles.space2}></View>
+        <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View>
       </ScrollView>
 
 

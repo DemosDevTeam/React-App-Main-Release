@@ -56,11 +56,12 @@ export default class LogIn extends Component<{}>{
                 //Need to fill out what city/cities individual is interested in
                 Alert.alert("Please finish filling out your registration information");
                 this.props.navigation.navigate('RegistrationScreen6', {hashemail5: sha1(this.state.email)});
-              }
-
               }else{
+                console.log("inside of last if statement");
                 this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
               }
+
+              console.log("outside of if logic in LogIn.js");
 
             })
           }else{

@@ -3,56 +3,46 @@ import {
   StyleSheet,
   Text,
   View,
+  Image,
   Button,
+  Alert,
   TouchableOpacity,
   TextInput,
-  Alert,
   ScrollView,
-  TouchableHighlight,
-  Image
 } from 'react-native';
-import {firebaseApp} from '../App'
-import VideoComponent from '../mainFeedComponents/videoComponent';
+import sha1 from 'sha1';
+import {firebaseApp} from '../App';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
-export default class AggregateFeedback extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashAggregateFeedback + "/");
-  emailHashMain = this.props.navigation.state.params.emailHashAggregateFeedback;
+export default class PinnedPosts extends component<{}>{
+  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashPinnedPosts + "/");
+  emailHash = this.props.navigation.state.params.emailHashPinnedPosts;
   videosArr = [];
 
-  componentWillMount() {
+  componentWillMount(){
+    //Before showing screen, need to populate videosArr with videos that user has pinned
+    var pinnedVideos = []; //Will serve as 2d array where 1st element is name of video, and second is name of city associated with video
     this.setState({loading: true});
-
-    var feedback = [];
-    this.userRef.child("Reactions").once("value").then((snap) => {
-      snap.forEach((child) => {
-        var nameOfVideo = child.key;
-        var reaction = child.val().reaction;
-        var elementArr = [nameOfVideo, reaction];
-        feedback.push(elementArr);
-      })
+    this.userRef.once("value").then((snap) => {
+      if(snap.hasChild("Pinned")){
+        //for each pinned video get video name and associated city for later lookup
+        snap.child("Pinned").forEach((secondChild) => {
+          var videoInfo = [];
+          videoInfo.push(secondChild.key);
+          videoInfo.push(secondChild.val());
+          videosArr.push(videosInfo);
+        })
+      }
     }).then(() => {
       firebaseApp.database().ref('/videos/').once("value").then((snap) => {
-        for(var i=0; i<feedback.length; i++){
-          if(snap.hasChild(feedback[i][0])){
-            var urlpic = snap.child(feedback[i][0]).val().urlpic;
-            var urlvideo = snap.child(feedback[i][0]).val().urlvideo;
-            var name = snap.child(feedback[i][0]).val().name;
-
-            feedback[i].push(urlpic);
-            feedback[i].push(urlvideo);
-            feedback[i].push(name);
-          }
+        for(var i=0; i<videosArr.length; i++){
+          var video = snap.child(videosArr[i][1]).child(videosArr[i][0]);
+          var city = videosArr[i][1];
+          var videoUrl = video.val().urlvideo;
+          var picUrl = video.val().urlpic;
+          var videoName = videosArr[i][0];
+          videosArr.push(<VideoComponent navigation={this.props.navigation} videoUrl={videoUrl} picUrl={picUrl} videoName={videoName} emailHash={this.emailHash}/>)
         }
-      }).then(() => {
-        for(var i=0; i<feedback.length; i++){
-          console.log("added a video");
-          console.log(feedback[i]);
-          this.videosArr.push(
-            <VideoComponent navigation={this.props.navigation} videoUrl={feedback[i][3]} picUrl={feedback[i][2]} videoName={feedback[i][4]} emailHash={this.emailHashMain}/>
-          )
-        }
-      }).then(() => {
-        this.setState({loading: false});
       })
     })
   }
@@ -62,10 +52,10 @@ export default class AggregateFeedback extends Component<{}>{
   }
 
   render() {
-    console.disableYellowBox = true;
     if (this.state.loading) {
       return (<Text>Loading...</Text>)
     }
+
     return (
       <View style={{flex: 1}}>
       <View style={styles.stepzTop}>

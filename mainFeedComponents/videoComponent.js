@@ -122,7 +122,7 @@ export default class VideoComponent extends Component<{}>{
   }
 
   pin = () => {
-    firebaseApp.database().ref('/Users/' + this.emailHash + '/Pinned/' + this.videoName + '/').set("");
+    firebaseApp.database().ref('/Users/' + this.emailHash + '/Pinned/' + this.videoName + '/').set(this.city);
   }
 
   openVideoPlayer = () => {
