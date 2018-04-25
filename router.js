@@ -20,6 +20,7 @@ import UpdateInterests from "./Popups/UpdateInterests";
 import UpdateUpdatePreferences from "./Popups/UpdateUpdatePreferences";
 import AggregateFeedback from "./Screens/AggregateFeedback";
 import RegistrationScreen6 from "./Screens/RegistrationScreen6";
+import PinnedPosts from "./Screens/PinnedPosts";
 
 
 
@@ -125,6 +126,12 @@ export const Root = StackNavigator({
     screen: RegistrationScreen6,
     navigationOptions: {
       title: "Customize your location"
+    }
+  },
+  PinnedPosts: {
+    screen: PinnedPosts,
+    navigationOptions: {
+      title: "Pinned Posts"
     }
   }
   }, {headerMode: 'none'})

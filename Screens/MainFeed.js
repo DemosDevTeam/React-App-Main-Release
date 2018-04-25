@@ -39,7 +39,7 @@ export default class MainFeed extends Component<{}>{
   }
 
   pinnedPosts = () => {
-    
+    this.props.navigation.navigate('PinnedPosts', {emailHashPinnedPosts: this.emailHashMain});
   }
 
   componentWillMount() {

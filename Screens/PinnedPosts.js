@@ -9,17 +9,21 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  TouchableHighlight,
 } from 'react-native';
 import sha1 from 'sha1';
 import {firebaseApp} from '../App';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
+import VideoComponent from '../mainFeedComponents/videoComponent';
 
-export default class PinnedPosts extends component<{}>{
+export default class PinnedPosts extends Component<{}>{
   userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashPinnedPosts + "/");
   emailHash = this.props.navigation.state.params.emailHashPinnedPosts;
   videosArr = [];
 
   componentWillMount(){
+    console.log("this.videosArr");
+    console.log(this.videosArr);
     //Before showing screen, need to populate videosArr with videos that user has pinned
     var pinnedVideos = []; //Will serve as 2d array where 1st element is name of video, and second is name of city associated with video
     this.setState({loading: true});
@@ -30,19 +34,23 @@ export default class PinnedPosts extends component<{}>{
           var videoInfo = [];
           videoInfo.push(secondChild.key);
           videoInfo.push(secondChild.val());
-          videosArr.push(videosInfo);
+          console.log("pinnedVideos:");
+          console.log(pinnedVideos);
+          pinnedVideos.push(videoInfo);
         })
       }
     }).then(() => {
       firebaseApp.database().ref('/videos/').once("value").then((snap) => {
-        for(var i=0; i<videosArr.length; i++){
-          var video = snap.child(videosArr[i][1]).child(videosArr[i][0]);
-          var city = videosArr[i][1];
+        for(var i=0; i<pinnedVideos.length; i++){
+          var video = snap.child(pinnedVideos[i][1]).child(pinnedVideos[i][0]);
+          var city = pinnedVideos[i][1];
           var videoUrl = video.val().urlvideo;
           var picUrl = video.val().urlpic;
-          var videoName = videosArr[i][0];
-          videosArr.push(<VideoComponent navigation={this.props.navigation} videoUrl={videoUrl} picUrl={picUrl} videoName={videoName} emailHash={this.emailHash}/>)
+          var videoName = pinnedVideos[i][0];
+          this.videosArr.push(<VideoComponent navigation={this.props.navigation} videoUrl={videoUrl} picUrl={picUrl} videoName={videoName} emailHash={this.emailHash}/>)
         }
+      }).then(() => {
+        this.setState({loading: false});
       })
     })
   }
