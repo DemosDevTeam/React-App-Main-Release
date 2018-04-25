@@ -56,7 +56,7 @@ export default class PinnedPosts extends Component<{}>{
   }
 
   goBack = () => {
-    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailhashmain});
+    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash});
   }
 
   render() {
