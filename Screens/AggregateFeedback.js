@@ -27,20 +27,24 @@ export default class AggregateFeedback extends Component<{}>{
       snap.forEach((child) => {
         var nameOfVideo = child.key;
         var reaction = child.val().reaction;
-        var elementArr = [nameOfVideo, reaction];
+        var city = child.val().city;
+        var elementArr = [nameOfVideo, reaction, city];
         feedback.push(elementArr);
       })
     }).then(() => {
       firebaseApp.database().ref('/videos/').once("value").then((snap) => {
         for(var i=0; i<feedback.length; i++){
-          if(snap.hasChild(feedback[i][0])){
-            var urlpic = snap.child(feedback[i][0]).val().urlpic;
-            var urlvideo = snap.child(feedback[i][0]).val().urlvideo;
-            var name = snap.child(feedback[i][0]).val().name;
+          if(snap.child(feedback[i][2]).hasChild(feedback[i][0])){
+            var video = snap.child(feedback[i][2]).child(feedback[i][0]);
+            var city = feedback[i][2];
+            var urlpic = video.val().urlpic;
+            var urlvideo = video.val().urlvideo;
+            var name = video.val().name;
 
             feedback[i].push(urlpic);
             feedback[i].push(urlvideo);
             feedback[i].push(name);
+            feedback[i].push(city);
           }
         }
       }).then(() => {
@@ -48,7 +52,7 @@ export default class AggregateFeedback extends Component<{}>{
           console.log("added a video");
           console.log(feedback[i]);
           this.videosArr.push(
-            <VideoComponent navigation={this.props.navigation} videoUrl={feedback[i][3]} picUrl={feedback[i][2]} videoName={feedback[i][4]} emailHash={this.emailHashMain}/>
+            <VideoComponent navigation={this.props.navigation} videoUrl={feedback[i][4]} picUrl={feedback[i][3]} videoName={feedback[i][5]} videoCity={feedback[i][6]} emailHash={this.emailHashMain}/>
           )
         }
       }).then(() => {
@@ -58,7 +62,7 @@ export default class AggregateFeedback extends Component<{}>{
   }
 
   goBack = () => {
-    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailhashmain});
+    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHashMain});
   }
 
   render() {

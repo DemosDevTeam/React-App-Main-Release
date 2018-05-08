@@ -183,7 +183,7 @@ export default class VideoPlayer extends Component<{}>{
 }
 
   goBack = () => {
-    this.props.navigation.navigate('MainFeed', {emailhasmain: this.emailHash})
+    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash})
   }
 
   render() {

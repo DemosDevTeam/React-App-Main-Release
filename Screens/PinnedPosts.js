@@ -47,7 +47,7 @@ export default class PinnedPosts extends Component<{}>{
           var videoUrl = video.val().urlvideo;
           var picUrl = video.val().urlpic;
           var videoName = pinnedVideos[i][0];
-          this.videosArr.push(<VideoComponent navigation={this.props.navigation} videoUrl={videoUrl} picUrl={picUrl} videoName={videoName} emailHash={this.emailHash}/>)
+          this.videosArr.push(<VideoComponent navigation={this.props.navigation} videoCity={city} videoUrl={videoUrl} picUrl={picUrl} videoName={videoName} emailHash={this.emailHash}/>)
         }
       }).then(() => {
         this.setState({loading: false});
