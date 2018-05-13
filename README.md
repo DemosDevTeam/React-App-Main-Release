@@ -4,9 +4,9 @@ This project is an application that will be used by CIVoICe LLC. The aim of our 
 ## Built With
 * react V. 16.3
 * react-native V. 0.54.2
-* react-native-youtube V 1.1.0
+* react-native-youtube V. 1.1.0
 * react-navigation V. 1.1.2
-* firebase V.1.5.1
+* firebase V. 1.5.1
 
 ## Authors
 * *Andrew McKinnon* - Back end development and functionality
