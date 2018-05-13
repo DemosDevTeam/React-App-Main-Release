@@ -8,6 +8,6 @@ This project is an application that will be used by CIVoICe LLC. The aim of our 
 * react-navigation V. 1.1.2
 * firebase V.1.5.1
 
-##Authors
+## Authors
 * *Andrew McKinnon* - Back end development and functionality
 * *Izzi Hinks* - Front end development and UI design 
