@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
+// import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 import {
   Platform,
   StyleSheet,
@@ -12,7 +12,9 @@ import {
   ImageBackground,
 } from 'react-native';
 
-export default class Home extends Component<{}>{
+import { ColorButton } from '../components'
+
+export default class Home extends Component {
   //changeText makes use of the prop provided by this being in a navigation stack
   //This allows us to navigate to another sheet within the stack
   //The stack is defined in router.js
@@ -24,7 +26,7 @@ export default class Home extends Component<{}>{
 
   render() {
     console.disableYellowBox = true;
-    console.log("Successfully reached the home.js render function");
+    // console.log("Successfully reached the home.js render function");
     return (
       <ImageBackground source={{uri: 'https://user-images.githubusercontent.com/18129905/37871334-c108bd32-2fb9-11e8-9d65-a5692497386b.png'}}
       style={styles.backgroundImage}>
@@ -39,11 +41,7 @@ export default class Home extends Component<{}>{
           <Text style={styles.welcome2}>
           Your voice, your local government.
           </Text>
-            <View style={styles.buttonz}>
-              <TouchableOpacity onPress={this.loginNav}>
-                <Text style={{fontSize: 18}}>Act Now</Text>
-              </TouchableOpacity>
-            </View>
+          <ColorButton color="#49c7e3" onPress={this.loginNav}>Act Now</ColorButton>
       </ImageBackground>
     );
   }
@@ -82,13 +80,8 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  buttonz: {
-    height: 40,
-    borderRadius: 4,
-    width: 320,
+  submitButton: {
     backgroundColor: '#49C7E3',
-    alignItems: 'center',
-    justifyContent: 'center',
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
