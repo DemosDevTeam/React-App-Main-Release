@@ -12,10 +12,14 @@ import {
   Image,
 } from 'react-native';
 import {firebaseApp} from '../App'
+
+// Why are these here?
 import VideoComponent from '../mainFeedComponents/videoComponent'
 import TextComponent from '../mainFeedComponents/textComponent'
 
-export default class MainFeed extends Component<{}>{
+import FeedCard from '../components'
+
+export default class MainFeed extends Component {
   userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailhashmain + "/");
   emailHashMain = this.props.navigation.state.params.emailhashmain;
   videosArr = [];
@@ -135,12 +139,16 @@ export default class MainFeed extends Component<{}>{
   }
 
   render() {
+    // TODO: videos stored in the state should be mapped in the render function into jsx elements
+    // const feed = this.state.video.map(video => <<FeedCard /> );
+
     console.disableYellowBox = true;
     if (this.state.loading) {
       return (<Text>Loading...</Text>)
     }
     return (
       <View style={{flex: 1}}>
+      {/* TODO: this needs to be moved into either its own Header component, or use react-navigation style headers */}
       <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
@@ -177,21 +185,21 @@ export default class MainFeed extends Component<{}>{
         </View>
       </View>
 
-
-
-
-
       <ScrollView>
         <View style={styles.space2}></View>
         <View style={styles.container}>{this.videosArr}</View>
         <View style={styles.space2}></View>
-        <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View>
+
+        <FeedCard 
+          title="Calls for Racial Equality at UNC"
+          summary="At a town hall meeting..."
+        />
+
+        {/* <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View> */}
       </ScrollView>
 
 
-
-
-
+      {/* TODO: this needs to be removed for react-navigation tabs */}
       <View style={styles.stepz}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>

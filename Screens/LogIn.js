@@ -15,7 +15,9 @@ import sha1 from 'sha1';
 import {firebaseApp} from '../App';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
-export default class LogIn extends Component<{}>{
+import { ColorButton } from '../components'
+
+export default class LogIn extends Component {
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
 
   componentDidMount() {
@@ -142,7 +144,7 @@ export default class LogIn extends Component<{}>{
   render() {
     console.disableYellowBox = true;
     return (
-      <ScrollView>
+      <View>
         <View style={styles.container}>
         <Image
           style={{width: 200, height: 200, marginTop: 75, marginBottom: 40}}
@@ -156,11 +158,9 @@ export default class LogIn extends Component<{}>{
         <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword}/>
         <View style={styles.space2}></View>
 
-        <View style={styles.buttonz}>
-          <TouchableOpacity onPress={this.login}>
-            <Text style={{fontSize: 16}}>Log In</Text>
-          </TouchableOpacity>
-        </View>
+        <ColorButton color={loginButtonColor} onPress={this.login}>
+          Log In
+        </ColorButton>
 
         <View style={styles.space3}></View>
 
@@ -170,11 +170,9 @@ export default class LogIn extends Component<{}>{
 
         <View style={styles.space3}></View>
 
-        <View style={styles.buttonzFB}>
-          <TouchableOpacity onPress={this.fbAuth.bind(this)}>
-            <Text style={{fontSize: 16, color: '#ffffff'}}>Login with Facebook</Text>
-          </TouchableOpacity>
-        </View>
+        <ColorButton color={fbButtonColor} onPress={this.fbAuth}>
+          Login with Facebook
+        </ColorButton>
 
         <View style={styles.space3}></View>
         <View style={styles.space}></View>
@@ -191,17 +189,18 @@ export default class LogIn extends Component<{}>{
         <View style={styles.space}></View>
         <View style={styles.space}></View>
 
-        <View style={styles.buttonzNew}>
-          <TouchableOpacity onPress={this.registerAccount}>
-            <Text style={{fontSize: 16}}>Register New Account</Text>
-          </TouchableOpacity>
+        <ColorButton color={registerButtonColor} onPress={this.registerAccount}>
+          Register New Account
+        </ColorButton>
         </View>
-
-        </View>
-      </ScrollView>
+      </View>
     );
   }
 }
+
+const loginButtonColor = "#49C7E3";
+const fbButtonColor = "#3B5998";
+const registerButtonColor = "#EE4C50";
 
 var styles = StyleSheet.create({
   container: {

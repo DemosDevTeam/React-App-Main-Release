@@ -22,15 +22,25 @@ import AggregateFeedback from "./Screens/AggregateFeedback";
 import RegistrationScreen6 from "./Screens/RegistrationScreen6";
 import PinnedPosts from "./Screens/PinnedPosts";
 
-
+// export const MainFeed = TabNavigator({
+//     MainFeed: {
+//       screen: MainFeed,
+//       navigationOptions: {
+//         title: 'Your Feed',
+//       }
+//     },
+//     CouncilScreen: {
+//       screen: CouncilScreen,
+//       navigationOptions: {
+//         title: 'Your Council',
+//       }
+//     },
+// });
 
 export const Root = StackNavigator({
   Home: {
     screen: Home,
-    navigationOptions: {
-      headerTitleStyle: { alignSelf: 'center' },
-      title: 'Welcome!',
-    },
+
   },
   LogIn: {
     screen: LogIn,
