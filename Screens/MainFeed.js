@@ -12,6 +12,7 @@ import {
   Image,
 } from 'react-native';
 import {firebaseApp} from '../App'
+
 import VideoComponent from '../mainFeedComponents/videoComponent'
 import TextComponent from '../mainFeedComponents/textComponent'
 
@@ -141,6 +142,7 @@ export default class MainFeed extends Component<{}>{
     }
     return (
       <View style={{flex: 1}}>
+      {/* Header */}
       <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
@@ -177,21 +179,17 @@ export default class MainFeed extends Component<{}>{
         </View>
       </View>
 
-
-
-
-
       <ScrollView>
         <View style={styles.space2}></View>
         <View style={styles.container}>{this.videosArr}</View>
         <View style={styles.space2}></View>
-        <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View>
+        {/* <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View> */}
       </ScrollView>
 
 
 
 
-
+      {/* Navigation Tab */}
       <View style={styles.stepz}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
