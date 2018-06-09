@@ -41,7 +41,11 @@ export default class Home extends Component {
           <Text style={styles.welcome2}>
           Your voice, your local government.
           </Text>
-          <ColorButton color="#49c7e3" onPress={this.loginNav}>Act Now</ColorButton>
+          <Button 
+            title="Act Now"
+            color="#49c7e3" 
+            onPress={this.loginNav}
+          />
       </ImageBackground>
     );
   }
@@ -51,7 +55,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
   backgroundImage: {
