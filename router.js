@@ -1,5 +1,6 @@
 // import React from 'react';
-import { TabNavigator, StackNavigator, SwitchNavigator } from 'react-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { TabNavigator, TabBarBottom, StackNavigator, SwitchNavigator } from 'react-navigation';
 
 // For good example of how to use Navigator classes, see the following link:
 
@@ -70,13 +71,39 @@ const AppTabs = TabNavigator({
       title: 'Your feedback'
     }
   },
- 
   PinnedPosts: {
     screen: PinnedPosts,
     navigationOptions: {
       title: 'Pinned Posts'
     }
   }
+}, {
+  navigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+
+      let iconName = 'ios-warning';
+
+      // ----- Set Tab Icons here ----- //
+      if (routeName === 'MainFeed' ) {
+        iconName = `ios-paper${focused ? '' : '-outline'}`;
+      } else if (routeName === 'CouncilScreen') {
+        // TODO: Choose icon
+      } else if (routeName === 'AggregateFeedback' ) {
+        // TODO: Choose icon
+      } else if (routeName === 'PinnedPosts') {
+        // TODO: Choose icon
+      }
+
+      return <Ionicons name={iconName} size={25} color={tintColor} />;
+    }
+  }),
+  tabBarOptions: {
+    activeTintColor: 'tomato',
+    inactiveTintColor: 'gray'
+  },
+  tabBarComponent: TabBarBottom,
+  tabBarPosition: 'bottom'
 })
 
 const RegistrationStack = StackNavigator({
