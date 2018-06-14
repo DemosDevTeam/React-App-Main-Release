@@ -16,7 +16,7 @@ import {
   Alert
 } from 'react-native';
 
-import {Root} from './router.js';
+import Root from './router.js';
 import Home from "./Screens/Home";
 const firebase = require('firebase');
 

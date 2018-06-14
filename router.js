@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator, SwitchNavigator } from 'react-navigation';
 
 //For good example of how to use Navigator classes, see the following link:
 //https://github.com/spencercarli/getting-started-react-navigation
@@ -22,33 +22,64 @@ import AggregateFeedback from "./Screens/AggregateFeedback";
 import RegistrationScreen6 from "./Screens/RegistrationScreen6";
 import PinnedPosts from "./Screens/PinnedPosts";
 
-// export const MainFeed = TabNavigator({
-//     MainFeed: {
-//       screen: MainFeed,
-//       navigationOptions: {
-//         title: 'Your Feed',
-//       }
-//     },
-//     CouncilScreen: {
-//       screen: CouncilScreen,
-//       navigationOptions: {
-//         title: 'Your Council',
-//       }
-//     },
-// });
+// const ProfileStack = TabNavigator({
+//   UpdateProfile: {
+//     screen: UpdateProfile,
+//     navigationOptions: {
+//       title: 'Update Profile'
+//     }
+//   },
+//   UpdateDemographics: {
+//     screen: UpdateDemographics,
+//     navigationOptions: {
+//       title: "Update Demographics"
+//     }
+//   },
+//   UpdateInterests: {
+//     screen: UpdateInterests,
+//     navigationOptions: {
+//       title: "Update Interest"
+//     }
+//   },
+//   UpdateUpdatePreferences: {
+//     screen: UpdateUpdatePreferences,
+//     navigationOptions: {
+//       title: "Update Navigation Preferences"
+//     }
+//   },
 
-export const Root = StackNavigator({
-  Home: {
-    screen: Home,
+// }) 
 
-  },
-  LogIn: {
-    screen: LogIn,
+const AppTabs = TabNavigator({
+  MainFeed: {
+    screen: MainFeed,
     navigationOptions: {
-      title: 'Log In',
-    },
+      title: 'Your Feed',
+    }
   },
-  RegistrationScreen1: {
+  CouncilScreen: {
+    screen: CouncilScreen,
+    navigationOptions: {
+      title: 'Your Council',
+    }
+  },
+  AggregateFeedback: {
+    screen: AggregateFeedback,
+    navigationOptions: {
+      title: "Your feedback"
+    }
+  },
+ 
+  PinnedPosts: {
+    screen: PinnedPosts,
+    navigationOptions: {
+      title: "Pinned Posts"
+    }
+  }
+})
+
+const RegistrationStack = StackNavigator({
+ RegistrationScreen1: {
     screen: RegistrationScreen1,
     navigationOptions: {
       title: 'Registration',
@@ -78,70 +109,49 @@ export const Root = StackNavigator({
       title: 'Updates',
     }
   },
-  MainFeed: {
-    screen: MainFeed,
-    navigationOptions: {
-      title: 'Your Feed',
-    }
-  },
-  CouncilScreen: {
-    screen: CouncilScreen,
-    navigationOptions: {
-      title: 'Your Council',
-    }
-  },
-  TextView: {
-    screen: TextView,
-    navigationOptions: {
-      title: 'Article View'
-    }
-  },
-  VideoPlayer: {
-    screen: VideoPlayer,
-    navigationOptions: {
-      title: 'Video Viewer'
-    }
-  },
-  UpdateProfile: {
-    screen: UpdateProfile,
-    navigationOptions: {
-      title: 'Update Profile'
-    }
-  },
-  UpdateDemographics: {
-    screen: UpdateDemographics,
-    navigationOptions: {
-      title: "Update Demographics"
-    }
-  },
-  UpdateInterests: {
-    screen: UpdateInterests,
-    navigationOptions: {
-      title: "Update Interest"
-    }
-  },
-  UpdateUpdatePreferences: {
-    screen: UpdateUpdatePreferences,
-    navigationOptions: {
-      title: "Update Navigation Preferences"
-    }
-  },
-  AggregateFeedback: {
-    screen: AggregateFeedback,
-    navigationOptions: {
-      title: "Your feedback"
-    }
-  },
-  RegistrationScreen6: {
+ RegistrationScreen6: {
     screen: RegistrationScreen6,
     navigationOptions: {
       title: "Customize your location"
     }
   },
-  PinnedPosts: {
-    screen: PinnedPosts,
+})
+
+const AuthStack = StackNavigator({
+  Home: Home,
+  LogIn: {
+    screen: LogIn,
     navigationOptions: {
-      title: "Pinned Posts"
-    }
-  }
-  }, {headerMode: 'none'})
+      title: 'Log In',
+    },
+  },
+}, {
+  headerMode: 'none',
+});
+
+const RootNavigator = SwitchNavigator({
+  App: AppTabs,
+  Auth: AuthStack
+}, {
+  initialRouteName: 'Auth'
+}); 
+
+
+
+// export const Root = StackNavigator({
+//   TextView: {
+//     screen: TextView,
+//     navigationOptions: {
+//       title: 'Article View'
+//     }
+//   },
+//   VideoPlayer: {
+//     screen: VideoPlayer,
+//     navigationOptions: {
+//       title: 'Video Viewer'
+//     }
+//   },
+    
+//   }, {headerMode: 'none'})
+
+export default RootNavigator;
