@@ -20,10 +20,20 @@ import TextComponent from '../mainFeedComponents/textComponent'
 import FeedCard from '../components'
 
 export default class MainFeed extends Component {
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailhashmain + "/");
-  emailHashMain = this.props.navigation.state.params.emailhashmain;
-  videosArr = [];
-  //on click See my council button, navigate to CouncilScreen
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false
+    };
+
+    this.emailHashMain = this.props.navigation.state.params.emailhashmain;
+    this.userRef = firebaseApp.database().ref(`/Users/${this.emailHashMain}/`);
+
+    this.videosArr = [];
+  }
+
+ //on click See my council button, navigate to CouncilScreen
   goToCouncil = () => {
     this.props.navigation.navigate('CouncilScreen');
   }
@@ -46,7 +56,7 @@ export default class MainFeed extends Component {
     this.props.navigation.navigate('PinnedPosts', {emailHashPinnedPosts: this.emailHashMain});
   }
 
-  componentWillMount() {
+  componentDidMount() {
     //Set loading state to true so that asynchronous calls to db can be made before page loads
     this.setState({loading: true});
     var videosRef = firebaseApp.database().ref('/videos/');
@@ -190,11 +200,11 @@ export default class MainFeed extends Component {
         <View style={styles.container}>{this.videosArr}</View>
         <View style={styles.space2}></View>
 
-        <FeedCard 
+        {/* <FeedCard 
           title="Calls for Racial Equality at UNC"
           summary="At a town hall meeting..."
         />
-
+ */}
         {/* <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View> */}
       </ScrollView>
 

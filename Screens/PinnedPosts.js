@@ -16,12 +16,12 @@ import {firebaseApp} from '../App';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import VideoComponent from '../mainFeedComponents/videoComponent';
 
-export default class PinnedPosts extends Component<{}>{
+export default class PinnedPosts extends Component {
   userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashPinnedPosts + "/");
   emailHash = this.props.navigation.state.params.emailHashPinnedPosts;
   videosArr = [];
 
-  componentWillMount(){
+  componentDidMount(){
     console.log("this.videosArr");
     console.log(this.videosArr);
     //Before showing screen, need to populate videosArr with videos that user has pinned

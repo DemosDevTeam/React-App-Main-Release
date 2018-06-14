@@ -96,7 +96,7 @@ export default class RegistrationScreen1 extends Component<{}>{
       </ScrollView>
     );
   }
-};
+}
 
 var styles = StyleSheet.create({
   container: {

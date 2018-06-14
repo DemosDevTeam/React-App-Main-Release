@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "react-devtool": "react-devtools"
+    "react-devtool": "node node_modules/.bin/react-devtools"
   },
   "dependencies": {
     "adm-zip": "^0.4.11",
@@ -32,6 +32,6 @@
     "xcode": "^1.0.0"
   },
   "devDependencies": {
-    "react-devtools": "^3.2.3"
+   "react-devtools": "^3.2.3"
   }
 }

@@ -21,7 +21,9 @@ export default class Home extends Component {
 
   //When login button is pressed, navigate to 'log in' screen
   loginNav = () => {
-    this.props.navigation.navigate('LogIn');
+    const { navigation } = this.props; 
+
+    navigation.navigate('LogIn');
   };
 
   render() {

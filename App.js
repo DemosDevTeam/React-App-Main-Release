@@ -5,7 +5,7 @@
  * @flow
  */
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Platform,
   StyleSheet,
@@ -29,8 +29,7 @@ const firebaseConfig = {
 };
 var firebaseApp = firebase.initializeApp(firebaseConfig);
 
-
-export default class App extends Component<{}> {
+export default class App extends React.Component {
   render() {
     return (
         <Root/>
