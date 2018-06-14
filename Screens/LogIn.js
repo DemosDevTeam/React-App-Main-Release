@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  AsyncStorage
 } from 'react-native';
 import sha1 from 'sha1';
 import {firebaseApp} from '../App';
@@ -40,7 +41,7 @@ export default class LogIn extends Component {
         if(snap.hasChild(sha1(this.state.email))){
           if(snap.child(sha1(this.state.email)).val().password == sha1(this.state.password)){
 
-            firebaseApp.database().ref('/Users/' + sha1(this.state.email) + '/').once("value").then((snap) => {
+            firebaseApp.database().ref('/Users/' + sha1(this.state.email) + '/').once("value").then(async (snap) => {
               if(!(snap.hasChild('age') && snap.hasChild('children') && snap.hasChild('education') && snap.hasChild('gender') &&
                   snap.hasChild('income') && snap.hasChild('marital') && snap.hasChild('occupation') && snap.hasChild('race'))){
                     //Need to fill out demographic info, redirect to RegistrationScreen2
@@ -58,8 +59,15 @@ export default class LogIn extends Component {
                 //Need to fill out what city/cities individual is interested in
                 Alert.alert("Please finish filling out your registration information");
                 this.props.navigation.navigate('RegistrationScreen6', {hashemail5: sha1(this.state.email)});
-              }else{
+              } else {
                 console.log("inside of last if statement");
+                
+                try {
+                  await AsyncStorage.setItem('userEmailHash', this.state.email);
+                } catch (error) {
+                  console.error(error);
+                }
+
                 this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
               }
 

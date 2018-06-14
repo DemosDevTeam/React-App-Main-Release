@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  AsyncStorage,
   Text,
   View,
   Image,
@@ -17,17 +18,32 @@ import {LoginManager, AccessToken} from 'react-native-fbsdk';
 import VideoComponent from '../mainFeedComponents/videoComponent';
 
 export default class PinnedPosts extends Component {
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashPinnedPosts + "/");
-  emailHash = this.props.navigation.state.params.emailHashPinnedPosts;
   videosArr = [];
 
-  componentDidMount(){
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false
+    }
+  }
+
+  async componentDidMount(){
     console.log("this.videosArr");
     console.log(this.videosArr);
     //Before showing screen, need to populate videosArr with videos that user has pinned
     var pinnedVideos = []; //Will serve as 2d array where 1st element is name of video, and second is name of city associated with video
+
+    try {
+      this.emailHash = await AsyncStorage.getItem('userEmailHash');
+    } catch (error) {
+      console.error(error);
+    }
+
+    const userRef = firebaseApp.database().ref(`/Users/${emailHash}/`);
+
     this.setState({loading: true});
-    this.userRef.once("value").then((snap) => {
+    userRef.once("value").then((snap) => {
       if(snap.hasChild("Pinned")){
         //for each pinned video get video name and associated city for later lookup
         snap.child("Pinned").forEach((secondChild) => {
@@ -56,7 +72,7 @@ export default class PinnedPosts extends Component {
   }
 
   goBack = () => {
-    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash});
+    this.props.navigation.navigate('MainFeed');
   }
 
   render() {
@@ -66,7 +82,7 @@ export default class PinnedPosts extends Component {
 
     return (
       <View style={{flex: 1}}>
-      <View style={styles.stepzTop}>
+      {/* <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
 
@@ -100,7 +116,7 @@ export default class PinnedPosts extends Component {
             </TouchableHighlight>
           </View>
         </View>
-      </View>
+      </View> */}
 
 
 
@@ -127,7 +143,7 @@ export default class PinnedPosts extends Component {
 
 
 
-      <View style={styles.stepz}>
+      {/* <View style={styles.stepz}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
             <TouchableHighlight onPress={this.goToCouncil} style={{flex:1}}>
@@ -180,7 +196,7 @@ export default class PinnedPosts extends Component {
             </TouchableHighlight>
           </View>
         </View>
-      </View>
+      </View> */}
       </View>
     )
   }

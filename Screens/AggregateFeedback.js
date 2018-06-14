@@ -9,21 +9,36 @@ import {
   Alert,
   ScrollView,
   TouchableHighlight,
-  Image
+  Image,
+  AsyncStorage
 } from 'react-native';
 import {firebaseApp} from '../App'
 import VideoComponent from '../mainFeedComponents/videoComponent';
 
-export default class AggregateFeedback extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashAggregateFeedback + "/");
-  emailHashMain = this.props.navigation.state.params.emailHashAggregateFeedback;
+export default class AggregateFeedback extends Component {
   videosArr = [];
 
-  componentWillMount() {
-    this.setState({loading: true});
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loading: false
+    }
+  }
+
+  async componentDidMount() {
+    this.setState({loading: true})
+
+    try {
+      this.emailHashMain = await AsyncStorage.getItem('userEmailHash');
+    } catch (error) {
+      console.error(error);
+    }
+     
+    const userRef = firebaseApp.database().ref(`/Users/${this.emailHashMain}/`);
 
     var feedback = [];
-    this.userRef.child("Reactions").once("value").then((snap) => {
+    userRef.child("Reactions").once("value").then((snap) => {
       snap.forEach((child) => {
         var nameOfVideo = child.key;
         var reaction = child.val().reaction;
@@ -72,7 +87,8 @@ export default class AggregateFeedback extends Component<{}>{
     }
     return (
       <View style={{flex: 1}}>
-      <View style={styles.stepzTop}>
+      {/* TODO: Remove header */}
+      {/* <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
 
@@ -106,11 +122,7 @@ export default class AggregateFeedback extends Component<{}>{
             </TouchableHighlight>
           </View>
         </View>
-      </View>
-
-
-
-
+      </View> */}
 
       <ScrollView>
          <View style={styles.space}></View>

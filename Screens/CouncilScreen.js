@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import {firebaseApp} from '../App'
 
-export default class CouncilScreen extends Component<{}>{
+export default class CouncilScreen extends Component {
   
   //on click See my council button, navigate to CouncilScreen
   goToCouncil = () => {
@@ -22,7 +22,7 @@ export default class CouncilScreen extends Component<{}>{
   render() {
     return (
      <View style={{flex: 1}}>
-      <View style={styles.stepzTop}>
+      {/* <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
 
@@ -56,7 +56,7 @@ export default class CouncilScreen extends Component<{}>{
             </TouchableHighlight>
           </View>
         </View>
-      </View>
+      </View> */}
 
 
 
@@ -81,8 +81,8 @@ export default class CouncilScreen extends Component<{}>{
 
 
 
-
-      <View style={styles.stepz}>
+       {/* TODO: Remove tab */}
+      {/* <View style={styles.stepz}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
             <TouchableHighlight onPress={this.goToCouncil} style={{flex:1}}>
@@ -135,7 +135,7 @@ export default class CouncilScreen extends Component<{}>{
             </TouchableHighlight>
           </View>
         </View>
-      </View>
+      </View> */}
       </View>
 
 

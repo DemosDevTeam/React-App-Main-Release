@@ -1,10 +1,11 @@
-// import React from 'react';
+import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { TabNavigator, TabBarBottom, StackNavigator, SwitchNavigator } from 'react-navigation';
 
 // For good example of how to use Navigator classes, see the following link:
 
 // https://github.com/spencercarli/getting-started-react-navigation
+import AuthLoadingScreen from './Screens/AuthLoadingScreen'
 import Home from './Screens/Home';
 import LogIn from './Screens/LogIn';
 import RegistrationScreen1 from './Screens/RegistrationScreen1';
@@ -12,7 +13,10 @@ import RegistrationScreen2 from './Screens/RegistrationScreen2';
 import RegistrationScreen3 from './Screens/RegistrationScreen3';
 import RegistrationScreen4 from './Screens/RegistrationScreen4';
 import RegistrationScreen5 from './Screens/RegistrationScreen5';
+
 import MainFeed from './Screens/MainFeed';
+import ArticleScreen from './Screens/ArticleScreen'
+
 import CouncilScreen from './Screens/CouncilScreen';
 import UpdateProfile from './Screens/UpdateProfile';
 import TextView from './Popups/TextView';
@@ -50,11 +54,20 @@ import PinnedPosts from './Screens/PinnedPosts';
 //     }
 //   },
 
-// }) 
+// })   
+
+const ArticleStack = StackNavigator ({
+  MainFeed: {
+    screen: MainFeed
+  },
+  Article: {
+    screen: ArticleScreen
+  }
+})
 
 const AppTabs = TabNavigator({
   MainFeed: {
-    screen: MainFeed,
+    screen: ArticleStack,
     navigationOptions: {
       title: 'Your Feed',
     }
@@ -159,9 +172,10 @@ const AuthStack = StackNavigator({
 
 const RootNavigator = SwitchNavigator({
   App: AppTabs,
-  Auth: AuthStack
+  Auth: AuthStack,
+  AuthLoading: AuthLoadingScreen
 }, {
-  initialRouteName: 'Auth'
+  initialRouteName: 'AuthLoading'
 }); 
 
 
