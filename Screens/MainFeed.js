@@ -29,10 +29,21 @@ export default class MainFeed extends Component {
     super(props);
 
     this.state = {
+      videos: [],
       loading: false
     };
 
     this.videosArr = [];
+  }
+
+  async componentDidMount() {
+    //Set loading state to true so that asynchronous calls to db can be made before page loads
+    this.setState({loading: true});
+
+    this.emailHashMain = await AsyncStorage.getItem('userEmailHash');
+    this.userRef = firebaseApp.database().ref(`/Users/${this.emailHashMain}/`);
+
+    this.fetchVideos()    
   }
 
   logout = () => {
@@ -129,19 +140,13 @@ export default class MainFeed extends Component {
     })
   }
 
-  async componentDidMount() {
-    //Set loading state to true so that asynchronous calls to db can be made before page loads
-    this.setState({loading: true});
-
-    this.emailHashMain = await AsyncStorage.getItem('userEmailHash');
-    this.userRef = firebaseApp.database().ref(`/Users/${this.emailHashMain}/`);
-
-    this.fetchVideos()    
+  fetchMockVideos = async () => {
   }
 
   render() {
     // TODO: videos stored in the state should be mapped in the render function into jsx elements
     // const feed = this.state.video.map(video => <<FeedCard /> );
+    const videos = this.videosArr.map(video => <FeedItem />);
 
     console.disableYellowBox = true;
     if (this.state.loading) {
@@ -150,6 +155,7 @@ export default class MainFeed extends Component {
     return (
       <View style={{flex: 1}}>
       {/* TODO: this needs to be moved into either its own Header component, or use react-navigation style headers */}
+      {/*
       <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
@@ -165,12 +171,10 @@ export default class MainFeed extends Component {
               </View>
             </TouchableHighlight>
 
-
             <Image
               style={{width: 57, height: 40, marginTop: 20}}
               source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
             />
-
 
             <TouchableHighlight onPress={this.updateProfile}  style={{flex:1, marginLeft: 75}}>
               <View style={styles.pickWrapperz}>
@@ -185,17 +189,14 @@ export default class MainFeed extends Component {
           </View>
         </View>
       </View>
-
+      */}
       <ScrollView>
         <View style={styles.space2}></View>
         <View style={styles.container}>{this.videosArr}</View>
         <View style={styles.space2}></View>
 
-        {/* <FeedCard 
-          title="Calls for Racial Equality at UNC"
-          summary="At a town hall meeting..."
-        />
- */}
+        {videos}
+
         {/* <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View> */}
       </ScrollView>
       </View>

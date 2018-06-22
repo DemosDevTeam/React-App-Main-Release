@@ -14,7 +14,8 @@ import RegistrationScreen3 from './Screens/RegistrationScreen3';
 import RegistrationScreen4 from './Screens/RegistrationScreen4';
 import RegistrationScreen5 from './Screens/RegistrationScreen5';
 
-import MainFeed from './Screens/MainFeed';
+// import MainFeed from './Screens/MainFeed';
+import MainFeed from './Screens/MainFeedNew';
 import ArticleScreen from './Screens/ArticleScreen'
 
 import CouncilScreen from './Screens/CouncilScreen';
@@ -177,8 +178,6 @@ const RootNavigator = SwitchNavigator({
 }, {
   initialRouteName: 'AuthLoading'
 }); 
-
-
 
 // export const Root = StackNavigator({
 //   TextView: {

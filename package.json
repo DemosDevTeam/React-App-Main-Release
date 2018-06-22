@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "react-devtool": "node node_modules/.bin/react-devtools"
+    "react-devtool": "node node_modules/.bin/react-devtools",
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "dependencies": {
     "adm-zip": "^0.4.11",

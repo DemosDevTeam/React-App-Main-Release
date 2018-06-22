@@ -191,8 +191,8 @@ export default class VideoPlayer extends Component<{}>{
     return (
       <View style={{flex: 1,}}>
         <WebView
-          source={{html: "<html><body><iframe src=" + this.state.embeddedUrl + "></iframe></body></html>"}}
-          style={{marginTop: 20, width:400, height:200,}}
+          source={{uri: this.state.embeddedUrl }}
+          // style={{marginTop: 20, width:400, height:200,}}
         />
         <TextInput placeholder="Comments/feedback" onChangeText={this.storeFeedback}/>
         <Button onPress={this.submitFeedback} title="Submit Feedback"/>

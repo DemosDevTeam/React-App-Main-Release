@@ -1,26 +1,49 @@
-import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import Youtube from 'react-native-youtube'
+// Props
+// Dumb component
+// Does not fetch backend requests
+// All data should be passed in
+// Props
+// Article
+// 
 
-/**
- * Takes in a video, card_title, summary,
- */
+import React from 'react'
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+// import Youtube from 'react-native-youtube'
+
+import { VideoPlayer } from './'
+
 export default class FeedCard extends React.Component {
+    // TODO: Prop types have changed in React recently
+    // Not necessary but better to have strict type encorcement
+    // Keeping for docs
+    /*
+    static propTypes = {
+        title: React.PropTypes.string.isRequired,
+        videoId: React.PropTypes.string.isRequired,
+        pinned: React.PropTypes.boolean.optional,
+        excerpt: React.PropTypes.string.optional,
+        tags: React,Propt
+    }
+    */
+
+    navigateToVideoDetail = () => {
+        this.props.navigation.navigate()
+    }
+    
     render() {
-        // const tags = this.props.tags.map(tag => <)
+        // TODO: Change source
+        const { title, videoId, pinned, excerpt, tags } = this.props;
 
         return (
-            <View style={styles.container}>
-                <Youtube 
-                    videoId={this.props.videoId}
-                />
-                <View>
-                    <Text style={styles.cardTitle}>{this.props.title}</Text>
-                    <Text style={styles.summary}>{this.props.summary}</Text>
+            <View>
+                <VideoPlayer videoId={videoId} />
+                
+                <TouchableOpacity onPress={this.navigateToVideoDetail}>
                     <View>
-                        <Button>Read More...</Button>
+                        <Text style={styles.cardTitle}>{title}</Text>
+                        <Text style={styles.excerpt}>{excerpt}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
         );
     }

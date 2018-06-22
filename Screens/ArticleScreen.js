@@ -8,8 +8,7 @@ export default class ArticleScreen extends React.Component {
     render() {
         return (
             <View>
-                <ArticleCard />
-                <CommentCard />
+                
             </View>
         );
     }
