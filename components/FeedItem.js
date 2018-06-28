@@ -7,12 +7,18 @@
 // 
 
 import React from 'react'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 // import Youtube from 'react-native-youtube'
 
 import { VideoPlayer } from './'
 
-export default class FeedCard extends React.Component {
+const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    }
+})
+
+export default class FeedItem extends React.Component {
     // TODO: Prop types have changed in React recently
     // Not necessary but better to have strict type encorcement
     // Keeping for docs
@@ -27,7 +33,7 @@ export default class FeedCard extends React.Component {
     */
 
     navigateToVideoDetail = () => {
-        this.props.navigation.navigate()
+        // this.props.navigation.navigate()
     }
     
     render() {
@@ -36,24 +42,17 @@ export default class FeedCard extends React.Component {
 
         return (
             <View>
-                <VideoPlayer videoId={videoId} />
+                <VideoPlayer uri={videoId} />
                 
+                {/*}
                 <TouchableOpacity onPress={this.navigateToVideoDetail}>
                     <View>
-                        <Text style={styles.cardTitle}>{title}</Text>
-                        <Text style={styles.excerpt}>{excerpt}</Text>
+                        <Text>{title}</Text>
+                        <Text>{excerpt}</Text>
                     </View>
                 </TouchableOpacity>
+                */}
             </View>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    cardTitle: {
-
-    }
-})

@@ -10,7 +10,6 @@ import {
   TextInput,
   ScrollView,
 } from 'react-native';
-import {firebaseApp} from '../App'
 
 export default class CouncilScreen extends Component {
   

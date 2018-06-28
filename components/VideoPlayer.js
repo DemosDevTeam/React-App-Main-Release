@@ -4,22 +4,15 @@
 //  Videoid string 
 
 
-import React, { Component } from 'react';
+import React from 'react';
 import {
-  StyleSheet,
-  Text,
   View,
-  Button,
-  TouchableOpacity,
-  TextInput,
-  Linking,
-  Image,
-  WebView,
+  WebView
 } from 'react-native';
-import {firebaseApp} from '../App'
-import YouTube from 'react-native-youtube';
 
-export default class VideoPlayer extends Component {
+import { catchComponent } from './'
+
+class VideoPlayer extends React.Component {
   //This component will serve as a popup from which we can play youtube videos using an npm open source module "react-native-youtube-player"
   //Should have the video id passed as a prop and be allowed to use from there
   
@@ -31,20 +24,18 @@ export default class VideoPlayer extends Component {
   city = this.props.navigation.state.params.VideoCity; //city associated with video is passed to video component from feed
   */
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const uri = `https://www.youtube.com/embed/${this.props.videoId}`;
+    const { uri } = this.props || "";
 
-    console.log("embedded url is:" + uri);
     return (
       <View style={{flex: 1}}>
         <WebView
-          source={{uri: uri }}
+          source={{ uri }}
         />
       </View>
     )
   }
 }
+
+export default VideoPlayer
+// export default catchComponent(VideoPlayer)

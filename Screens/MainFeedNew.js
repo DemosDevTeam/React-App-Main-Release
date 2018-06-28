@@ -9,6 +9,8 @@ import React from 'react'
 
 import { ScrollView, Text } from 'react-native'
 
+import { database } from '../db'
+
 import { FeedCard } from '../components'
 
 export default class MainFeed extends React.Component {
@@ -28,7 +30,6 @@ export default class MainFeed extends React.Component {
 
     fetchArticles = async () => {
         // Fetches articles sorted by data;
-        return await this._fetchArticlesMock();
     }
 
     _fetchArticlesMock = async () => {

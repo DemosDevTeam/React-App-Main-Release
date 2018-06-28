@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   AsyncStorage,
@@ -12,7 +12,6 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {firebaseApp} from '../App'
 
 // Why are these here?
 import VideoComponent from '../mainFeedComponents/videoComponent'
@@ -20,7 +19,7 @@ import TextComponent from '../mainFeedComponents/textComponent'
 
 import FeedCard from '../components'
 
-export default class MainFeed extends Component {
+export default class MainFeed extends React.Component {
   static navigationOptions = {
     title: 'Feed'
   };

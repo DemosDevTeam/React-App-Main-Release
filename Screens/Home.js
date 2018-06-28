@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     width: null,
     height: null,
-    resizeMode: 'cover'
+    // Invalid property type
+    // resizeMode: 'cover'
   },
   welcome: {
     fontSize: 20,

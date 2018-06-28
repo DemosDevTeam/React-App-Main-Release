@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#F5FCFF",
+      "flex": 1,
+      "height": null,
+      "justifyContent": "center",
+      "width": null,
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://user-images.githubusercontent.com/18129905/37871334-c108bd32-2fb9-11e8-9d65-a5692497386b.png",
+      }
+    }
+    style={
+      Array [
+        Object {
+          "bottom": 0,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        },
+        Object {
+          "height": null,
+          "width": null,
+        },
+        undefined,
+      ]
+    }
+  />
+  <Image
+    source={
+      Object {
+        "uri": "https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png",
+      }
+    }
+    style={
+      Object {
+        "height": 170,
+        "width": 170,
+      }
+    }
+  />
+  <Image
+    source={
+      Object {
+        "uri": "https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png",
+      }
+    }
+    style={
+      Object {
+        "height": 120,
+        "width": 200,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "fontSize": 20,
+        "margin": 10,
+        "paddingBottom": 90,
+        "paddingTop": -20,
+        "textAlign": "center",
+      }
+    }
+  >
+    Your voice, your local government.
+  </Text>
+  <View
+    accessibilityComponentType="button"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#49c7e3",
+            },
+          ]
+        }
+      >
+        Act Now
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -2,9 +2,6 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { TabNavigator, TabBarBottom, StackNavigator, SwitchNavigator } from 'react-navigation';
 
-// For good example of how to use Navigator classes, see the following link:
-
-// https://github.com/spencercarli/getting-started-react-navigation
 import AuthLoadingScreen from './Screens/AuthLoadingScreen'
 import Home from './Screens/Home';
 import LogIn from './Screens/LogIn';
