@@ -43,6 +43,7 @@ export default class FeedItem extends React.Component {
         return (
             <View>
                 <VideoPlayer uri={videoId} />
+                <Text>{excerpt}</Text>
                 
                 {/*
                 <TouchableOpacity onPress={this.navigateToVideoDetail}>

@@ -7,7 +7,7 @@
 
 import React from 'react'
 
-import { ScrollView, Text } from 'react-native'
+import { View, ScrollView, Text } from 'react-native'
 
 import { database } from '../db'
 
@@ -62,10 +62,14 @@ export default class MainFeed extends React.Component {
         let articlesJsx;
    
         // Empty check
-        if (Object.entries(articles).length == 0) {
-            articlesJsx = <Text>Oh no! The political sphere is ruminating... (No articles available)</Text>
+        if (!articles || Object.entries(articles).length == 0) {
+            articlesJsx = (
+                <View>
+                    <Text>Oh no! The political sphere is ruminating... (No articles available)</Text>
+                </View>
+            )
         } else {
-            articlesJsx = Object.entries(articles).map((article_id, article) => {
+            articlesJsx = Object.entries(articles).map(([article_id, article]) => {
                 const { title, videoId, excerpt, pinned, tags } = article;
 
                 return (<FeedItem
@@ -76,7 +80,7 @@ export default class MainFeed extends React.Component {
                     pinned={false}
                     tags={tags}
                 />);
-            });
+            })
         }
 
         return (

@@ -15,14 +15,17 @@ class AuthLoadingScreen extends React.Component {
     }
 
     componentDidMount() {
-        // Check user authenticatino status
-        // If authenticated send to main feed
-        // Else send to registration screen
+        /**
+         * TODO: implementation needs to use firebase auth rather than custom email hash 
+        */
+        /*
         firebase.auth().onAuthStateChanged(user => {
-            this.props.navigation.navigate(userEmail ? 'App' : 'Registration');
+            this.props.navigation.navigate(userEmail ? 'App' : 'RegistrationAuth
         });
+        */
 
-        // const userEmail = this.fetchUserToken();
+        const userEmail = this.fetchUserToken();
+        this.props.navigation.navigate(userEmail ? 'App' : 'Auth');
         
     }
 
