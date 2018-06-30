@@ -13,7 +13,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App';
+import firebaseApp from '../db';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 import { ColorButton } from '../components'

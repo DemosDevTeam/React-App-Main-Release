@@ -1,5 +1,5 @@
 {
-"name": "Demos",
+  "name": "Demos",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,16 +8,16 @@
     "test": "jest"
   },
   "jest": {
-      "preset": "react-native",
-      "transformIgnorePatterns": [
-        "node_modules/(?!(react-native|react-navigation|react-native-vector-icons|react-native-youtube|react-native-safe-area-view)/)"
-      ],
-      "setupFiles": [
-        "./__tests__/setup.js"
-      ],
-      "globals": {
-        "window": true
-      }
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|react-navigation|react-native-vector-icons|react-native-youtube|react-native-safe-area-view)/)"
+    ],
+    "setupFiles": [
+      "./__tests__/setup.js"
+    ],
+    "globals": {
+      "window": true
+    }
   },
   "dependencies": {
     "adm-zip": "^0.4.11",
@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "jest": "^23.2.0",
-    "react-devtools": "^3.2.3"
+    "react-devtools": "^3.2.3",
+    "react-test-renderer": "^16.4.1"
   }
 }

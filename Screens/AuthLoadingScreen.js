@@ -7,17 +7,26 @@ import {
     View
 } from 'react-native'
 
+import firebase from '../db'
+
 class AuthLoadingScreen extends React.Component {
     constructor(props) {
         super(props);
     }
 
     componentDidMount() {
-        const userEmail = this.fetchUserToken();
+        // Check user authenticatino status
+        // If authenticated send to main feed
+        // Else send to registration screen
+        firebase.auth().onAuthStateChanged(user => {
+            this.props.navigation.navigate(userEmail ? 'App' : 'Registration');
+        });
+
+        // const userEmail = this.fetchUserToken();
         
-        this.props.navigation.navigate(userEmail ? 'App' : 'Auth');
     }
 
+    // Currently retreives user email hash from async storage
     fetchUserToken = async () => {
         try {
             const userToken = await AsyncStorage.getItem('userEmailHash');

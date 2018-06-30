@@ -17,7 +17,6 @@ import {
 import VideoComponent from '../mainFeedComponents/videoComponent'
 import TextComponent from '../mainFeedComponents/textComponent'
 
-import FeedCard from '../components'
 
 export default class MainFeed extends React.Component {
   static navigationOptions = {
@@ -143,8 +142,6 @@ export default class MainFeed extends React.Component {
   }
 
   render() {
-    // TODO: videos stored in the state should be mapped in the render function into jsx elements
-    // const feed = this.state.video.map(video => <<FeedCard /> );
     const videos = this.videosArr.map(video => <FeedItem />);
 
     console.disableYellowBox = true;

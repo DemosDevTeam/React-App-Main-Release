@@ -11,7 +11,7 @@ import { ScrollView, Text } from 'react-native'
 
 import { database } from '../db'
 
-import { FeedCard } from '../components'
+import { FeedItem } from '../components'
 
 export default class MainFeed extends React.Component {
     state = {
@@ -68,7 +68,7 @@ export default class MainFeed extends React.Component {
             articlesJsx = Object.entries(articles).map((article_id, article) => {
                 const { title, videoId, excerpt, pinned, tags } = article;
 
-                return (<FeedCard
+                return (<FeedItem
                     key={article_id}
                     title={title}
                     videoId={videoId}

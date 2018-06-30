@@ -1,14 +1,12 @@
 import 'react-native'
 import React from 'react'
 
-import { LoginScreen } from '../../Screens'
+import { ArticleScreen } from '../../Screens'
 
 import renderer from 'react-test-renderer'
 
-jest.mock('../../db')
-
 test('render correctly', () => {
-    const tree = renderer.create(<LoginScreen />).toJSON()
+    const tree = renderer.create(<ArticleScreen />).toJSON()
 
     expect(tree).toMatchSnapshot()
 })
