@@ -11,10 +11,11 @@ import {
   ScrollView,
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App'
 
-export default class RegistrationScreen1 extends Component<{}>{
-  usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+import db from '../db'
+
+export default class RegistrationScreen1 extends Component {
+  // usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
 
   state = {
     name: '',
@@ -56,6 +57,17 @@ export default class RegistrationScreen1 extends Component<{}>{
     }
   };
 
+  onSubmit = () => {
+    const { email, password } = this.state;
+
+    try {
+      await db.auth().createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      // TODO: Proper error handling
+      console.error(error)
+    }
+  }
+
   //Populate appropriate state fields with data as it is recieved
   handleName = (text) => {
     this.setState({name: text});
@@ -87,11 +99,14 @@ export default class RegistrationScreen1 extends Component<{}>{
         <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
         <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
-        <View style={styles.buttonz}>
-          <TouchableOpacity onPress={this.submit}>
+
+        <Button onPress={this.onSubmit} title="Register" />  
+
+        {/* <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.onSubmit}>
             <Text style={{fontSize: 16}}>Continue</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         </View>
       </ScrollView>
     );

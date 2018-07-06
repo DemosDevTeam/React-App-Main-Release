@@ -25,7 +25,6 @@ export default class MainFeed extends React.Component {
         } catch (error) {
             console.error(error);
         }
-
     }
 
     fetchArticles = async () => {

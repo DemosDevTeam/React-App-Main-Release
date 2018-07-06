@@ -18,15 +18,9 @@ class AuthLoadingScreen extends React.Component {
         /**
          * TODO: implementation needs to use firebase auth rather than custom email hash 
         */
-        /*
         firebase.auth().onAuthStateChanged(user => {
-            this.props.navigation.navigate(userEmail ? 'App' : 'RegistrationAuth
+            this.props.navigation.navigate(user ? 'App' : 'Auth');
         });
-        */
-
-        const userEmail = this.fetchUserToken();
-        this.props.navigation.navigate(userEmail ? 'App' : 'Auth');
-        
     }
 
     // Currently retreives user email hash from async storage

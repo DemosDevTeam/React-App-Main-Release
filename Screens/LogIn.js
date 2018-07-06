@@ -29,8 +29,9 @@ export default class LogIn extends Component {
   }
   //on press register new account button, navigate to first registration screen.
   registerAccount = () => {
-    this.props.navigation.navigate('RegistrationScreen1');
+    this.props.navigation.navigate('Registration');
   };
+
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
     console.log(sha1(this.state.email));
@@ -141,7 +142,6 @@ export default class LogIn extends Component {
 
   //save email input as state var
   handleEmail = (text) => {
-
     this.setState({email: text});
   }
   //Save password input as state var

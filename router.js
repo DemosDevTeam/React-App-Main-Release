@@ -118,7 +118,7 @@ const AppTabs = TabNavigator({
 })
 
 const RegistrationStack = StackNavigator({
- RegistrationScreen1: {
+  RegistrationScreen1: {
     screen: RegistrationScreen1,
     navigationOptions: {
       title: 'Registration',
@@ -164,6 +164,7 @@ const AuthStack = StackNavigator({
       title: 'Log In',
     },
   },
+  Registration: RegistrationStack
 }, {
   headerMode: 'none',
 });
