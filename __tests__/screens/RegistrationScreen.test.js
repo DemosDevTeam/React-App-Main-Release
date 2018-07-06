@@ -1,14 +1,14 @@
 import 'react-native'
 import React from 'react'
 
-import { LoginScreen } from '../../Screens'
+import { RegistrationScreen } from '../../Screens'
 
 import renderer from 'react-test-renderer'
 
 jest.mock('../../firebaseApp')
 
 test('render correctly', () => {
-    const tree = renderer.create(<LoginScreen />).toJSON()
+    const tree = renderer.create(<RegistrationScreen />).toJSON()
 
     expect(tree).toMatchSnapshot()
 })

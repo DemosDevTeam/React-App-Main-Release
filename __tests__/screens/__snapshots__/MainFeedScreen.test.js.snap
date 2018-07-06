@@ -10,13 +10,15 @@ exports[`render correctly 1`] = `
     >
       Hello
     </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
-      Oh no! The political sphere is ruminating... (No articles available)
-    </Text>
+    <View>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+      >
+        Oh no! The political sphere is ruminating... (No articles available)
+      </Text>
+    </View>
     <Text
       accessible={true}
       allowFontScaling={true}

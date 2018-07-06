@@ -12,7 +12,7 @@ import {
   Image,
   AsyncStorage
 } from 'react-native';
-import {firebaseApp} from '../App'
+import firebaseApp from '../firebaseApp'
 import VideoComponent from '../mainFeedComponents/videoComponent';
 
 export default class AggregateFeedback extends Component {

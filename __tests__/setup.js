@@ -9,3 +9,5 @@ jest.mock('Linking', () => {
 })
 
 jest.mock('WebView', () => 'Webview')
+
+jest.mock('../firebaseApp')

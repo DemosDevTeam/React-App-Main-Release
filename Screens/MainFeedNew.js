@@ -9,7 +9,7 @@ import React from 'react'
 
 import { View, ScrollView, Text } from 'react-native'
 
-import { database } from '../db'
+import firebaseApp from '../firebaseApp'
 
 import { FeedItem } from '../components'
 
@@ -28,6 +28,7 @@ export default class MainFeed extends React.Component {
     }
 
     fetchArticles = async () => {
+        // firebaseApp.database().ref('/tags')
         // Fetches articles sorted by data;
     }
 

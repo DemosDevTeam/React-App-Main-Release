@@ -13,24 +13,20 @@ import {
   AsyncStorage
 } from 'react-native';
 import sha1 from 'sha1';
-import firebaseApp from '../db';
+import firebaseApp from '../firebaseApp';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
-
-import { ColorButton } from '../components'
 
 export default class LogIn extends Component {
   usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
 
-  componentDidMount() {
-    this.setState({
-      email: "",
-      password: "",
-    })
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: ''
+    };
   }
-  //on press register new account button, navigate to first registration screen.
-  registerAccount = () => {
-    this.props.navigation.navigate('Registration');
-  };
 
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
@@ -82,6 +78,21 @@ export default class LogIn extends Component {
           Alert.alert("we have no record of an account with this email");
         }
       })
+  }
+
+  onSubmit = async () => {
+    const {email, password} = this.state;
+
+    try {
+      await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+
+      this.props.navigation.navigate('App')
+    } catch (error) {
+      // TODO: HANDLE ME PROPERLY
+      
+      const { code, message } = error;
+      console.error(code, message)
+    }
   }
 
   doNothing = () =>{
@@ -150,25 +161,25 @@ export default class LogIn extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
+
     console.disableYellowBox = true;
     return (
-      <View>
-        <View style={styles.container}>
+      <View style={styles.container}>
         <Image
           style={{width: 200, height: 200, marginTop: 75, marginBottom: 40}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
 
-        <Text style={styles.instructions}>
-          Please log in or choose to make an account.
-        </Text>
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
         <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword}/>
         <View style={styles.space2}></View>
 
-        <ColorButton color={loginButtonColor} onPress={this.login}>
-          Log In
-        </ColorButton>
+        <Button
+          title="Login"
+          color={loginButtonColor}
+          onPress={this.onSubmit}
+        />
 
         <View style={styles.space3}></View>
 
@@ -178,9 +189,11 @@ export default class LogIn extends Component {
 
         <View style={styles.space3}></View>
 
-        <ColorButton color={fbButtonColor} onPress={this.fbAuth}>
-          Login with Facebook
-        </ColorButton>
+        <Button
+          title="Login with Facebook"
+          color={fbButtonColor} 
+          onPress={this.fbAuth}
+        />
 
         <View style={styles.space3}></View>
         <View style={styles.space}></View>
@@ -197,10 +210,11 @@ export default class LogIn extends Component {
         <View style={styles.space}></View>
         <View style={styles.space}></View>
 
-        <ColorButton color={registerButtonColor} onPress={this.registerAccount}>
-          Register New Account
-        </ColorButton>
-        </View>
+        <Button 
+          title="Register"
+          onPress={() => navigation.navigate('Registration')}
+          color={registerButtonColor}
+        />
       </View>
     );
   }
@@ -213,7 +227,7 @@ const registerButtonColor = "#EE4C50";
 var styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     // backgroundColor: '#F5FCFF',
   },
   welcome: {

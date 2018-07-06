@@ -10,6 +10,9 @@ export class Database {
     }
 }
 
+export class Auth {
+}
+
 export class Reference {
     constructor(path) {
         this.path = path
@@ -75,6 +78,14 @@ export class MockFirebase {
             }
 
             return this.databaseInstance
+        }
+
+        this.auth = () => {
+            if (!this.authInstance) {
+                this.authInstance = new Auth()
+            }
+
+            return this.authInstance
         }
     }
 }
