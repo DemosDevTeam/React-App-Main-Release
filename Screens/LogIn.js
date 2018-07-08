@@ -16,6 +16,8 @@ import sha1 from 'sha1';
 import firebaseApp from '../firebaseApp';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
+import { to } from '../components/util'
+
 class LogIn extends Component {
 
   constructor(props) {
@@ -84,14 +86,13 @@ class LogIn extends Component {
   onSubmit = async () => {
     const {email, password} = this.state;
 
-    try {
-      await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+      [err, _] = await to(firebaseApp.auth().signInWithEmailAndPassword(email, password));
+
+      if (err) {
+        throw new Error(err)
+      }
 
       this.props.navigation.navigate('App')
-    } catch (error) {
-      // TODO: HANDLE ME PROPERLY
-      throw new Error(error.message)
-    }
   }
 
   doNothing = () =>{

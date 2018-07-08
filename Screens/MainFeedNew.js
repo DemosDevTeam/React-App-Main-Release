@@ -12,26 +12,40 @@ import { View, ScrollView, Text } from 'react-native'
 import firebaseApp from '../firebaseApp'
 
 import { FeedItem } from '../components'
-import compose from '../components/util/compose' 
-import { hasLoader, hasError } from '../components/util/hoc';
+import { to } from '../components/util';
 
 class MainFeed extends React.Component {
+    static navigationOptions = {
+        visible: false
+    }
+
     state = {
         articles: { }
     }
 
     componentDidMount = async () => {
-        try {
-            const articles = await this._fetchArticlesMock();
-            this.setState({ articles });
-        } catch (error) {
-            console.error(error);
+        // Fetch all recent articles
+        let err, articles;
+        [err, articles] = await to(this.fetchArticles());
+
+        if (!articles && err) {
+            throw new Error("Failed to fetch articles")
         }
+
+        this.setState({ articles });
     }
 
     fetchArticles = async () => {
-        // firebaseApp.database().ref('/tags')
-        // Fetches articles sorted by data;
+        return firebaseApp.database().ref('/videos/Greensboro').once('value')
+            .then(snapshot => {
+                let articles = {}; 
+
+                snapshot.forEach(child => {
+                    articles[child.key] = child.val();
+                })
+
+                return articles
+            })
     }
 
     _fetchArticlesMock = async () => {
@@ -39,16 +53,15 @@ class MainFeed extends React.Component {
             const articles = {
                 "articleid1": {
                     title: "Calls for Equality at UNC",
-                    videoId: 'https://youtu.be/FF8wzQV5u_0',
+                    videoUri: 'https://youtu.be/FF8wzQV5u_0',
                     excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                 },
                 "articleid2": {
                     title: 'Should Rosemary get streetlights?',
-                    videoId: 'jgMfYgsRvQ8',
+                    videoUri: 'https://www.youtube.com/embed/fSqkhN9Rqk0',
                     excerpt: 'Lorem ipsum',
                     pinned: true,
-                    tags: ['Safety', 'Education']
                 }
             };
 
@@ -71,22 +84,25 @@ class MainFeed extends React.Component {
                 </View>
             )
         } else {
-            articlesJsx = Object.entries(articles).map(([article_id, article]) => {
-                const { title, videoId, excerpt, pinned, tags } = article;
+            const { navigation } = this.props
 
-                return (<FeedItem
-                    key={article_id}
-                    title={title}
-                    videoUri={videoId}
-                    excerpt={excerpt}
-                    pinned={false}
-                    tags={tags}
-                />);
-            })
+            articlesJsx = Object.entries(articles).map(([articleId, article]) => (
+                <FeedItem
+                    key={articleId}
+                    article={article}
+                    onPress={() => navigation.navigate('Article', {
+                        articleId,
+                        article: {
+                            'id': articleId, 
+                            ...article
+                        } 
+                    })}
+                />
+            ))
         }
 
         return (
-            <ScrollView>
+            <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
                 {articlesJsx}
             </ScrollView>
         );
@@ -94,6 +110,4 @@ class MainFeed extends React.Component {
     }
 }
 
-export default compose(
-    hasLoader,
-)(MainFeed)
+export default MainFeed

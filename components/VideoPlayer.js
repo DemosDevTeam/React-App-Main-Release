@@ -7,6 +7,7 @@
 import React from 'react';
 import {
   View,
+  Text,
   WebView
 } from 'react-native';
 
@@ -29,7 +30,10 @@ class VideoPlayer extends React.Component {
 
     return (
       <View style={{flex: 1}}>
+        <Text>Video URI: {uri}</Text>
         <WebView
+          style={{flex: 1}}
+          javaScriptEnabled={true}
           source={{ uri }}
         />
       </View>

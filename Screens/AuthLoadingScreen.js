@@ -14,14 +14,28 @@ class AuthLoadingScreen extends React.Component {
 
         // If user is authenticated redirect to app
         // Else redirect to authentication router
+
+        let user = await AsyncStorage.getItem('user')
+
+        if (!user) {
+            console.log("No user session")
+            user = await firebaseApp.auth().currentUser;
+
+            if (user) {
+                this.saveItem('user', user) 
+            }
+        } else {
+            console.log("User found in session", user.uid)
+        } 
+
+        this.props.navigation.navigate(user ? 'App' : 'Auth');
+    }
+
+    saveItem = async (item, selectedValue) => {
         try {
-            const user = await firebaseApp.auth().currentUser;
-            
-            this.props.navigation.navigate(user ? 'App' : 'Auth');
+          await AsyncStorage.setItem(item, selectedValue);
         } catch (error) {
-            const { code, message } = error;
-            // TODO: PLEASE HANDLE ME PROPERLY
-            console.error(code, message);
+          console.error('AsyncStorage error: ' + error.message);
         }
     }
 

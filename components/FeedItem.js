@@ -7,7 +7,8 @@
 // 
 
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { Dimensions, View, StyleSheet, TouchableOpacity, TouchableHighlight, Text, WebView } from 'react-native'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 // import Youtube from 'react-native-youtube'
 
 import { VideoPlayer } from './'
@@ -15,6 +16,12 @@ import { VideoPlayer } from './'
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    title: {
+
+    },
+    excerpt: {
+
     }
 })
 
@@ -25,35 +32,38 @@ export default class FeedItem extends React.Component {
     /*
     static propTypes = {
         title: React.PropTypes.string.isRequired,
-        videoId: React.PropTypes.string.isRequired,
+        videoUri: React.PropTypes.string.isRequired,
         pinned: React.PropTypes.boolean.optional,
         excerpt: React.PropTypes.string.optional,
         tags: React,Propt
     }
     */
-
-    navigateToVideoDetail = () => {
-        // this.props.navigation.navigate()
-    }
     
     render() {
         // TODO: Change source
-        const { title, videoId, pinned, excerpt, tags } = this.props;
+        const { article, onPress } = this.props
+
+        const { title, content } = article
+        const videoSource = article.urlvideo
+
+        const pinned = false
+
+        const width = Dimensions.get('window').width
 
         return (
-            <View>
-                <Text>{title}</Text>
-                <VideoPlayer uri={videoId} />
-                <Text>{excerpt}</Text>
-                
-                {/*
-                <TouchableOpacity onPress={this.navigateToVideoDetail}>
-                    <View>
-                        <Text>{title}</Text>
-                        <Text>{excerpt}</Text>
-                    </View>
+            <View style={styles.container}>
+                <WebView
+                    style={{height: 350, width, backgroundColor: 'powderBlue'}}
+                    javaScriptEnabled={true}
+                    source={{ uri: videoSource }}
+                />
+                <TouchableOpacity onPress={onPress}>
+                    <Text>{JSON.stringify(article)}</Text>
+                    <Text style={styles.title}>{title}</Text>
                 </TouchableOpacity>
-                */}
+                <TouchableHighlight>
+                    <Ionicons name="ios-star-outline" size={25} />
+                </TouchableHighlight>
             </View>
         );
     }
