@@ -11,7 +11,6 @@ import {
   WebView,
 } from 'react-native';
 import {firebaseApp} from '../App'
-import YouTube from 'react-native-youtube';
 
 export default class VideoPlayer extends Component<{}>{
   //This component will serve as a popup from which we can play youtube videos using an npm open source module "react-native-youtube-player"
