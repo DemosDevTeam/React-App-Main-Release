@@ -16,20 +16,21 @@ import sha1 from 'sha1';
 import firebaseApp from '../firebaseApp';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
-export default class LogIn extends Component {
-  usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+class LogIn extends Component {
 
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
     };
   }
 
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
+    const usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+
     console.log(sha1(this.state.email));
     console.log(sha1(this.state.password));
       //Take snapshot of users node
@@ -89,9 +90,7 @@ export default class LogIn extends Component {
       this.props.navigation.navigate('App')
     } catch (error) {
       // TODO: HANDLE ME PROPERLY
-      
-      const { code, message } = error;
-      console.error(code, message)
+      throw new Error(error.message)
     }
   }
 
@@ -301,3 +300,5 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
+
+export default LogIn

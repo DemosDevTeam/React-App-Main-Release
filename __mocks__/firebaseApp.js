@@ -71,6 +71,7 @@ export class Reference {
 }
 
 export class MockFirebase {
+    // Firebase services manager
     constructor() {
         this.database = () => {
             if (!this.databaseInstance) {
@@ -90,6 +91,7 @@ export class MockFirebase {
     }
 }
 
+// Singleton to hold mockdatabase and given promises
 export default class RNFirebase {
     static initializeApp() {
         RNFirebase.firebase = new MockFirebase()
