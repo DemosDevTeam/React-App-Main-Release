@@ -156,7 +156,9 @@ const RegistrationStack = StackNavigator({
   },
 })
 
-const AuthStack = StackNavigator({
+// Screen's that allow all user's to view
+// Registration, login, splash screen
+const UnauthenticatedStack = StackNavigator({
   Home: Home,
   LogIn: {
     screen: LogIn,
@@ -169,9 +171,14 @@ const AuthStack = StackNavigator({
   headerMode: 'none',
 });
 
+// Need a registered user
+const AuthenticatedStack = StackNavigator({
+  App: AppTabs
+})
+
 const RootNavigator = SwitchNavigator({
-  App: AppTabs,
-  Auth: AuthStack,
+  App: AuthenticatedStack,
+  Auth: UnauthenticatedStack,
   AuthLoading: AuthLoadingScreen
 }, {
   initialRouteName: 'AuthLoading'

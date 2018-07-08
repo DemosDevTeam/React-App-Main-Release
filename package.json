@@ -5,12 +5,17 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "react-devtool": "node node_modules/.bin/react-devtools",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "jest": {
     "preset": "react-native",
     "transformIgnorePatterns": [
       "node_modules/(?!(react-native|react-navigation|react-native-vector-icons|react-native-youtube|react-native-safe-area-view)/)"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ],
     "setupFiles": [
       "./__tests__/setup.js"
@@ -45,6 +50,9 @@
     "xcode": "^1.0.0"
   },
   "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
     "jest": "^23.2.0",
     "react-devtools": "^3.2.3",
     "react-test-renderer": "^16.4.1"

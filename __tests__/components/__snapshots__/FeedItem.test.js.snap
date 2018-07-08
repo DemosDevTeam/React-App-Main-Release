@@ -2,21 +2,7 @@
 
 exports[`renders correctly 1`] = `
 <View>
-  <View
-    style={
-      Object {
-        "flex": 1,
-      }
-    }
-  >
-    <Webview
-      source={
-        Object {
-          "uri": undefined,
-        }
-      }
-    />
-  </View>
+  <VideoPlayer />
   <Text
     accessible={true}
     allowFontScaling={true}
