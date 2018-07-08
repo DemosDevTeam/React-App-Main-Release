@@ -7,8 +7,8 @@ import { MainFeedScreen } from '../../Screens'
 import renderer from 'react-test-renderer'
 
 test('render correctly', () => {
-    const tree = renderer.create(<MainFeedScreen />).toJSON();
-    expect(tree).toMatchSnapshot();
+    const wrapper = shallow(<MainFeedScreen />);
+    expect(wrapper).toMatchSnapshot();
 
     // Check user auth
     // Database should be hit

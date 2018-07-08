@@ -9,10 +9,14 @@ import React from 'react';
 
 import Router from './router.js';
 
+import { ErrorBoundary } from './components/util'
+
 export default class App extends React.Component {
   render() {
     return (
-        <Router/>
+        <ErrorBoundary>
+          <Router/>
+        </ErrorBoundary>
     );
   }
 }

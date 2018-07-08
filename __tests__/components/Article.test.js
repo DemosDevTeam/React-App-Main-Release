@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { FeedItem } from '../../components'
+import { Article } from '../../components'
 // Note: test renderer must be required after react-native.
 import renderer from 'react-test-renderer';
 
@@ -12,7 +12,9 @@ test('renders correctly', () => {
   const excerpt = "";
   */
 
-  const wrapper = shallow(<FeedItem />);
+  const tree = renderer.create(
+    <Article />
+  ).toJSON();
 
-  expect(wrapper).toMatchSnapshot();
+  expect(tree).toMatchSnapshot();
 });
