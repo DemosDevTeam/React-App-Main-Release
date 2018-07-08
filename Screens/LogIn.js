@@ -59,7 +59,7 @@ class LogIn extends Component {
                 this.props.navigation.navigate('RegistrationScreen6', {hashemail5: sha1(this.state.email)});
               } else {
                 console.log("inside of last if statement");
-                
+
                 try {
                   await AsyncStorage.setItem('userEmailHash', this.state.email);
                 } catch (error) {
@@ -90,6 +90,7 @@ class LogIn extends Component {
       this.props.navigation.navigate('App')
     } catch (error) {
       // TODO: HANDLE ME PROPERLY
+      console.log(error.message);
       throw new Error(error.message)
     }
   }
@@ -190,7 +191,7 @@ class LogIn extends Component {
 
         <Button
           title="Login with Facebook"
-          color={fbButtonColor} 
+          color={fbButtonColor}
           onPress={this.fbAuth}
         />
 
@@ -209,7 +210,7 @@ class LogIn extends Component {
         <View style={styles.space}></View>
         <View style={styles.space}></View>
 
-        <Button 
+        <Button
           title="Register"
           onPress={() => navigation.navigate('Registration')}
           color={registerButtonColor}
