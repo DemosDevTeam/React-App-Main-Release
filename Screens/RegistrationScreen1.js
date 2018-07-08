@@ -11,17 +11,20 @@ import {
   ScrollView,
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App'
 
-export default class RegistrationScreen1 extends Component<{}>{
-  usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+import firebaseApp from '../firebaseApp'
 
-  state = {
-    name: '',
-    username: '',
-    password: '',
-    email: '',
-    phone: '',
+export default class RegistrationScreen1 extends Component {
+  // usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      password: '',
+      email: '',
+      phone: '',
+    }
   }
 
   //On submit verify inputs and navigate to next registration screen
@@ -56,13 +59,37 @@ export default class RegistrationScreen1 extends Component<{}>{
     }
   };
 
+  onSubmit = async () => {
+    // Submit's current information to firebase
+    // Is name and phone numbber necessary
+    // Email is usenrame
+
+    const { email, password } = this.state;
+
+    try {
+      // LOGIN FORM VALIDATION
+      // Valid email
+      // PAssword check
+
+      const response = await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
+
+      // Does firebase automatically login created user?
+      // Successful login user and reroute to app
+      const loginResponse = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+      this.props.navigation.navigate('AuthLoading')
+
+    } catch (error) {
+      // TODO: Proper error handling
+      const {code, message}  = error;
+      console.error(code, message)
+    }
+  }
+
   //Populate appropriate state fields with data as it is recieved
   handleName = (text) => {
     this.setState({name: text});
   }
-  handleUsername = (text) => {
-    this.setState({username: text});
-  }
+  
   handlePassword = (text) => {
     this.setState({password: text});
   }
@@ -76,27 +103,31 @@ export default class RegistrationScreen1 extends Component<{}>{
   render() {
     console.disableYellowBox = true;
     return (
-      <ScrollView>
+      <View style={{flex: 1}}>
         <View style={styles.container}>
-        <Image
+          <Image
           style={{width: 200, height: 200, marginTop: 75, marginBottom: 20}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
-        />
+          />
+        </View>
+        <View>
         <TextInput style={styles.userInputs} onChangeText={this.handleName}placeholder="name"/>
-        <TextInput style={styles.userInputs} onChangeText={this.handleUsername} placeholder="username"/>
-        <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
+        <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
-        <View style={styles.buttonz}>
-          <TouchableOpacity onPress={this.submit}>
+
+        <Button onPress={this.onSubmit} title="Register" />  
+
+        {/* <View style={styles.buttonz}>
+          <TouchableOpacity onPress={this.onSubmit}>
             <Text style={{fontSize: 16}}>Continue</Text>
           </TouchableOpacity>
+        </View> */}
         </View>
-        </View>
-      </ScrollView>
+      </View>
     );
   }
-};
+}
 
 var styles = StyleSheet.create({
   container: {

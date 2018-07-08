@@ -1,0 +1,308 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "stretch",
+      "justifyContent": "center",
+    }
+  }
+>
+  <Image
+    source={
+      Object {
+        "uri": "https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png",
+      }
+    }
+    style={
+      Object {
+        "height": 200,
+        "marginBottom": 40,
+        "marginTop": 75,
+        "width": 200,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Email"
+  />
+  <TextInput
+    allowFontScaling={true}
+    onChangeText={[Function]}
+    placeholder="Password"
+    secureTextEntry={true}
+  />
+  <View
+    style={
+      Object {
+        "height": 20,
+      }
+    }
+  />
+  <View
+    accessibilityComponentType="button"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#49C7E3",
+            },
+          ]
+        }
+      >
+        Login
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#333333",
+        "fontSize": 16,
+        "textAlign": "center",
+      }
+    }
+  >
+    or
+  </Text>
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <View
+    accessibilityComponentType="button"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#3B5998",
+            },
+          ]
+        }
+      >
+        Login with Facebook
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "height": 2,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#A2A1A1",
+        "fontSize": 10,
+        "textAlign": "center",
+      }
+    }
+  >
+    ______________________________________________________________________
+  </Text>
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "height": 4,
+      }
+    }
+  />
+  <Text
+    accessible={true}
+    allowFontScaling={true}
+    ellipsizeMode="tail"
+    style={
+      Object {
+        "color": "#333333",
+        "fontSize": 16,
+        "textAlign": "center",
+      }
+    }
+  >
+    New here?
+  </Text>
+  <View
+    style={
+      Object {
+        "height": 2,
+      }
+    }
+  />
+  <View
+    style={
+      Object {
+        "height": 2,
+      }
+    }
+  />
+  <View
+    accessibilityComponentType="button"
+    accessibilityTraits={
+      Array [
+        "button",
+      ]
+    }
+    accessible={true}
+    isTVSelectable={true}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "padding": 8,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#EE4C50",
+            },
+          ]
+        }
+      >
+        Register
+      </Text>
+    </View>
+  </View>
+</View>
+`;

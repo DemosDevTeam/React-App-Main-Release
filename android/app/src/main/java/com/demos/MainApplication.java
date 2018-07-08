@@ -7,50 +7,26 @@ import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.BV.LinearGradient.LinearGradientPackage;
-import com.react.rnspinkit.RNSpinkitPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -77,11 +53,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
             new RNGoogleSigninPackage(),
             new ReactNativeYouTube(),
-            new LinearGradientPackage(),
-            new FBSDKPackage(mCallbackManager),
-            new RNSpinkitPackage()
+            new FBSDKPackage(mCallbackManager)
       );
     }
 

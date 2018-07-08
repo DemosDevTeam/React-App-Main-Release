@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it fetches an article 1`] = `
+<ScrollView>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</ScrollView>
+`;
+
+exports[`render correctly 1`] = `
+<ScrollView>
+  <ActivityIndicator
+    animating={true}
+    color="#999999"
+    hidesWhenStopped={true}
+    size="small"
+  />
+</ScrollView>
+`;

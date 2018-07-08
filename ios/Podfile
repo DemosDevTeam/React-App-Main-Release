@@ -11,4 +11,6 @@ target 'Demos' do
   pod 'FirebaseInstanceID'
   pod 'Google/SignIn'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end

@@ -10,26 +10,27 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
+  AsyncStorage
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App';
+import firebaseApp from '../firebaseApp';
 import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
-export default class LogIn extends Component<{}>{
-  usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+class LogIn extends Component {
 
-  componentDidMount() {
-    this.setState({
-      email: "",
-      password: "",
-    })
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
-  //on press register new account button, navigate to first registration screen.
-  registerAccount = () => {
-    this.props.navigation.navigate('RegistrationScreen1');
-  };
+
   //On press login button, validate inputs, then navigate to MainFeed.
   login = () => {
+    const usersRef = firebaseApp.database().ref('/Users/'); //Variable from which calls to and from users firebase node are made
+
     console.log(sha1(this.state.email));
     console.log(sha1(this.state.password));
       //Take snapshot of users node
@@ -38,7 +39,7 @@ export default class LogIn extends Component<{}>{
         if(snap.hasChild(sha1(this.state.email))){
           if(snap.child(sha1(this.state.email)).val().password == sha1(this.state.password)){
 
-            firebaseApp.database().ref('/Users/' + sha1(this.state.email) + '/').once("value").then((snap) => {
+            firebaseApp.database().ref('/Users/' + sha1(this.state.email) + '/').once("value").then(async (snap) => {
               if(!(snap.hasChild('age') && snap.hasChild('children') && snap.hasChild('education') && snap.hasChild('gender') &&
                   snap.hasChild('income') && snap.hasChild('marital') && snap.hasChild('occupation') && snap.hasChild('race'))){
                     //Need to fill out demographic info, redirect to RegistrationScreen2
@@ -56,8 +57,15 @@ export default class LogIn extends Component<{}>{
                 //Need to fill out what city/cities individual is interested in
                 Alert.alert("Please finish filling out your registration information");
                 this.props.navigation.navigate('RegistrationScreen6', {hashemail5: sha1(this.state.email)});
-              }else{
+              } else {
                 console.log("inside of last if statement");
+                
+                try {
+                  await AsyncStorage.setItem('userEmailHash', this.state.email);
+                } catch (error) {
+                  console.error(error);
+                }
+
                 this.props.navigation.navigate('MainFeed', {emailhashmain: sha1(this.state.email)});
               }
 
@@ -71,6 +79,19 @@ export default class LogIn extends Component<{}>{
           Alert.alert("we have no record of an account with this email");
         }
       })
+  }
+
+  onSubmit = async () => {
+    const {email, password} = this.state;
+
+    try {
+      await firebaseApp.auth().signInWithEmailAndPassword(email, password);
+
+      this.props.navigation.navigate('App')
+    } catch (error) {
+      // TODO: HANDLE ME PROPERLY
+      throw new Error(error.message)
+    }
   }
 
   doNothing = () =>{
@@ -131,7 +152,6 @@ export default class LogIn extends Component<{}>{
 
   //save email input as state var
   handleEmail = (text) => {
-
     this.setState({email: text});
   }
   //Save password input as state var
@@ -140,27 +160,25 @@ export default class LogIn extends Component<{}>{
   }
 
   render() {
+    const { navigation } = this.props;
+
     console.disableYellowBox = true;
     return (
-      <ScrollView>
-        <View style={styles.container}>
+      <View style={styles.container}>
         <Image
           style={{width: 200, height: 200, marginTop: 75, marginBottom: 40}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
 
-        <Text style={styles.instructions}>
-          Please log in or choose to make an account.
-        </Text>
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
         <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword}/>
         <View style={styles.space2}></View>
 
-        <View style={styles.buttonz}>
-          <TouchableOpacity onPress={this.login}>
-            <Text style={{fontSize: 16}}>Log In</Text>
-          </TouchableOpacity>
-        </View>
+        <Button
+          title="Login"
+          color={loginButtonColor}
+          onPress={this.onSubmit}
+        />
 
         <View style={styles.space3}></View>
 
@@ -170,11 +188,11 @@ export default class LogIn extends Component<{}>{
 
         <View style={styles.space3}></View>
 
-        <View style={styles.buttonzFB}>
-          <TouchableOpacity onPress={this.fbAuth.bind(this)}>
-            <Text style={{fontSize: 16, color: '#ffffff'}}>Login with Facebook</Text>
-          </TouchableOpacity>
-        </View>
+        <Button
+          title="Login with Facebook"
+          color={fbButtonColor} 
+          onPress={this.fbAuth}
+        />
 
         <View style={styles.space3}></View>
         <View style={styles.space}></View>
@@ -191,22 +209,24 @@ export default class LogIn extends Component<{}>{
         <View style={styles.space}></View>
         <View style={styles.space}></View>
 
-        <View style={styles.buttonzNew}>
-          <TouchableOpacity onPress={this.registerAccount}>
-            <Text style={{fontSize: 16}}>Register New Account</Text>
-          </TouchableOpacity>
-        </View>
-
-        </View>
-      </ScrollView>
+        <Button 
+          title="Register"
+          onPress={() => navigation.navigate('Registration')}
+          color={registerButtonColor}
+        />
+      </View>
     );
   }
 }
 
+const loginButtonColor = "#49C7E3";
+const fbButtonColor = "#3B5998";
+const registerButtonColor = "#EE4C50";
+
 var styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     // backgroundColor: '#F5FCFF',
   },
   welcome: {
@@ -280,3 +300,5 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
+
+export default LogIn

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
+  AsyncStorage,
   Text,
   View,
   Image,
@@ -12,51 +13,64 @@ import {
   TouchableHighlight,
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App';
-import {LoginManager, AccessToken} from 'react-native-fbsdk';
+
+import firebaseApp from '../firebaseApp'
+
 import VideoComponent from '../mainFeedComponents/videoComponent';
 
-export default class PinnedPosts extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailHashPinnedPosts + "/");
-  emailHash = this.props.navigation.state.params.emailHashPinnedPosts;
-  videosArr = [];
+export default class PinnedPosts extends Component {
+  constructor(props) {
+    super(props);
 
-  componentWillMount(){
-    console.log("this.videosArr");
-    console.log(this.videosArr);
-    //Before showing screen, need to populate videosArr with videos that user has pinned
-    var pinnedVideos = []; //Will serve as 2d array where 1st element is name of video, and second is name of city associated with video
-    this.setState({loading: true});
-    this.userRef.once("value").then((snap) => {
-      if(snap.hasChild("Pinned")){
-        //for each pinned video get video name and associated city for later lookup
-        snap.child("Pinned").forEach((secondChild) => {
-          var videoInfo = [];
-          videoInfo.push(secondChild.key);
-          videoInfo.push(secondChild.val());
-          console.log("pinnedVideos:");
-          console.log(pinnedVideos);
-          pinnedVideos.push(videoInfo);
-        })
+    this.state = {
+      articles: undefined
+    }
+  }
+
+  async componentDidMount() {
+    const user = firebase.auth().currentUser;
+
+    if (user) {
+      try {
+        const articles = await this.fetchUserPinned(user)
+
+        this.setState({ articles })      
+      } catch (error) {
+        console.error(error)
       }
-    }).then(() => {
-      firebaseApp.database().ref('/videos/').once("value").then((snap) => {
-        for(var i=0; i<pinnedVideos.length; i++){
-          var video = snap.child(pinnedVideos[i][1]).child(pinnedVideos[i][0]);
-          var city = pinnedVideos[i][1];
-          var videoUrl = video.val().urlvideo;
-          var picUrl = video.val().urlpic;
-          var videoName = pinnedVideos[i][0];
-          this.videosArr.push(<VideoComponent navigation={this.props.navigation} videoCity={city} videoUrl={videoUrl} picUrl={picUrl} videoName={videoName} emailHash={this.emailHash}/>)
-        }
-      }).then(() => {
-        this.setState({loading: false});
-      })
-    })
+    } {
+      console.error("PANIC: you should be authenticated to be here")
+    }
+  }
+
+  fetchUserPinned = async (userId) => {
+    const userPinnedSnapshot = await firebase.database.ref(`users/${userId}/pinned`).once('value');
+
+    if (userPinnedSnapshot.val()) {
+      // Firebase doesn't support arrays, or querying by list of arrays
+      // Grab a promise for each pinned
+      // TODO: Might be slow depending on how many articles exist, check if scaling issues
+      // Handles data being removed
+      
+      // For each pinned article id
+      // 1. Filter all pinned keys
+      // 2. Reduce (collect) into an array
+      // 3. Create a promise to article for each id
+      const articles = Object.entries(userPinnedSnapshot.val())
+        .filter(([id, isPinned]) => isPinned)
+        .reduce((acc, articleId) => acc.push(articleId), [])
+        .map(articleId => {
+          return firebase.database().child('articles').child(articleId).on('value', s => s)
+        });
+
+      return Promise.all(articles)
+    } else {
+      throw new Error("Error retrieving user's pinned articles")
+    }
   }
 
   goBack = () => {
-    this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash});
+    this.props.navigation.navigate('MainFeed');
   }
 
   render() {
@@ -66,7 +80,7 @@ export default class PinnedPosts extends Component<{}>{
 
     return (
       <View style={{flex: 1}}>
-      <View style={styles.stepzTop}>
+      {/* <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
 
@@ -100,7 +114,7 @@ export default class PinnedPosts extends Component<{}>{
             </TouchableHighlight>
           </View>
         </View>
-      </View>
+      </View> */}
 
 
 
@@ -127,7 +141,7 @@ export default class PinnedPosts extends Component<{}>{
 
 
 
-      <View style={styles.stepz}>
+      {/* <View style={styles.stepz}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
             <TouchableHighlight onPress={this.goToCouncil} style={{flex:1}}>
@@ -180,7 +194,7 @@ export default class PinnedPosts extends Component<{}>{
             </TouchableHighlight>
           </View>
         </View>
-      </View>
+      </View> */}
       </View>
     )
   }

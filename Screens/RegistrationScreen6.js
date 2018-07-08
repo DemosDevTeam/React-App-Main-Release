@@ -25,7 +25,7 @@ export default class RegistrationScreen6 extends Component<{}>{
   }
 
   //Before page loads, get list of cities and append all options to feed
-  componentWillMount = () => {
+  componentDidMount = () => {
     cities = [];
     firebaseApp.database().ref('/videos/').once("value").then((snap) => {
       snap.forEach((child) => {
@@ -90,7 +90,7 @@ export default class RegistrationScreen6 extends Component<{}>{
       </ScrollView>
     );
   }
-};
+}
 
 var styles = StyleSheet.create({
   container: {

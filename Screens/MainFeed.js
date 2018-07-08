@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
+  AsyncStorage,
   Text,
   View,
   Button,
@@ -11,40 +12,43 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
-import {firebaseApp} from '../App'
+
+// Why are these here?
 import VideoComponent from '../mainFeedComponents/videoComponent'
 import TextComponent from '../mainFeedComponents/textComponent'
 
-export default class MainFeed extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.emailhashmain + "/");
-  emailHashMain = this.props.navigation.state.params.emailhashmain;
-  videosArr = [];
-  //on click See my council button, navigate to CouncilScreen
-  goToCouncil = () => {
-    this.props.navigation.navigate('CouncilScreen');
+
+export default class MainFeed extends React.Component {
+  static navigationOptions = {
+    title: 'Feed'
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videos: [],
+      loading: false
+    };
+
+    this.videosArr = [];
+  }
+
+  async componentDidMount() {
+    //Set loading state to true so that asynchronous calls to db can be made before page loads
+    this.setState({loading: true});
+
+    this.emailHashMain = await AsyncStorage.getItem('userEmailHash');
+    this.userRef = firebaseApp.database().ref(`/Users/${this.emailHashMain}/`);
+
+    this.fetchVideos()    
   }
 
   logout = () => {
     this.props.navigation.navigate('Home');
   }
 
-  updateProfile = () => {
-    this.props.navigation.navigate('UpdateProfile', {emailHashUpdateProfile: this.emailHashMain})
-    console.log("inside of updateProfile");
-  }
-
-  updateFeedback = () => {
-    this.props.navigation.navigate('AggregateFeedback', {emailHashAggregateFeedback: this.emailHashMain});
-    console.log("inside of updateFeedback");
-  }
-
-  pinnedPosts = () => {
-    this.props.navigation.navigate('PinnedPosts', {emailHashPinnedPosts: this.emailHashMain});
-  }
-
-  componentWillMount() {
-    //Set loading state to true so that asynchronous calls to db can be made before page loads
-    this.setState({loading: true});
+  fetchVideos = async () => {
     var videosRef = firebaseApp.database().ref('/videos/');
     var videos = [];
     var userPreferences = [];
@@ -134,13 +138,20 @@ export default class MainFeed extends Component<{}>{
     })
   }
 
+  fetchMockVideos = async () => {
+  }
+
   render() {
+    const videos = this.videosArr.map(video => <FeedItem />);
+
     console.disableYellowBox = true;
     if (this.state.loading) {
       return (<Text>Loading...</Text>)
     }
     return (
       <View style={{flex: 1}}>
+      {/* TODO: this needs to be moved into either its own Header component, or use react-navigation style headers */}
+      {/*
       <View style={styles.stepzTop}>
         <View style={{flex:1}}>
           <View style={styles.pickContainerz}>
@@ -156,12 +167,10 @@ export default class MainFeed extends Component<{}>{
               </View>
             </TouchableHighlight>
 
-
             <Image
               style={{width: 57, height: 40, marginTop: 20}}
               source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
             />
-
 
             <TouchableHighlight onPress={this.updateProfile}  style={{flex:1, marginLeft: 75}}>
               <View style={styles.pickWrapperz}>
@@ -176,76 +185,16 @@ export default class MainFeed extends Component<{}>{
           </View>
         </View>
       </View>
-
-
-
-
-
+      */}
       <ScrollView>
         <View style={styles.space2}></View>
         <View style={styles.container}>{this.videosArr}</View>
         <View style={styles.space2}></View>
-        <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View>
+
+        {videos}
+
+        {/* <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View> */}
       </ScrollView>
-
-
-
-
-
-      <View style={styles.stepz}>
-        <View style={{flex:1}}>
-          <View style={styles.pickContainerz}>
-            <TouchableHighlight onPress={this.goToCouncil} style={{flex:1}}>
-              <View style={styles.pickWrapperz}>
-                <View style={styles.circlesTwo}>
-                  <Image
-                    source={{uri: 'https://user-images.githubusercontent.com/18129905/37560127-4e64b318-2a09-11e8-9a2e-5d16e6241b7a.png'}}
-                    style={styles.arrowWinz}
-                  />
-                </View>
-              </View>
-            </TouchableHighlight>
-
-            <TouchableHighlight onPress={this.updateProfile}  style={{flex:1}}>
-              <View style={styles.pickWrapperz}>
-                <View style={styles.circlesTwo}>
-                  <Image
-                    source={{uri: 'https://user-images.githubusercontent.com/18129905/37560135-5cd45bd8-2a09-11e8-8af5-fd98c2900ae8.png'}}
-                    style={styles.arrowDrawz}
-                  />
-                </View>
-              </View>
-            </TouchableHighlight>
-
-            <Image
-              style={{width: 100, height: 100, marginTop: 10, marginBottom: 20}}
-              source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
-            />
-
-            <TouchableHighlight onPress={this.updateFeedback}  style={{flex:1}}>
-              <View style={styles.pickWrapperz}>
-                <View style={styles.circlesTwo}>
-                  <Image
-                    source={{uri: 'https://user-images.githubusercontent.com/18129905/37560114-018fe792-2a09-11e8-91d3-22d8f6e49c82.png'}}
-                    style={styles.arrowDrawz}
-                  />
-                </View>
-              </View>
-            </TouchableHighlight>
-
-            <TouchableHighlight onPress={this.logout}  style={{flex:1}}>
-              <View style={styles.pickWrapperz}>
-                <View style={styles.circlesTwo}>
-                  <Image
-                    source={{uri: 'https://user-images.githubusercontent.com/18129905/37560140-6b94e5a2-2a09-11e8-9705-6fbb8681a2f2.png'}}
-                    style={styles.arrowWinz}
-                  />
-                </View>
-              </View>
-            </TouchableHighlight>
-          </View>
-        </View>
-      </View>
       </View>
     )
   }
@@ -298,7 +247,7 @@ var styles = StyleSheet.create({
     shadowRadius: 3,
     shadowOpacity: 0.2,
     shadowColor: 'black',
-    textAlign: 'center',
+    // textAlign: 'center',
   },
   stepz: {
     backgroundColor: '#ffffff',

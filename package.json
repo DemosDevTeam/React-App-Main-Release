@@ -4,34 +4,57 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "react-devtool": "react-devtools"
+    "react-devtool": "node node_modules/.bin/react-devtools",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(react-native|react-navigation|react-native-vector-icons|react-native-youtube|react-native-safe-area-view)/)"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "setupFiles": [
+      "./__tests__/setup.js"
+    ],
+    "globals": {
+      "window": true
+    }
   },
   "dependencies": {
-    "adm-zip": "^0.4.7",
+    "adm-zip": "^0.4.11",
     "android": "0.0.8",
     "babel": "^6.23.0",
     "fastfall": "^1.5.1",
-    "firebase": "^4.10.1",
+    "firebase": "^4.13.1",
     "fs": "0.0.1-security",
-    "got": "^8.2.0",
-    "npm": "^5.7.1",
+    "got": "^8.3.1",
+    "npm": "^5.10.0",
     "path": "^0.12.7",
     "plist": "^2.1.0",
     "progress": "^2.0.0",
     "pump": "^3.0.0",
-    "react": "^16.3.0-alpha.2",
-    "react-dom": "^16.2.0",
-    "react-native": "^0.54.2",
-    "react-native-button-component": "^0.1.25",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-native": "^0.54.4",
     "react-native-cli": "^2.0.1",
     "react-native-fbsdk": "^0.7.0",
     "react-native-google-signin": "^0.12.0",
+    "react-native-vector-icons": "^4.6.0",
     "react-native-youtube": "^1.1.0",
-    "react-navigation": "^1.1.2",
+    "react-navigation": "^1.5.12",
     "sha1": "^1.1.1",
     "xcode": "^1.0.0"
   },
   "devDependencies": {
-    "react-devtools": "^3.2.1"
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.2.0",
+    "react-devtools": "^3.2.3",
+    "react-test-renderer": "^16.4.1"
   }
 }

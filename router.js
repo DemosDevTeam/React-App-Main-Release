@@ -1,43 +1,123 @@
 import React from 'react';
-import { TabNavigator, StackNavigator } from 'react-navigation';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import { TabNavigator, TabBarBottom, StackNavigator, SwitchNavigator } from 'react-navigation';
 
-//For good example of how to use Navigator classes, see the following link:
-//https://github.com/spencercarli/getting-started-react-navigation
-import Home from "./Screens/Home";
-import LogIn from "./Screens/LogIn";
-import RegistrationScreen1 from "./Screens/RegistrationScreen1";
-import RegistrationScreen2 from "./Screens/RegistrationScreen2";
-import RegistrationScreen3 from "./Screens/RegistrationScreen3";
-import RegistrationScreen4 from "./Screens/RegistrationScreen4";
-import RegistrationScreen5 from "./Screens/RegistrationScreen5";
-import MainFeed from "./Screens/MainFeed";
-import CouncilScreen from "./Screens/CouncilScreen";
-import UpdateProfile from "./Screens/UpdateProfile";
-import TextView from "./Popups/TextView";
-import VideoPlayer from "./Popups/VideoPlayer";
-import UpdateDemographics from "./Popups/UpdateDemographics";
-import UpdateInterests from "./Popups/UpdateInterests";
-import UpdateUpdatePreferences from "./Popups/UpdateUpdatePreferences";
-import AggregateFeedback from "./Screens/AggregateFeedback";
-import RegistrationScreen6 from "./Screens/RegistrationScreen6";
-import PinnedPosts from "./Screens/PinnedPosts";
+import AuthLoadingScreen from './Screens/AuthLoadingScreen'
+import Home from './Screens/Home';
+import LogIn from './Screens/LogIn';
+import RegistrationScreen1 from './Screens/RegistrationScreen1';
+import RegistrationScreen2 from './Screens/RegistrationScreen2';
+import RegistrationScreen3 from './Screens/RegistrationScreen3';
+import RegistrationScreen4 from './Screens/RegistrationScreen4';
+import RegistrationScreen5 from './Screens/RegistrationScreen5';
 
+// import MainFeed from './Screens/MainFeed';
+import MainFeed from './Screens/MainFeedNew';
+import ArticleScreen from './Screens/ArticleScreen'
 
+import CouncilScreen from './Screens/CouncilScreen';
+import UpdateProfile from './Screens/UpdateProfile';
+import TextView from './Popups/TextView';
+import VideoPlayer from './Popups/VideoPlayer';
+import UpdateDemographics from './Popups/UpdateDemographics';
+import UpdateInterests from './Popups/UpdateInterests';
+import UpdateUpdatePreferences from './Popups/UpdateUpdatePreferences';
+import AggregateFeedback from './Screens/AggregateFeedback';
+import RegistrationScreen6 from './Screens/RegistrationScreen6';
+import PinnedPosts from './Screens/PinnedPosts';
 
-export const Root = StackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      headerTitleStyle: { alignSelf: 'center' },
-      title: 'Welcome!',
-    },
+// const ProfileStack = TabNavigator({
+//   UpdateProfile: {
+//     screen: UpdateProfile,
+//     navigationOptions: {
+//       title: 'Update Profile'
+//     }
+//   },
+//   UpdateDemographics: {
+//     screen: UpdateDemographics,
+//     navigationOptions: {
+//       title: 'Update Demographics'
+//     }
+//   },
+//   UpdateInterests: {
+//     screen: UpdateInterests,
+//     navigationOptions: {
+//       title: 'Update Interest'
+//     }
+//   },
+//   UpdateUpdatePreferences: {
+//     screen: UpdateUpdatePreferences,
+//     navigationOptions: {
+//       title: 'Update Navigation Preferences'
+//     }
+//   },
+
+// })   
+
+const ArticleStack = StackNavigator ({
+  MainFeed: {
+    screen: MainFeed
   },
-  LogIn: {
-    screen: LogIn,
+  Article: {
+    screen: ArticleScreen
+  }
+})
+
+const AppTabs = TabNavigator({
+  MainFeed: {
+    screen: ArticleStack,
     navigationOptions: {
-      title: 'Log In',
-    },
+      title: 'Your Feed',
+    }
   },
+  CouncilScreen: {
+    screen: CouncilScreen,
+    navigationOptions: {
+      title: 'Your Council',
+    }
+  },
+  AggregateFeedback: {
+    screen: AggregateFeedback,
+    navigationOptions: {
+      title: 'Your feedback'
+    }
+  },
+  PinnedPosts: {
+    screen: PinnedPosts,
+    navigationOptions: {
+      title: 'Pinned Posts'
+    }
+  }
+}, {
+  navigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, tintColor }) => {
+      const { routeName } = navigation.state;
+
+      let iconName = 'ios-warning';
+
+      // ----- Set Tab Icons here ----- //
+      if (routeName === 'MainFeed' ) {
+        iconName = `ios-paper${focused ? '' : '-outline'}`;
+      } else if (routeName === 'CouncilScreen') {
+        // TODO: Choose icon
+      } else if (routeName === 'AggregateFeedback' ) {
+        // TODO: Choose icon
+      } else if (routeName === 'PinnedPosts') {
+        // TODO: Choose icon
+      }
+
+      return <Ionicons name={iconName} size={25} color={tintColor} />;
+    }
+  }),
+  tabBarOptions: {
+    activeTintColor: 'tomato',
+    inactiveTintColor: 'gray'
+  },
+  tabBarComponent: TabBarBottom,
+  tabBarPosition: 'bottom'
+})
+
+const RegistrationStack = StackNavigator({
   RegistrationScreen1: {
     screen: RegistrationScreen1,
     navigationOptions: {
@@ -68,70 +148,56 @@ export const Root = StackNavigator({
       title: 'Updates',
     }
   },
-  MainFeed: {
-    screen: MainFeed,
-    navigationOptions: {
-      title: 'Your Feed',
-    }
-  },
-  CouncilScreen: {
-    screen: CouncilScreen,
-    navigationOptions: {
-      title: 'Your Council',
-    }
-  },
-  TextView: {
-    screen: TextView,
-    navigationOptions: {
-      title: 'Article View'
-    }
-  },
-  VideoPlayer: {
-    screen: VideoPlayer,
-    navigationOptions: {
-      title: 'Video Viewer'
-    }
-  },
-  UpdateProfile: {
-    screen: UpdateProfile,
-    navigationOptions: {
-      title: 'Update Profile'
-    }
-  },
-  UpdateDemographics: {
-    screen: UpdateDemographics,
-    navigationOptions: {
-      title: "Update Demographics"
-    }
-  },
-  UpdateInterests: {
-    screen: UpdateInterests,
-    navigationOptions: {
-      title: "Update Interest"
-    }
-  },
-  UpdateUpdatePreferences: {
-    screen: UpdateUpdatePreferences,
-    navigationOptions: {
-      title: "Update Navigation Preferences"
-    }
-  },
-  AggregateFeedback: {
-    screen: AggregateFeedback,
-    navigationOptions: {
-      title: "Your feedback"
-    }
-  },
-  RegistrationScreen6: {
+ RegistrationScreen6: {
     screen: RegistrationScreen6,
     navigationOptions: {
-      title: "Customize your location"
+      title: 'Customize your location'
     }
   },
-  PinnedPosts: {
-    screen: PinnedPosts,
+})
+
+// Screen's that allow all user's to view
+// Registration, login, splash screen
+const UnauthenticatedStack = StackNavigator({
+  Home: Home,
+  LogIn: {
+    screen: LogIn,
     navigationOptions: {
-      title: "Pinned Posts"
-    }
-  }
-  }, {headerMode: 'none'})
+      title: 'Log In',
+    },
+  },
+  Registration: RegistrationStack
+}, {
+  headerMode: 'none',
+});
+
+// Need a registered user
+const AuthenticatedStack = StackNavigator({
+  App: AppTabs
+})
+
+const RootNavigator = SwitchNavigator({
+  App: AuthenticatedStack,
+  Auth: UnauthenticatedStack,
+  AuthLoading: AuthLoadingScreen
+}, {
+  initialRouteName: 'AuthLoading'
+}); 
+
+// export const Root = StackNavigator({
+//   TextView: {
+//     screen: TextView,
+//     navigationOptions: {
+//       title: 'Article View'
+//     }
+//   },
+//   VideoPlayer: {
+//     screen: VideoPlayer,
+//     navigationOptions: {
+//       title: 'Video Viewer'
+//     }
+//   },
+    
+//   }, {headerMode: 'none'})
+
+export default RootNavigator;

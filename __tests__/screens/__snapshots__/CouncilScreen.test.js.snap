@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  <RCTScrollView>
+    <View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "justifyContent": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 5,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "height": 5,
+            }
+          }
+        />
+        <Image
+          source={
+            Object {
+              "uri": "https://user-images.githubusercontent.com/18129905/35191600-6ddc0580-fe4d-11e7-8f30-26c6929a44c7.png",
+            }
+          }
+          style={
+            Object {
+              "alignItems": "center",
+              "height": 1100,
+              "justifyContent": "center",
+              "width": 350,
+            }
+          }
+        />
+        <Text
+          accessible={true}
+          allowFontScaling={true}
+          ellipsizeMode="tail"
+        >
+          Note: We are in the process of updating this page to include the councilmembers of Greensboro.
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 5,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "height": 5,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "height": 5,
+            }
+          }
+        />
+        <View
+          style={
+            Object {
+              "height": 5,
+            }
+          }
+        />
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

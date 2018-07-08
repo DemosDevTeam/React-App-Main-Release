@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
+// import ButtonComponent, { CircleButton, RoundButton, RectangleButton } from 'react-native-button-component';
 import {
   Platform,
   StyleSheet,
@@ -12,22 +12,21 @@ import {
   ImageBackground,
 } from 'react-native';
 
-export default class Home extends Component<{}>{
+export default class Home extends Component {
   //changeText makes use of the prop provided by this being in a navigation stack
   //This allows us to navigate to another sheet within the stack
   //The stack is defined in router.js
 
-  //When login button is pressed, navigate to 'log in' screen
-  loginNav = () => {
-    this.props.navigation.navigate('LogIn');
-  };
-
   render() {
+    const { navigation } = this.props; 
+
     console.disableYellowBox = true;
-    console.log("Successfully reached the home.js render function");
+
     return (
-      <ImageBackground source={{uri: 'https://user-images.githubusercontent.com/18129905/37871334-c108bd32-2fb9-11e8-9d65-a5692497386b.png'}}
-      style={styles.backgroundImage}>
+      <ImageBackground 
+        source={{uri: 'https://user-images.githubusercontent.com/18129905/37871334-c108bd32-2fb9-11e8-9d65-a5692497386b.png'}}
+        style={styles.backgroundImage}
+      >
           <Image
             style={{width: 170, height: 170}}
             source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
@@ -39,11 +38,11 @@ export default class Home extends Component<{}>{
           <Text style={styles.welcome2}>
           Your voice, your local government.
           </Text>
-            <View style={styles.buttonz}>
-              <TouchableOpacity onPress={this.loginNav}>
-                <Text style={{fontSize: 18}}>Act Now</Text>
-              </TouchableOpacity>
-            </View>
+          <Button 
+            title="Act Now"
+            color="#49c7e3" 
+            onPress={() => navigation.navigate('LogIn')}
+          />
       </ImageBackground>
     );
   }
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: '#F5FCFF',
   },
   backgroundImage: {
@@ -63,7 +62,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
     width: null,
     height: null,
-    resizeMode: 'cover'
+    // Invalid property type
+    // resizeMode: 'cover'
   },
   welcome: {
     fontSize: 20,
@@ -82,13 +82,8 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
-  buttonz: {
-    height: 40,
-    borderRadius: 4,
-    width: 320,
+  submitButton: {
     backgroundColor: '#49C7E3',
-    alignItems: 'center',
-    justifyContent: 'center',
     shadowColor: '#000000',
     shadowOffset: {
       width: 0,
