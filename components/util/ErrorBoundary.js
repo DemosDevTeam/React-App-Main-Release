@@ -8,11 +8,15 @@ class ErrorBoundary extends React.Component {
 
     this.state = {
       hasError: false,
-      error: undefined
+      error: {
+        message: ""
+      }
     }
   }
 
   componentDidCatch(error, info) {
+    console.log(error, info)
+
     this.setState({ hasError: true, error })
 
     // Log error to service

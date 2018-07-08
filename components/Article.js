@@ -6,24 +6,20 @@ import VideoPlayer from './VideoPlayer'
 
 class Article extends React.Component {
     render() {
-        const {
-            title,
-            date,
-            author,
-            content,
-            source 
-        } = this.props;
+        const { article } = this.props;
 
         return (
             <View>
+                <Text>{JSON.stringify(article)}</Text>
+                {/* 
                 <Text>{title}</Text>
-                <VideoPlayer />
                 <View>
                     <Text>{date}</Text>
                     <Text>by {author}</Text>
                     <Text>{content}</Text>
                     <Text>Source: {source}</Text>
                 </View>
+                */}
             </View>
         );
     }

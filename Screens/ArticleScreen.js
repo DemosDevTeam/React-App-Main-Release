@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, ScrollView, ActivityIndicator } from 'react-native'
+import { View, Text, ScrollView, ActivityIndicator } from 'react-native'
 
 import { Article, CommentCard } from '../components'
 
@@ -15,47 +15,49 @@ class ArticleScreen extends React.Component {
         }
     }
 
-    async constructorDidMount() {
+    componentDidMount = async () => {
         const { navigation } = this.props
 
+        const article = navigation.getParam('article', undefined);
         const articleId = navigation.getParam('articleId', undefined);
 
-        try {
-            if (!articleId) {
-                throw new Error("No article id provided")
+        console.log(article, articleId)
+
+        // If an article was passed in use that
+        // Else check if an id was passed and fetch from database
+        // Else throw an error
+        if (article) {
+            this.setState({ article })
+        } else if (articleId) {
+            const [err, articleSnapshot] = await to(this.fetchArticle(articleId));
+
+            if (!articleSnapshot.val() || err) {
+                throw new Error(err)
             }
 
-            const articleSnapshot = await this.fetchArticle(articleId);
-
-            if (articleSnapshot.val()) {
-                this.setState({ article: articleSnapshot.val() })                
-            }
-        } catch (error) {
-            const {code, message} = error;
-
-            console.error(code, message)
+            this.setState({ article: articleSnapshot.val() })
+        } else {
+            throw new Error("No article or article id params")
         }
     }
 
     fetchArticle = async (articleId) => {
-        return await firebaseApp.database().ref(`articles/${articleId}`).once('value');
+        // TODO: City is currently hard coded
+        return await firebaseApp.database().ref(`videos/greensboro/${articleId}`).once('value');
     }
     
     render() {
         const { article } = this.state
 
+        /*
         const loading = (article) 
-            ? <Article 
-                title={article.title}
-                videoUri={article.videoUri}
-                content={article.content}
-                source={article.source}
-            /> 
+            ? <Article article={article} />
             : <ActivityIndicator /> 
+        */
 
         return (
-            <ScrollView>
-                {loading}
+            <ScrollView style={{flex: 1}}> 
+                <Text>{JSON.stringify(article)}</Text>
             </ScrollView>
         );
     }

@@ -138,9 +138,6 @@ export default class MainFeed extends React.Component {
     })
   }
 
-  fetchMockVideos = async () => {
-  }
-
   render() {
     const videos = this.videosArr.map(video => <FeedItem />);
 
@@ -190,8 +187,6 @@ export default class MainFeed extends React.Component {
         <View style={styles.space2}></View>
         <View style={styles.container}>{this.videosArr}</View>
         <View style={styles.space2}></View>
-
-        {videos}
 
         {/* <View style={styles.container}><TouchableHighlight onPress={this.pinnedPosts}><Text>go to pinned posts</Text></TouchableHighlight></View> */}
       </ScrollView>

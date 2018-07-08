@@ -38,8 +38,9 @@ export default class PinnedPosts extends Component {
       } catch (error) {
         console.error(error)
       }
-    } {
+    } else {
       console.error("PANIC: you should be authenticated to be here")
+      this.props.navigation.navigate('Auth')
     }
   }
 

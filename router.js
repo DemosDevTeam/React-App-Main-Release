@@ -61,6 +61,10 @@ const ArticleStack = StackNavigator ({
   Article: {
     screen: ArticleScreen
   }
+}, {
+  navigationOptions: {
+    visible: false
+  }
 })
 
 const AppTabs = TabNavigator({
@@ -174,6 +178,10 @@ const UnauthenticatedStack = StackNavigator({
 // Need a registered user
 const AuthenticatedStack = StackNavigator({
   App: AppTabs
+}, {
+  navigationOptions: {
+    visible: false
+  }
 })
 
 const RootNavigator = SwitchNavigator({
