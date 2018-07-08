@@ -1,12 +1,19 @@
 import React from 'react'
 
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, ActivityIndicator } from 'react-native'
 
-import { ArticleCard, CommentCard } from '../components'
+import { Article, CommentCard } from '../components'
 
 import firebaseApp from '../firebaseApp'
 
 class ArticleScreen extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            article: undefined
+        }
+    }
 
     async constructorDidMount() {
         const { navigation } = this.props
@@ -14,7 +21,15 @@ class ArticleScreen extends React.Component {
         const articleId = navigation.getParam('articleId', undefined);
 
         try {
+            if (!articleId) {
+                throw new Error("No article id provided")
+            }
+
             const articleSnapshot = await this.fetchArticle(articleId);
+
+            if (articleSnapshot.val()) {
+                this.setState({ article: articleSnapshot.val() })                
+            }
         } catch (error) {
             const {code, message} = error;
 
@@ -27,9 +42,20 @@ class ArticleScreen extends React.Component {
     }
     
     render() {
+        const { article } = this.state
+
+        const loading = (article) 
+            ? <Article 
+                title={article.title}
+                videoUri={article.videoUri}
+                content={article.content}
+                source={article.source}
+            /> 
+            : <ActivityIndicator /> 
+
         return (
             <ScrollView>
-                <ArticleCard />
+                {loading}
             </ScrollView>
         );
     }

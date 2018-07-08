@@ -42,6 +42,7 @@ export default class FeedItem extends React.Component {
 
         return (
             <View>
+                <Text>{title}</Text>
                 <VideoPlayer uri={videoId} />
                 <Text>{excerpt}</Text>
                 

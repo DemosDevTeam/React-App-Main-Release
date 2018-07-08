@@ -1,13 +1,13 @@
 import ColorButton from './ColorButton'
 import FeedItem from './FeedItem'
-import VideoPlayer from './VideoPlayer'
-import catchComponent from './ErrorBoundary'
 import Feedback from './Feedback'
+import VideoPlayer from './VideoPlayer'
+import Article from './Article'
 
 export {
     ColorButton,
     FeedItem,
     VideoPlayer,
-    catchComponent,
+    Article,
     Feedback
 };
