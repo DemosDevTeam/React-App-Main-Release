@@ -38,7 +38,7 @@ class MainFeed extends React.Component {
     fetchArticles = async () => {
         return firebaseApp.database().ref('/videos/Greensboro').once('value')
             .then(snapshot => {
-                let articles = {}; 
+                let articles = {};
 
                 snapshot.forEach(child => {
                     articles[child.key] = child.val();
@@ -68,14 +68,14 @@ class MainFeed extends React.Component {
             resolve(articles);
         });
     }
-    
+
     render() {
         let day;
 
-        const { articles } = this.state; 
+        const { articles } = this.state;
 
         let articlesJsx;
-   
+
         // Empty check
         if (!articles || Object.entries(articles).length == 0) {
             articlesJsx = (
@@ -93,9 +93,9 @@ class MainFeed extends React.Component {
                     onPress={() => navigation.navigate('Article', {
                         articleId,
                         article: {
-                            'id': articleId, 
+                            'id': articleId,
                             ...article
-                        } 
+                        }
                     })}
                 />
             ))

@@ -9,19 +9,25 @@ import {
   ScrollView,
   Alert,
   Image,
+  AsyncStorage,
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App'
+import firebaseApp from '../firebaseApp'
 
-export default class RegistrationScreen5 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hasheamil4 + "/");
+export default class RegistrationScreen5 extends Component {
+  //userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hasheamil4 + "/");
   preferences = [];
   //On submit verify inputs and navigate to next registration screen
-  submit = () => {
-    for(var i=0; i<this.preferences.length; i++){
-      this.userRef.child("update preferences").child(this.preferences[i]).set("");
-    }
-    this.props.navigation.navigate('RegistrationScreen6', {hashemail5: this.props.navigation.state.params.hashemail4});
+  submit = async () => {
+    var res;
+    AsyncStorage.getItem('user')
+    .then(result => res = result)
+    .then(() => {
+      for(var i=0; i<this.preferences.length; i++){
+        firebaseApp.database().ref('/Users/' + res + '/update preferences/').child(this.preferences[i]).set("");
+      }
+      this.props.navigation.navigate('RegistrationScreen6');
+    })
   }
 
   handleSelection = (text) => {

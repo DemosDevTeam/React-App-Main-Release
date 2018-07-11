@@ -10,6 +10,7 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  AsyncStorage,
 } from 'react-native';
 import {firebaseApp} from '../App'
 

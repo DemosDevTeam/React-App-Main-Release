@@ -38,7 +38,7 @@
 		1E495614205EDF80009269F4 /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E495613205EDF80009269F4 /* Icon-App-76x76@2x.png */; };
 		1E495615205EDF80009269F4 /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1E495613205EDF80009269F4 /* Icon-App-76x76@2x.png */; };
 		1E4E644020616B9900A39109 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 1E4E641320616B9900A39109 /* assets */; };
-		1E4E855D20F2BD98008323D2 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
+		1EBF71D120F4545F009ED0A2 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -1382,7 +1382,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E4E855D20F2BD98008323D2 /* main.jsbundle in Resources */,
+				1EBF71D120F4545F009ED0A2 /* main.jsbundle in Resources */,
 				1E49560B205EDF2A009269F4 /* Icon-App-60x60@2x.png in Resources */,
 				1E49560E205EDF49009269F4 /* Icon-App-60x60@1x.png in Resources */,
 				1E4E644020616B9900A39109 /* assets in Resources */,
@@ -1944,7 +1944,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Demos" */ = {
 			isa = XCConfigurationList;
@@ -1953,7 +1953,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Demos-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -1962,7 +1962,7 @@
 				2D02E4981E0B4A5E006451C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Demos-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1971,7 +1971,7 @@
 				2D02E49A1E0B4A5E006451C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Demos" */ = {
 			isa = XCConfigurationList;
@@ -1980,7 +1980,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

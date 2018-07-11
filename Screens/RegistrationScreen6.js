@@ -9,13 +9,14 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  AsyncStorage,
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App'
+import firebaseApp from '../firebaseApp'
 
-export default class RegistrationScreen6 extends Component<{}>{
-  usersRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail5 + '/'); //Variable from which calls to and from users firebase node are made
-  emailHash = this.props.navigation.state.params.hashemail5;
+export default class RegistrationScreen6 extends Component {
+  //usersRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail5 + '/'); Variable from which calls to and from users firebase node are made
+  //emailHash = this.props.navigation.state.params.hashemail5;
   cityComponents = []; //Array of js components to be written to page after loading
   citiesChosen = []; //Array of cities chosen by user, to be written to firebase on submit
 
@@ -52,17 +53,21 @@ export default class RegistrationScreen6 extends Component<{}>{
     this.citiesChosen.push(text);
   }
 
-  submit = () => {
-    if(this.state.cityChosen == false){
-      Alert.alert("Please choose at least one city");
-    }else{
-      firebaseApp.database().ref('/Users/' + this.emailHash + '/cities/').set(" ");
-      for(var i=0; i<this.citiesChosen.length; i++){
-        firebaseApp.database().ref('/Users/' + this.emailHash + '/cities/').child(this.citiesChosen[i]).set(" ");
+  submit = async () => {
+    var res;
+    AsyncStorage.getItem('user')
+    .then(result => res = result)
+    .then(() => {
+      if(this.state.cityChosen == false){
+        Alert.alert("Please choose at least one city");
+      }else{
+        console.log("res is " + res);
+        for(var i=0; i<this.citiesChosen.length; i++){
+          firebaseApp.database().ref('/Users/' + res + '/cities/').child(this.citiesChosen[i]).set(" ");
+        }
+        this.props.navigation.navigate('MainFeed');
       }
-      this.props.navigation.navigate('MainFeed', {emailhashmain: this.emailHash});
-    }
-
+    });
   }
 
   render() {

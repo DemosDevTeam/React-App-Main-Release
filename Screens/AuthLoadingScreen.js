@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { 
+import {
     ActivityIndicator,
     AsyncStorage,
     StatusBar,
@@ -15,18 +15,19 @@ class AuthLoadingScreen extends React.Component {
         // If user is authenticated redirect to app
         // Else redirect to authentication router
 
-        let user = await AsyncStorage.getItem('user')
+        //Needs to be returned to AsyncStorage.getItem('user')
+        let user = await AsyncStorage.getItem('ui')
 
         if (!user) {
             console.log("No user session")
             user = await firebaseApp.auth().currentUser;
 
             if (user) {
-                this.saveItem('user', user) 
+                this.saveItem('user', user)
             }
         } else {
             console.log("User found in session", user.uid)
-        } 
+        }
 
         this.props.navigation.navigate(user ? 'App' : 'Auth');
     }
@@ -38,19 +39,6 @@ class AuthLoadingScreen extends React.Component {
           console.error('AsyncStorage error: ' + error.message);
         }
     }
-
-    /**
-     * DEPRECATED
-     * Retreives user email hash from async storage
-    fetchUserToken = async () => {
-        try {
-            const userToken = await AsyncStorage.getItem('userEmailHash');
-            return userToken;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    */
 
     render() {
         return (

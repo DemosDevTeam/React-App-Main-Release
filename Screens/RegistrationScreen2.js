@@ -10,12 +10,13 @@ import {
   Alert,
   ScrollView,
   Image,
+  AsyncStorage,
 } from 'react-native';
 import sha1 from 'sha1';
-import {firebaseApp} from '../App';
+import firebaseApp from '../firebaseApp';
 
-export default class RegistrationScreen2 extends Component<{}>{
-  userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail + "/");
+export default class RegistrationScreen2 extends Component {
+  //userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail + "/");
 
   state = {
     gender: '',
@@ -28,20 +29,26 @@ export default class RegistrationScreen2 extends Component<{}>{
     marital: '',
   }
   //On submit verify inputs and navigate to next registration screen
-  submit = () => {
-    if(this.state.gender != "" && this.state.race != "" && this.state.income != "" && this.state.age != "" && this.state.occupation != "" && this.state.education != " " && this.state.children != " " && this.state.marital != " "){
-      this.userRef.child("gender").set(this.state.gender);
-      this.userRef.child("race").set(this.state.race);
-      this.userRef.child("income").set(this.state.income);
-      this.userRef.child("age").set(this.state.age);
-      this.userRef.child("occupation").set(this.state.occupation);
-      this.userRef.child("education").set(this.state.education);
-      this.userRef.child("children").set(this.state.children);
-      this.userRef.child("marital").set(this.state.marital);
-      this.props.navigation.navigate('RegistrationScreen3', {hashemail2: this.props.navigation.state.params.hashemail});
-    }else{
-      Alert.alert("Please ensure that all fields are filled in correctly.");
-    }
+  submit = async () => {
+    var res;
+    AsyncStorage.getItem('user')
+    .then(result => res = result)
+    .then(() => {
+      if(this.state.gender != "" && this.state.race != "" && this.state.income != "" && this.state.age != "" && this.state.occupation != "" && this.state.education != " " && this.state.children != " " && this.state.marital != " "){
+        console.log("res is " + res);
+        firebaseApp.database().ref('/Users/' + res + "/").child("gender").set(this.state.gender);
+        firebaseApp.database().ref('/Users/' + res + "/").child("race").set(this.state.race);
+        firebaseApp.database().ref('/Users/' + res + "/").child("income").set(this.state.income);
+        firebaseApp.database().ref('/Users/' + res + "/").child("age").set(this.state.age);
+        firebaseApp.database().ref('/Users/' + res + "/").child("occupation").set(this.state.occupation);
+        firebaseApp.database().ref('/Users/' + res + "/").child("education").set(this.state.education);
+        firebaseApp.database().ref('/Users/' + res + "/").child("children").set(this.state.children);
+        firebaseApp.database().ref('/Users/' + res + "/").child("marital").set(this.state.marital);
+        this.props.navigation.navigate('RegistrationScreen3');
+      }else{
+        Alert.alert("Please ensure that all fields are filled in correctly.");
+      }
+    });
   }
 
   //Store gender as state value based on input from user
@@ -234,4 +241,3 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
-

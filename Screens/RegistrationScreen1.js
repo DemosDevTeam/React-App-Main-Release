@@ -9,6 +9,7 @@ import {
   TextInput,
   Alert,
   ScrollView,
+  AsyncStorage,
 } from 'react-native';
 import sha1 from 'sha1';
 
@@ -72,16 +73,25 @@ export default class RegistrationScreen1 extends Component {
       // PAssword check
 
       const response = await firebaseApp.auth().createUserWithEmailAndPassword(email, password);
-
+      console.log("response is as follows");
+      console.log(response);
       // Does firebase automatically login created user?
       // Successful login user and reroute to app
       const loginResponse = await firebaseApp.auth().signInWithEmailAndPassword(email, password);
-      this.props.navigation.navigate('AuthLoading')
+      console.log(loginResponse)
+      var uid = loginResponse.uid;
+
+      AsyncStorage.setItem('user', loginResponse.uid)
+      .then(() => {
+        this.props.navigation.navigate('RegistrationScreen2');
+      })
+      //this.props.navigation.navigate('AuthLoading')
 
     } catch (error) {
       // TODO: Proper error handling
       const {code, message}  = error;
-      console.error(code, message)
+      console.error(code, message);
+      Alert.alert("There was an error in submission, please check your email and password and try again");
     }
   }
 
@@ -89,7 +99,7 @@ export default class RegistrationScreen1 extends Component {
   handleName = (text) => {
     this.setState({name: text});
   }
-  
+
   handlePassword = (text) => {
     this.setState({password: text});
   }
@@ -116,7 +126,7 @@ export default class RegistrationScreen1 extends Component {
         <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
 
-        <Button onPress={this.onSubmit} title="Register" />  
+        <Button onPress={this.onSubmit} title="Register" />
 
         {/* <View style={styles.buttonz}>
           <TouchableOpacity onPress={this.onSubmit}>

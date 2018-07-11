@@ -85,18 +85,40 @@ class LogIn extends Component {
 
   onSubmit = async () => {
     const {email, password} = this.state;
+    var uid = "";
 
-      [err, _] = await to(firebaseApp.auth().signInWithEmailAndPassword(email, password));
+      [err, _] = await to(firebaseApp.auth().signInWithEmailAndPassword(email, password).then(function(user) {
+          uid = user.uid;
+      }));
 
       if (err) {
         throw new Error(err)
       }
 
-      this.props.navigation.navigate('App')
-  }
+      await AsyncStorage.setItem('user', uid);
 
-  doNothing = () =>{
-    console.log("entered doNothing");
+      await firebaseApp.database().ref('/Users/' + '/' + uid + '/').once("value").then((snap) => {
+        if(!(snap.hasChild('age') && snap.hasChild('children') && snap.hasChild('education') && snap.hasChild('gender') &&
+            snap.hasChild('income') && snap.hasChild('marital') && snap.hasChild('occupation') && snap.hasChild('race'))){
+          //Need to fill out demographic info, redirect to RegistrationScreen2
+          Alert.alert("please complete your registration information");
+          this.props.navigation.navigate('RegistrationScreen2');
+        }else if(!snap.hasChild('interests')){
+          //Need to fill in interest preferences, redirect to RegistrationScreen3
+          Alert.alert("Please finish filling out your registration information");
+          this.props.navigation.navigate('RegistrationScreen3');
+        }else if(!snap.hasChild('engagement')){
+          //Need to fill in engagement preferences, redirect to RegistrationScreen4
+          Alert.alert("Please finish filling out your registration information");
+          this.props.navigation.navigate('RegistrationScreen4');
+        }else if(!snap.hasChild('cities')){
+          //Need to fill out what city/cities individual is interested in
+          Alert.alert("Please finish filling out your registration information");
+          this.props.navigation.navigate('RegistrationScreen6');
+        } else {
+          console.log("registration should be completed for this user");
+        }
+      });
   }
 
   //Login using facebook login
