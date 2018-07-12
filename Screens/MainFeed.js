@@ -41,7 +41,7 @@ export default class MainFeed extends React.Component {
     this.emailHashMain = await AsyncStorage.getItem('userEmailHash');
     this.userRef = firebaseApp.database().ref(`/Users/${this.emailHashMain}/`);
 
-    this.fetchVideos()    
+    this.fetchVideos()
   }
 
   logout = () => {

@@ -116,7 +116,9 @@ class LogIn extends Component {
           Alert.alert("Please finish filling out your registration information");
           this.props.navigation.navigate('RegistrationScreen6');
         } else {
-          console.log("registration should be completed for this user");
+          console.log("before MainFeedNew navigation");
+          this.props.navigation.navigate('MainFeed');
+          console.log("after MainFeedNew naviagation");
         }
       });
   }

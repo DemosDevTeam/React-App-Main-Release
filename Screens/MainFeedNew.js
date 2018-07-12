@@ -7,7 +7,7 @@
 
 import React from 'react'
 
-import { View, ScrollView, Text } from 'react-native'
+import { View, ScrollView, Text, AsyncStorage } from 'react-native'
 
 import firebaseApp from '../firebaseApp'
 
@@ -36,7 +36,90 @@ class MainFeed extends React.Component {
     }
 
     fetchArticles = async () => {
-        return firebaseApp.database().ref('/videos/Greensboro').once('value')
+      var userCities = [];
+      var articles = {};
+      var userPreferences = [];
+      var videos = [];
+
+      const res = await AsyncStorage.getItem('user');
+
+            //Get all cities user is interested in to populate userCities
+          await firebaseApp.database().ref('/Users/' + res + '/cities/').once("value").then( (snap) => {
+              snap.forEach((child) => {
+                userCities.push(child.key);
+                console.log("just pushed city to userCities");
+                console.log("city that was pushed was " + child.key);
+              })
+            })
+            await firebaseApp.database().ref('/videos/').once("value").then((snap) => {
+              //Get snapshot of database and populate video information for videos in cities user has subscribed to.
+              console.log("inside of video ref call");
+              snap.forEach(child => {
+
+                let cityName;
+                if(userCities.includes(child.key)){
+                  cityName = child.key;
+                }
+
+                child.forEach(secondChild => {
+                  let videoURL = secondChild.val().urlvideo;
+                  let picURL = secondChild.val().urlpic;
+                  let videoName = secondChild.val().name;
+                  //console.log(videoName);
+                  var tags = [];
+                  secondChild.child("tags").forEach(tag => {
+                    tags.push(tag.key);
+                  })
+                  let matchScore = 0;
+                  var video = [secondChild.val(), tags, matchScore, cityName, secondChild.key];
+                  videos.push(video);
+                })
+              })
+            })
+
+          return await firebaseApp.database().ref('/Users/' + res + '/').once("value").then(snap => {
+            //Get list of user preferences
+            let interests = snap.child("interests");
+            interests.forEach(child => {
+              userPreferences.push(child.key);
+            })
+          })
+
+            .then(() => {
+              //Generate match score for every video
+              for(var i=0; i<videos.length; i++){//Loop through every video once
+                for(var k=0; k<userPreferences.length; k++){//For every user preference, check if the video has that tag.
+                  for(var j=0; j<videos[i][1].length; j++){
+                    if(userPreferences[k] == videos[i][1][j]){
+                      videos[i][2] = videos[i][2] + 1;
+                    }
+                  }
+                }
+              }
+
+              //Sort videos based on match score
+              for(var i=0; i<videos.length; i++){
+                for(var k=0; k<videos.length-1; k++){
+                  if(videos[k][2] < videos[k+1][2]){
+                    var temp = videos[k];
+                    videos[k] = videos[k+1];
+                    videos[k+1] = temp;
+                  }
+                }
+              }
+
+              //returned articles will be an entire video json object with the additional attribute of city
+              for(var i=0; i < videos.length; i++){
+                console.log("video number " + i);
+                console.log(videos[i]);
+                articles[videos[i][4]] = videos[i][0];
+                articles[videos[i][4]].city = videos[i][3];
+
+              }
+              return articles;
+            })
+
+        /*return firebaseApp.database().ref('/videos/Greensboro').once('value')
             .then(snapshot => {
                 let articles = {};
 
@@ -45,7 +128,7 @@ class MainFeed extends React.Component {
                 })
 
                 return articles
-            })
+            })*/
     }
 
     _fetchArticlesMock = async () => {
