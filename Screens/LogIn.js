@@ -188,15 +188,20 @@ class LogIn extends Component {
     const { navigation } = this.props;
 
     console.disableYellowBox = true;
-    return (
+   return (
       <View style={styles.container}>
+        <View style={{alignItems: 'center'}}>
         <Image
           style={{width: 200, height: 200, marginTop: 75, marginBottom: 40}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
+        </View>
 
+        <View style={{marginLeft: 130}}>
         <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
         <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword}/>
+        </View>
+
         <View style={styles.space2}></View>
 
         <Button
