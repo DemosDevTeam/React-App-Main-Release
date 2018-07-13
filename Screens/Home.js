@@ -21,9 +21,10 @@ export default class Home extends Component {
     const { navigation } = this.props; 
 
     console.disableYellowBox = true;
-
+    
+    /**
     return (
-      <ImageBackground 
+      <ImageBackground
         source={{uri: 'https://user-images.githubusercontent.com/18129905/37871334-c108bd32-2fb9-11e8-9d65-a5692497386b.png'}}
         style={styles.backgroundImage}
       >
@@ -38,12 +39,33 @@ export default class Home extends Component {
           <Text style={styles.welcome2}>
           Your voice, your local government.
           </Text>
-          <Button 
+          <Button
             title="Act Now"
-            color="#49c7e3" 
+            color="#49c7e3"
             onPress={() => navigation.navigate('LogIn')}
           />
       </ImageBackground>
+    );
+    **/
+    return (
+      <View style={{alignItems: 'center'}}>
+          <Image
+            style={{width: 200, height: 200, marginTop: 75, marginBottom: 40 }}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
+          />
+          <Image
+            style={{width: 200, height: 120}}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
+          />
+          <Text style={styles.welcome2}>
+          Your voice, your local government.
+          </Text>
+          <Button
+            title="Act Now"
+            color="#49c7e3"
+            onPress={() => navigation.navigate('LogIn')}
+          />
+          </View>
     );
   }
 }
