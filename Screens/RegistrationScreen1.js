@@ -116,16 +116,18 @@ export default class RegistrationScreen1 extends Component {
       <View style={{flex: 1}}>
         <View style={styles.container}>
           <Image
-          style={{width: 200, height: 200, marginTop: 75, marginBottom: 20}}
+          style={{width: 200, height: 200, marginTop: 20, marginBottom: 20}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
           />
         </View>
         <View>
+        <View style={{marginLeft: 110}}>
         <TextInput style={styles.userInputs} onChangeText={this.handleName}placeholder="name"/>
         <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
         <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
         <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
-
+        </View>
+        <View style={{height: 32}}></View>
         <Button onPress={this.onSubmit} title="Register" />
 
         {/* <View style={styles.buttonz}>
