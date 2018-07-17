@@ -16,7 +16,7 @@ class AuthLoadingScreen extends React.Component {
         // Else redirect to authentication router
 
         //Needs to be returned to AsyncStorage.getItem('user')
-        let user = await AsyncStorage.getItem('ui')
+        let user = await AsyncStorage.getItem('user')
 
         if (!user) {
             console.log("No user session")

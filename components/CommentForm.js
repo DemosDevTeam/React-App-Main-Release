@@ -1,31 +1,10 @@
 import React from 'react'
 
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Form, TextInput, Button } from 'react-native'
 
-class Ballot extends React.Component {
-
-}
-
-class ReactionSelect extends React.Component {
-
-}
-
-class Line extends React.Component {
-    render() {
-        return (
-            <View
-                style={{
-                    borderBottomColor: 'black',
-                    borderBottomColor: 1,
-                    width: '100%'
-                }}
-            />
-        );
-    }
-}
-
-export default class CommentForm extends React.Component {
+class CommentForm extends React.Component {
     constructor(props) {
+      super(props);
         this.state = {
             reaction: undefined,
             vote: undefined,
@@ -37,36 +16,38 @@ export default class CommentForm extends React.Component {
         const vote = false;
 
         return (
-            <Form>
+            <View>
                 <Text>Share your thoughts and ideas.</Text>
-                <Line />
-                { 
-                    (!vote) 
-                    ? <ReactionSelect 
-                        onChange={(reaction) => this.setState({reaction}) } 
-                      />
-                    : <Ballot
-                        onChange={(vote) => this.setState({ vote }) }
-                      />
-                    }
-                }
-                <Text>Comments:</Text>
-                <TextInput 
+                <Text>General Comments:</Text>
+                <TextInput
                     value={this.state.comment}
                     editable={true}
                     multiline={true}
-                    onChangeText={(comment) => this.setState({ comment })}
+                    onChangeText={(comment) => this.props.onComment({ comment })}
                 />
-                <Button 
+                <Button
+                  title="Up Vote"
+                  onPress={this.props.Upvote}
+                />
+                <Button
+                  title="Down Vote"
+                  onPress={this.props.Downvote}
+                />
+                <Button
                     color="blue"
                     title="Share"
                     onPress={this.props.onSubmit}
                 />
-            </Form>
+                <Button
+                  title="Pin Post"
+                  onPress={this.props.onPin}
+                />
+            </View>
         );
     }
-}
+  }
 
 const styles = StyleSheet.create({
 
 });
+export default CommentForm;
