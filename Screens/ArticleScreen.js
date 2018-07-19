@@ -184,10 +184,13 @@ class ArticleScreen extends React.Component {
 
   render() {
     const { article } = this.state
+    
+    const width = Dimensions.get('window').width
+    
     return (
       <ScrollView style={{flex: 1}}>
       <WebView
-          style={{height: 350, width: 350, backgroundColor: 'powderBlue'}}
+          style={{height: 210, width, backgroundColor: 'powderBlue'}}
           javaScriptEnabled={true}
           source={{ uri: this.state.article.urlvideo }}
       />
