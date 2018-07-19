@@ -49,7 +49,7 @@ export default class FeedItem extends React.Component {
         const pinned = false
 
         const width = Dimensions.get('window').width
-
+        
         return (
             <View style={styles.container}>
                 <WebView
@@ -57,13 +57,30 @@ export default class FeedItem extends React.Component {
                     javaScriptEnabled={true}
                     source={{ uri: videoSource }}
                 />
+                <View style={{height: 10}}/>
+                <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
+                    <View style={{width: 15}}/>
+                    <TouchableHighlight>
+                        <Ionicons name="ios-thumbs-up-outline" size={35} />
+                    </TouchableHighlight>
+                    <View style={{width: 17}}/>
+                    <TouchableHighlight>
+                        <Ionicons name="ios-thumbs-down-outline" size={35} />
+                    </TouchableHighlight>
+                    <View style={{width: 15}}/>
+                    <View style={{position: 'absolute', right: 19}}>
+                        <TouchableHighlight>
+                            <Ionicons name="ios-bookmark-outline" size={35} />
+                        </TouchableHighlight>
+                        <View style={{width: 15}}/>
+                    </View>
+                </View>
+                <View style={{height: 10}}/>
                 <TouchableOpacity onPress={onPress}>
                     <Text>{JSON.stringify(article)}</Text>
-                    <Text style={styles.title}>{title}</Text>
+                    <Text style={{fontSize: 12}}>{title}</Text>
                 </TouchableOpacity>
-                <TouchableHighlight>
-                    <Ionicons name="ios-star-outline" size={25} />
-                </TouchableHighlight>
+                <View style={{height: 13}}/>
             </View>
         );
     }
