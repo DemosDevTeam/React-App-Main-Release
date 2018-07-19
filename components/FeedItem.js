@@ -53,7 +53,7 @@ export default class FeedItem extends React.Component {
         return (
             <View style={styles.container}>
                 <WebView
-                    style={{height: 350, width, backgroundColor: 'powderBlue'}}
+                    style={{height: 210, width, backgroundColor: 'powderBlue'}}
                     javaScriptEnabled={true}
                     source={{ uri: videoSource }}
                 />
