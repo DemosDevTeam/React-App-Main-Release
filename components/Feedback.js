@@ -1,3 +1,4 @@
+
 import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
 })
 
 export default class Feedback extends React.Component {
-   
+
     render() {
         return (
             <View>
@@ -16,4 +17,3 @@ export default class Feedback extends React.Component {
         );
     }
 }
-

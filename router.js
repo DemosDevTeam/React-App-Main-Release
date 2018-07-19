@@ -22,9 +22,11 @@ import VideoPlayer from './Popups/VideoPlayer';
 import UpdateDemographics from './Popups/UpdateDemographics';
 import UpdateInterests from './Popups/UpdateInterests';
 import UpdateUpdatePreferences from './Popups/UpdateUpdatePreferences';
-import AggregateFeedback from './Screens/AggregateFeedback';
+//import AggregateFeedback from './Screens/AggregateFeedback';
+import AggregateFeedback from './Screens/AggregateFeedbackNew';
 import RegistrationScreen6 from './Screens/RegistrationScreen6';
-import PinnedPosts from './Screens/PinnedPosts';
+//import PinnedPosts from './Screens/PinnedPosts';
+import PinnedPosts from './Screens/PinnedPostsNew'
 
 // const ProfileStack = TabNavigator({
 //   UpdateProfile: {
@@ -52,7 +54,7 @@ import PinnedPosts from './Screens/PinnedPosts';
 //     }
 //   },
 
-// })   
+// })
 
 const ArticleStack = StackNavigator ({
   MainFeed: {
@@ -190,7 +192,7 @@ const RootNavigator = SwitchNavigator({
   AuthLoading: AuthLoadingScreen
 }, {
   initialRouteName: 'AuthLoading'
-}); 
+});
 
 // export const Root = StackNavigator({
 //   TextView: {
@@ -205,7 +207,7 @@ const RootNavigator = SwitchNavigator({
 //       title: 'Video Viewer'
 //     }
 //   },
-    
+
 //   }, {headerMode: 'none'})
 
 export default RootNavigator;

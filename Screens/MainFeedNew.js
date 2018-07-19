@@ -47,13 +47,11 @@ class MainFeed extends React.Component {
           await firebaseApp.database().ref('/Users/' + res + '/cities/').once("value").then( (snap) => {
               snap.forEach((child) => {
                 userCities.push(child.key);
-                console.log("just pushed city to userCities");
-                console.log("city that was pushed was " + child.key);
+
               })
             })
             await firebaseApp.database().ref('/videos/').once("value").then((snap) => {
               //Get snapshot of database and populate video information for videos in cities user has subscribed to.
-              console.log("inside of video ref call");
               snap.forEach(child => {
 
                 let cityName;
@@ -110,25 +108,12 @@ class MainFeed extends React.Component {
 
               //returned articles will be an entire video json object with the additional attribute of city
               for(var i=0; i < videos.length; i++){
-                console.log("video number " + i);
-                console.log(videos[i]);
                 articles[videos[i][4]] = videos[i][0];
                 articles[videos[i][4]].city = videos[i][3];
 
               }
               return articles;
             })
-
-        /*return firebaseApp.database().ref('/videos/Greensboro').once('value')
-            .then(snapshot => {
-                let articles = {};
-
-                snapshot.forEach(child => {
-                    articles[child.key] = child.val();
-                })
-
-                return articles
-            })*/
     }
 
     _fetchArticlesMock = async () => {
@@ -153,7 +138,7 @@ class MainFeed extends React.Component {
     }
 
     render() {
-        let day;
+
 
         const { articles } = this.state;
 
