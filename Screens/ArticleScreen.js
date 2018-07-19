@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyleSheet, View, Text, ScrollView, ActivityIndicator, AsyncStorage, WebView } from 'react-native'
+import { Dimensions, StyleSheet, View, Text, ScrollView, ActivityIndicator, AsyncStorage, WebView } from 'react-native'
 
 import Article  from '../components/Article'
 
