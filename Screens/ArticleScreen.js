@@ -13,7 +13,8 @@ class ArticleScreen extends React.Component {
     super(props)
 
     this.state = {
-      'article': ''
+      'article': '',
+      loading: true
     }
   }
 
@@ -23,8 +24,9 @@ class ArticleScreen extends React.Component {
     const article = navigation.getParam('article', undefined);
     const articleId = navigation.getParam('articleId', undefined);
 
-    console.log(article, articleId)
+    //console.log(article, articleId)
     this.setState({ "article" : article })
+    this.setState({"loading" : false})
   }
 
   upvote = async () => {
@@ -182,28 +184,41 @@ class ArticleScreen extends React.Component {
 
   }
 
+  handleMCAnswer = (question, answer) => {
+    console.log('inside of handleMCAnswer');
+    console.log("value of answer is:");
+    console.log(answer);
+    console.log("value of question is:");
+    console.log(question);
+  }
   render() {
-    const { article } = this.state
-    
-    const width = Dimensions.get('window').width
-    
-    return (
-      <ScrollView style={{flex: 1}}>
-      <WebView
-          style={{height: 210, width, backgroundColor: 'powderBlue'}}
-          javaScriptEnabled={true}
-          source={{ uri: this.state.article.urlvideo }}
-      />
-      <Text>{JSON.stringify(article)}</Text>
-      <CommentForm
-      Upvote={this.upvote}
-      Downvote={this.downvote}
-      onSubmit={this.placeholderFunction}
-      onPin={this.pin}
-      onComment={this.onComment}
-      ></CommentForm>
-      </ScrollView>
-    );
+    if(this.state.loading){
+      return(<Text>Loading...</Text>);
+    }else{
+      const article = this.state.article
+
+      const width = Dimensions.get('window').width
+      console.log("before return");
+      console.log(article);
+      return(
+        <ScrollView style={{flex: 1}}>
+        <WebView
+            style={{height: 210, width, backgroundColor: 'powderBlue'}}
+            javaScriptEnabled={true}
+            source={{ uri: this.state.article.urlvideo }}
+        />
+        <CommentForm
+        Upvote={this.upvote}
+        Downvote={this.downvote}
+        onSubmit={this.placeholderFunction}
+        onPin={this.pin}
+        onComment={this.onComment}
+        article={article}
+        handleMCAnswer={this.handleMCAnswer}
+        ></CommentForm>
+        </ScrollView>
+      );
+    }
   }
 }
 

@@ -144,7 +144,7 @@ export default class RegistrationScreen2 extends Component {
         <Picker
           style={styles.userInputs}
           selectedValue={this.state.occupation}
-          onValueChange={(itemValue, itemIndex) =>this.handleOccupation(itemValue)}>
+          onValueChange={(itemValue, itemIndex) => this.handleOccupation(itemValue)}>
           <Picker.Item label="Select Employment Area" value="placeholder"/>
           <Picker.Item label="Unemployed" value="Unemployed"/>
           <Picker.Item label="Employed, part-time" value="Employed-part"/>
@@ -154,7 +154,7 @@ export default class RegistrationScreen2 extends Component {
         <Picker
           style={styles.userInputs}
           selectedValue={this.state.education}
-          onValueChange={(itemValue, itemIndex) =>this.handleEducation(itemValue)}>
+          onValueChange={(itemValue, itemIndex) => this.handleEducation(itemValue)}>
           <Picker.Item label="Select Education Level" value="placeholder"/>
           <Picker.Item label="No degree" value="NoDegree"/>
           <Picker.Item label="High school diploma" value="High-school"/>
@@ -166,7 +166,7 @@ export default class RegistrationScreen2 extends Component {
         <Picker
           style={styles.userInputs}
           selectedValue={this.state.children}
-          onValueChange={(itemValue, itemIndex) =>this.handleChildren(itemValue)}>
+          onValueChange={(itemValue, itemIndex) => this.handleChildren(itemValue)}>
           <Picker.Item label="Number of Children" value="placeholder"/>
           <Picker.Item label="None" value="NoChildren"/>
           <Picker.Item label="1-2" value="1-2"/>
@@ -176,7 +176,7 @@ export default class RegistrationScreen2 extends Component {
         <Picker
           style={styles.userInputs}
           selectedValue={this.state.marital}
-          onValueChange={(itemValue, itemIndex) =>this.handleMarital(itemValue)}>
+          onValueChange={(itemValue, itemIndex) => this.handleMarital(itemValue)}>
           <Picker.Item label="Select Marital Status" value="placeholder"/>
           <Picker.Item label="Single, never married" value="Single-no"/>
           <Picker.Item label="Single, divorced" value="Single-divorced"/>

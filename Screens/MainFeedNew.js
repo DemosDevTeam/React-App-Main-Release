@@ -116,27 +116,6 @@ class MainFeed extends React.Component {
             })
     }
 
-    _fetchArticlesMock = async () => {
-        return new Promise((resolve, reject) => {
-            const articles = {
-                "articleid1": {
-                    title: "Calls for Equality at UNC",
-                    videoUri: 'https://youtu.be/FF8wzQV5u_0',
-                    excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, \
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                },
-                "articleid2": {
-                    title: 'Should Rosemary get streetlights?',
-                    videoUri: 'https://www.youtube.com/embed/fSqkhN9Rqk0',
-                    excerpt: 'Lorem ipsum',
-                    pinned: true,
-                }
-            };
-
-            resolve(articles);
-        });
-    }
-
     render() {
 
 

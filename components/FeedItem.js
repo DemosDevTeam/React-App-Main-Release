@@ -4,10 +4,10 @@
 // All data should be passed in
 // Props
 // Article
-// 
+//
 
 import React from 'react'
-import { Dimensions, View, StyleSheet, TouchableOpacity, TouchableHighlight, Text, WebView } from 'react-native'
+import { Dimensions, View, StyleSheet, TouchableOpacity, TouchableHighlight, Text, WebView, Image } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 // import Youtube from 'react-native-youtube'
 
@@ -38,25 +38,28 @@ export default class FeedItem extends React.Component {
         tags: React,Propt
     }
     */
-    
+
     render() {
         // TODO: Change source
-        const { article, onPress } = this.props
+        const { article, onPress } = this.props;
 
-        const { title, content } = article
-        const videoSource = article.urlvideo
+        const { title, content } = article;
+        const videoSource = article.urlvideo;
+        const imageSource = article.urlpic;
 
         const pinned = false
 
         const width = Dimensions.get('window').width
-        
+
         return (
             <View style={styles.container}>
-                <WebView
-                    style={{height: 210, width, backgroundColor: 'powderBlue'}}
-                    javaScriptEnabled={true}
-                    source={{ uri: videoSource }}
-                />
+              <TouchableOpacity onPress={onPress}>
+                  <Image
+                      style={{height: 210, width, backgroundColor: 'powderBlue'}}
+                      javaScriptEnabled={true}
+                      source={{ uri: imageSource }}
+                  />
+                </TouchableOpacity>
                 <View style={{height: 10}}/>
                 <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
                     <View style={{width: 15}}/>
@@ -77,7 +80,6 @@ export default class FeedItem extends React.Component {
                 </View>
                 <View style={{height: 10}}/>
                 <TouchableOpacity onPress={onPress}>
-                    <Text>{JSON.stringify(article)}</Text>
                     <Text style={{fontSize: 12}}>{title}</Text>
                 </TouchableOpacity>
                 <View style={{height: 13}}/>
