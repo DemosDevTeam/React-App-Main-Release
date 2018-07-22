@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Dimensions, StyleSheet, View, Text, ScrollView, ActivityIndicator, AsyncStorage, WebView } from 'react-native'
+import { Dimensions, StyleSheet, View, Text, ScrollView, ActivityIndicator, AsyncStorage, WebView, Alert } from 'react-native'
 
 import Article  from '../components/Article'
 
@@ -14,7 +14,8 @@ class ArticleScreen extends React.Component {
 
     this.state = {
       'article': '',
-      loading: true
+      loading: true,
+      'comment': '',
     }
   }
 
@@ -181,25 +182,141 @@ class ArticleScreen extends React.Component {
 
   placeholderFunction = async () => {
     const user = await AsyncStorage.getItem('user');
+    console.log(this.state);
+    console.log(this.state.article.mcquestions);
+    console.log(this.state.article.frquestions);
+    const article = await this.state.article;
+    const mcQuestionsJson = article.mcquestions;
+    const frQuestionsJson = article.frquestions;
+    const database = firebaseApp.database();
+
+    //check if there are mc questions
+    if(mcQuestionsJson == null){
+      console.log("no mc questions");
+    }
+
+    //check if there are fr questions
+    if(frQuestionsJson == null){
+      console.log("no fr questions");
+    }
+
+    //check if all mc questions have been answered
+    let answeredMC = true;
+    for(question in mcQuestionsJson) {
+      if(!this.state.hasOwnProperty(question.toString())){
+        console.log("didn't answer the following");
+        console.log(question.toString());
+        answeredMC = false;
+      }
+    }
+
+    //check if all fr questions have been answered
+    let answeredFR = true;
+    for(question in frQuestionsJson){
+      if(!this.state.hasOwnProperty(question.toString())){
+        console.log("didn't answer the following");
+        console.log(question.toString());
+        answeredFR = false;
+      }
+    }
+
+    let hasAnswered;
+    //if all questions have not been answered then send alert and exit function
+    if(!answeredFR || !answeredMC){
+      Alert.alert("Please make sure you have answered all questions and submit again!");
+    } else {
+      //update answers for user and apply to video
+
+      //check if user has responed to this videos questions before
+      hasAnswered = await database.ref('/Users/' + user + '/').once('value').then(snap => {
+        //check if user has Reactions node
+        if(snap.hasChild("Reactions")){
+          //check if user has this article in reactions
+          if(snap.child("Reactions").hasChild(article.id)){
+            //check if user has answered questions for article
+            if(snap.child("Reactions").child(article.id).hasChild("answers")){
+              return true;
+            }else{
+              return false;
+            }
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      })
+    }
+
+    if(hasAnswered){
+      //Need to update mcquestions answer vals to reflect updated information.
+    } else {
+      //Can just increment mcquestions answer vals to reflect addition of this users information.
+      database.ref('/Users/' + user + '/Reactions/' + article.id + '/comment/').set(this.state.comment);
+      database.ref('/videos/' + article.city + '/' + article.id + '/feedback/' + user + '/').set(this.state.comment);
+
+      //update user data
+      for(question in mcQuestionsJson){
+        database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/mcquestions/' + question.toString() + '/').set(this.state[question.toString()]);
+      }
+      //update user data and video data for frquestions
+      for(question in frQuestionsJson){
+        database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/frquestions/' + question.toString() + '/').set(this.state[questions.toString()]);
+        let currentCount = await database.ref('/videos/' + article.city + '/' + article.id + '/answers/frquestions/' + question.toString() + '/count/').once("value").then(snap => {
+          return snap.val();
+        })
+        currentCount = currentCount + 1;
+        database.ref('/videos/' + article.city + '/' + article.id + '/frquestions/' + question.toString() + '/count/').set(currentCount);
+        database.ref('/videos/' + article.city + '/' + article.id + '/frquestions/' + question.toString() + '/' + user + '/').set(this.state[questions.toString()]);
+      }
+
+      //update videos mcquestion data
+      await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/').once('value').then(async (snap) => {
+        //for each mc question update count
+        snap.forEach(async question => {
+          let answer = this.state[question.key];
+          let currentCount = await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + questions.key + '/' + answer + '/').once("value").then(snap => {
+              return snap.val();
+          })
+          currentCount = currentCount + 1;
+          database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + questions.key + '/' + answer + '/').set(currentCount);
+        })
+      })
+    }
 
   }
 
-  handleMCAnswer = (question, answer) => {
-    console.log('inside of handleMCAnswer');
-    console.log("value of answer is:");
-    console.log(answer);
-    console.log("value of question is:");
-    console.log(question);
+  handleMCAnswer = async (question, answer) => {
+    //set state to be question:answer
+    let questionObj = {};
+    questionObj[question] = answer;
+    await this.setState( questionObj )
+    console.log(this.state[question.toString()]);
+    console.log("this.state inside of handleMCAnswer");
+    console.log(this.state);
+    //can now get state by calling this.state[question.toString()]
   }
+
+  handleFRAnswer = async (question, answer) => {
+    //need to write logic for this
+    let questionObj = {};
+    questionObj[question] = answer;
+    await this.setState( questionObj );
+    console.log(this.state[question.toString()]);
+    console.log("this.state inside of handleFRAnswer");
+    console.log(this.state);
+    //can now get state by calling this.state[question.toString()]
+  }
+
+
   render() {
+    console.disableYellowBox = true;
     if(this.state.loading){
       return(<Text>Loading...</Text>);
     }else{
       const article = this.state.article
 
       const width = Dimensions.get('window').width
-      console.log("before return");
-      console.log(article);
       return(
         <ScrollView style={{flex: 1}}>
         <WebView
@@ -215,6 +332,7 @@ class ArticleScreen extends React.Component {
         onComment={this.onComment}
         article={article}
         handleMCAnswer={this.handleMCAnswer}
+        handleFRAnswer={this.handleFRAnswer}
         ></CommentForm>
         </ScrollView>
       );
