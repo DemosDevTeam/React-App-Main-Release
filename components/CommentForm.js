@@ -111,7 +111,7 @@ class CommentForm extends React.Component {
                     value={this.state.comment}
                     editable={true}
                     multiline={true}
-                    onChangeText={(comment) => this.props.onComment({ comment })}
+                    onChangeText={(comment) => this.props.onComment(comment)}
                 />
                 <View>{mcquestions}</View>
                 <View style={styles.space2}></View>

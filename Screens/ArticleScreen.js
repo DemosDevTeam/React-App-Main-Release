@@ -182,24 +182,98 @@ class ArticleScreen extends React.Component {
 
   placeholderFunction = async () => {
     const user = await AsyncStorage.getItem('user');
-    console.log(this.state);
-    console.log(this.state.article.mcquestions);
-    console.log(this.state.article.frquestions);
     const article = await this.state.article;
     const mcQuestionsJson = article.mcquestions;
     const frQuestionsJson = article.frquestions;
     const database = firebaseApp.database();
 
+    let hasMCQuestions = true;
     //check if there are mc questions
     if(mcQuestionsJson == null){
-      console.log("no mc questions");
+      hasMCQuestions = false;
     }
 
+    let hasFRQuestions = true;
     //check if there are fr questions
     if(frQuestionsJson == null){
-      console.log("no fr questions");
+      hasFRQuestions = false;
     }
 
+    if(!hasMCQuestions && !hasFRQuestions){
+      //write comment to database, no other action needed
+      //TODO: write function for writing comment to db
+      await this.writeCommentToDB();
+    } else if (hasMCQuestions && hasFRQuestions){
+      //check if user has answered all questions
+      let answeredMC = true;
+      for(question in mcQuestionsJson) {
+        if(!this.state.hasOwnProperty(question.toString())){
+          console.log("didn't answer the following");
+          console.log(question.toString());
+          answeredMC = false;
+        }
+      }
+
+      let answeredFR = true;
+      for(question in frQuestionsJson){
+        if(!this.state.hasOwnProperty(question.toString())){
+          console.log("didn't answer the following");
+          console.log(question.toString());
+          answeredFR = false;
+        }
+      }
+
+      if(answeredFR && answeredMC){
+        //TODO: write function for writing fr and mc questions to db
+        await this.writeFRToDB();
+        await this.writeMCToDB();
+        //TODO: call function for writing commment to db
+        await this.writeCommentToDB();
+      } else {
+        console.log("user didn't answer all questions")
+      }
+
+    } else if (hasMCQuestions){
+
+      let answeredMC = true;
+      for(question in mcQuestionsJson) {
+        if(!this.state.hasOwnProperty(question.toString())){
+          console.log("didn't answer the following");
+          console.log(question.toString());
+          answeredMC = false;
+        }
+      }
+      if(answeredMC){
+        //TODO: write function for writing mc questions to db
+        await this.writeMCToDB();
+        //TODO: call function for writing comment to db
+        await this.writeCommentToDB();
+      } else {
+        console.log("user didn't answer all questions");
+      }
+
+    } else {
+
+      let answeredFR = true;
+      for(question in frQuestionsJson){
+        if(!this.state.hasOwnProperty(question.toString())){
+          console.log("didn't answer the following");
+          console.log(question.toString());
+          answeredFR = false;
+        }
+      }
+
+      if(answeredFR){
+        //TODO: write function for writing fr questions to db
+        await this.writeFRToDB();
+        //TODO: call function for writing comment to db
+        await this.writeCommentToDB();
+      } else {
+        console.log("user didn't answer all questions");
+      }
+    }
+
+    /*
     //check if all mc questions have been answered
     let answeredMC = true;
     for(question in mcQuestionsJson) {
@@ -282,8 +356,149 @@ class ArticleScreen extends React.Component {
           database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + questions.key + '/' + answer + '/').set(currentCount);
         })
       })
-    }
+    }*/
 
+  }
+
+  writeMCToDB = async () => {
+    const user = await AsyncStorage.getItem('user');
+    const article = await this.state.article;
+    const database = firebaseApp.database();
+    const mcQuestionsJson = article.mcquestions;
+    console.log("mcQuestionsJson val:");
+    console.log(mcQuestionsJson);
+
+    let hasAnswered = await database.ref('/Users/' + user + '/').once('value').then(snap => {
+      //check if user has Reactions node
+      if(snap.hasChild("Reactions")){
+        //check if user has this article in reactions
+        if(snap.child("Reactions").hasChild(article.id)){
+          //check if user has answered questions for article
+          if(snap.child("Reactions").child(article.id).hasChild("answers")){
+            if(snap.child("Reactions").child(article.id).child("answers").hasChild("mcquestions")){
+              return true;
+            } else {
+              return false;
+            }
+          }else{
+            return false;
+          }
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    })
+
+    if(hasAnswered){
+      //update user and video information
+      for(question in mcQuestionsJson){
+        //get current user answer choice
+        let currentAnswer = await database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/mcquestions/' + question.toString() + '/').once('value').then(snap => {
+          return snap.val();
+        })
+        //decrement count for currentAnswer in video node
+        await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + question.toString() + '/' + currentAnswer + '/').once('value').then(async snap => {
+          let currentCount = snap.val();
+          currentCount = currentCount - 1;
+          await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + question.toString() + '/' + currentAnswer + '/').set(currentCount);
+        })
+
+        //update answer in user node
+        await database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/mcquestions/' + question.toString() + '/').set(this.state[question.toString()]);
+        //increment count for answer in video node
+        await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + question.toString() + '/' + this.state[question.toString()] + '/').once('value').then(async snap => {
+          let currentCount = snap.val();
+          currentCount = currentCount + 1;
+          await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + question.toString() + '/' + this.state[question.toString()] + '/').set(currentCount);
+        })
+      }
+    } else {
+      //write new user info and video information
+      for(question in mcQuestionsJson){
+        console.log("inside of for loop for mcQuestionsJson in writeMCToDB");
+        //write value to user node
+        await database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/mcquestions/' + question.toString() + '/').set(this.state[question.toString()]);
+        //increment number of votes for this answer in video node
+        await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + question.toString() + '/' + this.state[question.toString()] + '/').once("value").then(async snap => {
+          let currentCount = snap.val();
+          currentCount = currentCount + 1;
+          await database.ref('/videos/' + article.city + '/' + article.id + '/mcquestions/' + question.toString() + '/' + this.state[question.toString()] + '/').set(currentCount);
+        })
+      }
+    }
+    console.log("finished writeMCToDB function");
+  }
+
+  writeFRToDB = async () => {
+    const user = await AsyncStorage.getItem('user');
+    const article = await this.state.article;
+    const database = firebaseApp.database();
+    const frQuestionsJson = article.frquestions;
+
+    let hasAnswered = await database.ref('/Users/' + user + '/').once('value').then(snap => {
+      //check if user has Reactions node
+      if(snap.hasChild("Reactions")){
+        //check if user has this article in reactions
+        if(snap.child("Reactions").hasChild(article.id)){
+          //check if user has answered questions for article
+          if(snap.child("Reactions").child(article.id).hasChild("answers")){
+            if(snap.child("Reactions").child(article.id).child("answers").hasChild("frquestions")){
+              return true;
+            } else {
+              return false;
+            }
+          }else{
+            return false;
+          }
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    })
+
+    //logic to write to db depending on whether or not user has answered questions before
+    if(hasAnswered){
+      //get current answers for user and update counts in videos
+      for(question in frQuestionsJson){
+        //write value to user node
+        await database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/frquestions/' + question.toString() + '/').set(this.state[question.toString()]);
+        //write value to video node
+        await database.ref('/videos/' + article.city + '/' + article.id + '/frquestions/' + question.toString() + '/' + user + '/').set(this.state[question.toString()]);
+      }
+    } else {
+      //write new user info and video information
+      for(question in frQuestionsJson){
+        //write value to user node
+        await database.ref('/Users/' + user + '/Reactions/' + article.id + '/answers/frquestions/' + question.toString() + '/').set(this.state[question.toString()]);
+        //write value to video node
+        await database.ref('/videos/' + article.city + '/' + article.id + '/frquestions/' + question.toString() + '/' + user + '/').set(this.state[question.toString()]);
+        //increment count for number of answers to fr question
+        await database.ref('/videos/' + article.city + '/' + article.id + '/frquestions/' + question.toString() +'/count/').once("value").then(async snap => {
+          let currentCount = snap.val();
+          currentCount = currentCount + 1;
+          await database.ref('/videos/' + article.city + '/' + article.id + '/frquestions/' + question.toString() +'/count/').set(currentCount);
+        })
+      }
+    }
+    console.log("finished writeFRToDB function");
+  }
+
+  writeCommentToDB = async () => {
+    const user = await AsyncStorage.getItem('user');
+    const article = await this.state.article;
+    const database = firebaseApp.database();
+
+    if(!(this.state.comment == '')){
+      await database.ref('/videos/' + article.city + '/' + article.id + '/feedback/' + user + '/').set(this.state['comment']);
+      await database.ref('/Users/' + user + '/Reactions/' + article.id + '/comment/').set(this.state['comment']);
+    } else {
+      console.log("no comment was made");
+    }
+    console.log("finished writeCommentToDB");
   }
 
   handleMCAnswer = async (question, answer) => {
@@ -291,9 +506,6 @@ class ArticleScreen extends React.Component {
     let questionObj = {};
     questionObj[question] = answer;
     await this.setState( questionObj )
-    console.log(this.state[question.toString()]);
-    console.log("this.state inside of handleMCAnswer");
-    console.log(this.state);
     //can now get state by calling this.state[question.toString()]
   }
 
@@ -302,9 +514,7 @@ class ArticleScreen extends React.Component {
     let questionObj = {};
     questionObj[question] = answer;
     await this.setState( questionObj );
-    console.log(this.state[question.toString()]);
-    console.log("this.state inside of handleFRAnswer");
-    console.log(this.state);
+
     //can now get state by calling this.state[question.toString()]
   }
 
