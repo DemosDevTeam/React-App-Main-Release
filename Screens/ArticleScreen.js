@@ -146,7 +146,7 @@ class ArticleScreen extends React.Component {
             })
           } else {
             database.ref('/videos/' + city + '/' + articleId + '/').once("value").then((snap) => {
-              //If there is no change to the reaction, but no reaction was recorded previously, create neg reactions notde and set to one in video
+              //If there is no change to the reaction, but no reaction was recorded previously, create neg reactions node and set to one in video
               if(!snap.hasChild("Negative Reactions")){
                 database.ref('/videos/' + city + '/' + articleId + '/Negative Reactions/').set(1);
               }

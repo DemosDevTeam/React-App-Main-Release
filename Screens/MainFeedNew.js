@@ -110,7 +110,7 @@ class MainFeed extends React.Component {
               for(var i=0; i < videos.length; i++){
                 articles[videos[i][4]] = videos[i][0];
                 articles[videos[i][4]].city = videos[i][3];
-
+                articles[videos[i][4]].id = videos[i][4];
               }
               return articles;
             })
