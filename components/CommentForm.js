@@ -85,8 +85,8 @@ class CommentForm extends React.Component {
 
           mcquestions.push(
             <View>
-              <Text>{question}</Text>
-              <View>{answers}</View>
+              <Text style={{marginLeft: 19, marginRight: 19}}>{question}</Text>
+              <TouchableOpacity style={{marginLeft: 19, marginRight: 19, marginTop: 15, marginBottom: 15, borderRadius: 4, padding: 7, activeTintColor: '#EE4C50', inactiveTintColor: '#EDEDED'}}>{answers}</TouchableOpacity>
             </View>
           )
         }
@@ -105,14 +105,20 @@ class CommentForm extends React.Component {
 
         return (
             <View>
-                <Text>Share your thoughts and ideas.</Text>
-                <Text>General Comments:</Text>
+<View style={{height: 13}}/>
+                <Text style={{fontSize: 16, textAlign: 'center', fontWeight: 'bold',}}>Share your thoughts and ideas.</Text>
+                <View style={{height: 10}}/>
+                <Text style={{marginLeft: 19}}>General Comments:</Text>
+                <View style={{height: 8}}/>
                 <TextInput
+                    placeholder='    Share your thoughts here'
+                    style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3}}
                     value={this.state.comment}
                     editable={true}
                     multiline={true}
                     onChangeText={(comment) => this.props.onComment(comment)}
                 />
+                <View style={{height: 10}}/>
                 <View>{mcquestions}</View>
                 <View style={styles.space2}></View>
                 <View style={styles.space2}></View>
