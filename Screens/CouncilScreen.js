@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {  
+import {
   StyleSheet,
+  Dimensions,
   Text,
   View,
   Image,
@@ -12,13 +13,16 @@ import {
 } from 'react-native';
 
 export default class CouncilScreen extends Component {
-  
+
   //on click See my council button, navigate to CouncilScreen
   goToCouncil = () => {
     this.props.navigation.navigate('CouncilScreen');
   }
-  
+
   render() {
+
+    const width = Dimensions.get('window').width * 0.93;
+    const height = width * 3.38;
     return (
      <View style={{flex: 1}}>
       {/* <View style={styles.stepzTop}>
@@ -63,13 +67,15 @@ export default class CouncilScreen extends Component {
 
       <ScrollView>
         <View style={styles.container}>
-        <View style={styles.space2}></View>
+        <View style={{height: 30}}></View>
         <View style={styles.space2}></View>
           <Image
-            style={{width: 350, height: 1100, alignItems: 'center', justifyContent: 'center'}}
+            style={{width, height, alignItems: 'center', justifyContent: 'center'}}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/43092523-7b5384f4-8e7b-11e8-8a18-ac5e5878cceb.png'}}
+            /*
             source={{uri: 'https://user-images.githubusercontent.com/18129905/35191600-6ddc0580-fe4d-11e7-8f30-26c6929a44c7.png'}}
+            */
           />
-          <Text>Note: We are in the process of updating this page to include the councilmembers of Greensboro.</Text>
           <View style={styles.space2}></View>
           <View style={styles.space2}></View>
           <View style={styles.space2}></View>
