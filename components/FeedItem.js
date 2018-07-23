@@ -195,13 +195,15 @@ export default class FeedItem extends React.Component {
 
         const pinned = false
 
-        const width = Dimensions.get('window').width
+        const width = Dimensions.get('window').width;
+        const height = Dimensions.get('window').width * 0.562;
 
         return (
             <View style={styles.container}>
               <TouchableOpacity onPress={onPress}>
                   <Image
-                      style={{height: 210, width, backgroundColor: 'powderBlue'}}
+                      // style={{height: 210, width, backgroundColor: 'powderBlue'}}
+                      style={{height, width, backgroundColor: 'powderBlue'}}
                       javaScriptEnabled={true}
                       source={{ uri: imageSource }}
                   />
@@ -209,26 +211,26 @@ export default class FeedItem extends React.Component {
                 <View style={{height: 10}}/>
                 <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
                     <View style={{width: 15}}/>
-                    <TouchableHighlight onPress={this.upVote}>
-                        <Ionicons name="ios-thumbs-up-outline" size={35} />
+                    <TouchableHighlight>
+                        <Ionicons name="ios-thumbs-up-outline" size={30} />
                     </TouchableHighlight>
                     <View style={{width: 17}}/>
-                    <TouchableHighlight onPress={this.downVote}>
-                        <Ionicons name="ios-thumbs-down-outline" size={35} />
+                    <TouchableHighlight>
+                        <Ionicons name="ios-thumbs-down-outline" size={30} />
                     </TouchableHighlight>
                     <View style={{width: 15}}/>
-                    <View style={{position: 'absolute', right: 19}}>
-                        <TouchableHighlight onPress={this.pin}>
-                            <Ionicons name="ios-bookmark-outline" size={35} />
+                    <View style={{position: 'absolute', right: 20}}>
+                        <TouchableHighlight>
+                            <Ionicons name="ios-bookmark-outline" size={30} />
                         </TouchableHighlight>
                         <View style={{width: 15}}/>
                     </View>
                 </View>
-                <View style={{height: 10}}/>
+                <View style={{height: 5}}/>
                 <TouchableOpacity onPress={onPress}>
                     <Text style={{fontSize: 12}}>{title}</Text>
                 </TouchableOpacity>
-                <View style={{height: 13}}/>
+                <View style={{height: 4, backgroundColor: '#d8d4d4'}}/>
             </View>
         );
     }
