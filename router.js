@@ -73,25 +73,25 @@ const AppTabs = TabNavigator({
   MainFeed: {
     screen: ArticleStack,
     navigationOptions: {
-      title: 'Your Feed',
+      title: 'My Feed',
     }
   },
   CouncilScreen: {
     screen: CouncilScreen,
     navigationOptions: {
-      title: 'Your Council',
+      title: 'My Council',
     }
   },
   AggregateFeedback: {
     screen: AggregateFeedback,
     navigationOptions: {
-      title: 'Your feedback'
+      title: 'My Feedback'
     }
   },
   PinnedPosts: {
     screen: PinnedPosts,
     navigationOptions: {
-      title: 'Pinned Posts'
+      title: 'My Bookmarks'
     }
   }
 }, {
@@ -105,19 +105,19 @@ const AppTabs = TabNavigator({
       if (routeName === 'MainFeed' ) {
         iconName = `ios-paper${focused ? '' : '-outline'}`;
       } else if (routeName === 'CouncilScreen') {
-        // TODO: Choose icon
+        iconName = `ios-people${focused ? '' : '-outline'}`;
       } else if (routeName === 'AggregateFeedback' ) {
-        // TODO: Choose icon
+        iconName = `ios-chatbubbles${focused ? '' : '-outline'}`;
       } else if (routeName === 'PinnedPosts') {
-        // TODO: Choose icon
+        iconName = `ios-bookmark${focused ? '' : '-outline'}`;
       }
 
       return <Ionicons name={iconName} size={25} color={tintColor} />;
     }
   }),
   tabBarOptions: {
-    activeTintColor: 'tomato',
-    inactiveTintColor: 'gray'
+    activeTintColor: '#EE4C50',
+    inactiveTintColor: '#4C4343'
   },
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom'
