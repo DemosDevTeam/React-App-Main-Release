@@ -180,7 +180,7 @@ class ArticleScreen extends React.Component {
     this.setState({"comment": comment})
   }
 
-  placeholderFunction = async () => {
+  submitFunction = async () => {
     const user = await AsyncStorage.getItem('user');
     const article = await this.state.article;
     const mcQuestionsJson = article.mcquestions;
@@ -200,9 +200,9 @@ class ArticleScreen extends React.Component {
     }
 
     if(!hasMCQuestions && !hasFRQuestions){
-      //write comment to database, no other action needed
-      //TODO: write function for writing comment to db
+      //call function for writing comment to db
       await this.writeCommentToDB();
+      this.props.navigation.navigate('MainFeed');
     } else if (hasMCQuestions && hasFRQuestions){
       //check if user has answered all questions
       let answeredMC = true;
@@ -224,13 +224,15 @@ class ArticleScreen extends React.Component {
       }
 
       if(answeredFR && answeredMC){
-        //TODO: write function for writing fr and mc questions to db
+        //call functions for writing fr and mc questions to db
         await this.writeFRToDB();
         await this.writeMCToDB();
-        //TODO: call function for writing commment to db
+        //call function for writing commment to db
         await this.writeCommentToDB();
+        //nav back to main feed
+        this.pops.navigation.navigate('MainFeed');
       } else {
-        console.log("user didn't answer all questions")
+        Alert.alert("please ensure that you've answered all questions before submitting!");
       }
 
     } else if (hasMCQuestions){
@@ -244,12 +246,13 @@ class ArticleScreen extends React.Component {
         }
       }
       if(answeredMC){
-        //TODO: write function for writing mc questions to db
+        //call function for writing mc questions to db
         await this.writeMCToDB();
-        //TODO: call function for writing comment to db
+        //call function for writing comment to db
         await this.writeCommentToDB();
+        this.props.navigation.navigate('MainFeed');
       } else {
-        console.log("user didn't answer all questions");
+        Alert.alert("please ensure that you've answered all questions before submitting!");
       }
 
     } else {
@@ -264,12 +267,13 @@ class ArticleScreen extends React.Component {
       }
 
       if(answeredFR){
-        //TODO: write function for writing fr questions to db
+        //call function for writing fr questions to db
         await this.writeFRToDB();
-        //TODO: call function for writing comment to db
+        //call function for writing comment to db
         await this.writeCommentToDB();
+        this.props.navigation.navigate('MainFeed');
       } else {
-        console.log("user didn't answer all questions");
+        Alert.alert("please ensure that you've answered all questions before submitting!");
       }
     }
 
@@ -537,7 +541,7 @@ class ArticleScreen extends React.Component {
         <CommentForm
         Upvote={this.upvote}
         Downvote={this.downvote}
-        onSubmit={this.placeholderFunction}
+        onSubmit={this.submitFunction}
         onPin={this.pin}
         onComment={this.onComment}
         article={article}
