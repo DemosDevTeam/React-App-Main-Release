@@ -116,8 +116,8 @@ const AppTabs = TabNavigator({
     }
   }),
   tabBarOptions: {
-    activeTintColor: 'tomato',
-    inactiveTintColor: 'gray'
+    activeTintColor: '#EE4C50',
+    inactiveTintColor: '#4C4343'
   },
   tabBarComponent: TabBarBottom,
   tabBarPosition: 'bottom'
