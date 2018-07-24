@@ -72,6 +72,7 @@ export default class AggregateFeedback extends React.Component {
               //add city name to the json object we write
               articles[video.key] = video.val();
               articles[video.key].city = city.key;
+              articles[video.key].id = video.key;
             }
           })
         }

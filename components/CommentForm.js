@@ -43,7 +43,12 @@ class Answer extends React.Component {
   render () {
     return (
       <View>
-        <TextInput onChangeText={this.writeAnswer}/>
+        <TextInput
+        placeholder='    Put your response here'
+        style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3}}
+        editable={true}
+        multiline={true}
+        onChangeText={this.writeAnswer}/>
       </View>
     )
   }

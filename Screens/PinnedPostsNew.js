@@ -51,6 +51,7 @@ export default class PinnedPosts extends React.Component {
 
                 articles[article.key] = article.val();
                 articles[article.key].city = city.key;
+                articles[article.key].id = article.key;
               }
             })
           }

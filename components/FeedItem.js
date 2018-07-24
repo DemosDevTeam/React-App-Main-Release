@@ -29,18 +29,56 @@ const styles = StyleSheet.create({
 })
 
 export default class FeedItem extends React.Component {
-    // TODO: Prop types have changed in React recently
-    // Not necessary but better to have strict type encorcement
-    // Keeping for docs
-    /*
-    static propTypes = {
-        title: React.PropTypes.string.isRequired,
-        videoUri: React.PropTypes.string.isRequired,
-        pinned: React.PropTypes.boolean.optional,
-        excerpt: React.PropTypes.string.optional,
-        tags: React,Propt
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        upVoteIcon: "ios-thumbs-up-outline",
+        downVoteIcon: "ios-thumbs-down-outline",
+        pinIcon: "ios-bookmark-outline"
+      }
     }
-    */
+
+    //Need to populate correct icons on mount to reflect users previous interactions with app
+    componentDidMount = async () => {
+      const user = await AsyncStorage.getItem('user');
+      let articleId = this.props.article.id;
+      let city = this.props.article.city;
+      let database = firebaseApp.database();
+
+      //if user hasn't reacted then userRection = undefined, otherwise it holds value for reaction
+      let userReaction = await database.ref('/Users/' + user + '/').once('value').then(snap => {
+
+        if(snap.hasChild('Reactions')){
+          if(snap.child('Reactions').hasChild(articleId)){
+            if(snap.child('Reactions').child(articleId).hasChild('reaction')){
+              return snap.child('Reactions').child(articleId).child('reaction').val();
+            }
+          }
+        }
+        return undefined;
+      })
+
+      //return true or false depending on whether the user has pinned this video or not
+      let userPinned = await database.ref('/Users/' + user + '/').once('value').then(snap => {
+        if(snap.hasChild('Pinned')){
+          if(snap.child('Pinned').hasChild(articleId)){
+            return true;
+          }
+        }
+        return false;
+      })
+
+      if(userPinned){
+        this.setState({'pinIcon': "ios-bookmark"})
+      }
+
+      if(userReaction === 'negative'){
+        this.setState({'downVoteIcon': "ios-thumbs-down"});
+      } else if (userReaction === 'positive') {
+        this.setState({'upVoteIcon':"ios-thumbs-up"});
+      }
+    }
 
     upVote = async () => {
       const user = await AsyncStorage.getItem('user');
@@ -114,9 +152,12 @@ export default class FeedItem extends React.Component {
           })
         }
       })
+
+      this.updateIcons('positive');
     }
 
     downVote = async () => {
+      console.log("inside of downVote function");
       const user = await AsyncStorage.getItem('user');
       let articleId = await this.props.article.id;
       let city = await this.props.article.city;
@@ -175,8 +216,18 @@ export default class FeedItem extends React.Component {
               database.ref('/videos/' + city + '/' + articleId + '/Negaitve Reactions/').set(currentNegativeReviews);
             })
           }
+        }  else {
+          //Need to increment count for this video of negative reactions and set user reaction to "positive"
+          database.ref('/Users/' + user + '/Reactions/' + articleId + '/reaction/').set("negative");
+          await database.ref('/videos/' + city + '/' + articleId + '/Negative Reactions/').once('value').then((snap) => {
+            let currentNegativeReviews = snap.val();
+            currentNegativeReviews = currentNegativeReviews+1;
+            database.ref('/videos/' + city + '/' + articleId + '/Negative Reactions/').set(currentNegativeReviews);
+          })
         }
       })
+
+      this.updateIcons('negative');
     }
 
     pin = async () => {
@@ -185,7 +236,53 @@ export default class FeedItem extends React.Component {
       let city = this.props.article.city;
       let database = firebaseApp.database();
 
-      await database.ref('/Users/' + user + '/Pinned/' + articleId + '/').set(city);
+      await database.ref('/Users/' + user + '/').once('value').then(async snap => {
+        if(snap.hasChild('Pinned')){
+          if(snap.child('Pinned').hasChild(articleId)){
+            await database.ref('/Users/' + user +'/Pinned/' + articleId + '/').remove();
+          } else {
+            await database.ref('/Users/' + user + '/Pinned/' + articleId + '/').set(city);
+          }
+        } else {
+          await database.ref('/Users/' + user + '/Pinned/' + articleId + '/').set(city);
+        }
+      })
+
+      this.updateIcons('pin');
+    }
+
+    updateIcons = (input) => {
+      //helper function for updating downvote/upvote/pin actions
+      if(input === 'negative'){
+        if(this.state.downVoteIcon === "ios-thumbs-down"){
+          //update state for upVoteIcon
+          this.setState({'upVoteIcon':"ios-thumbs-up-outline"});
+        } else {
+          //need to update state for downVoteIcon and upVoteIcon
+          this.setState({'downVoteIcon':"ios-thumbs-down"});
+          this.setState({'upVoteIcon':"ios-thumbs-up-outline"});
+        }
+      }
+
+      if(input === 'positive'){
+        if(this.state.upVoteIcon === "ios-thumbs-up"){
+          //updaate state for downVoteIcon
+          this.setState({'downVoteIcon':"ios-thumbs-down-outline"});
+        } else {
+          //need to update state for upVoteIcon and downVoteIcon
+          this.setState({'upVoteIcon':"ios-thumbs-up"})
+          this.setState({'downVoteIcon':"ios-thumbs-down-outline"});
+        }
+      }
+
+      if(input === 'pin'){
+        if(this.state.pinIcon === "ios-bookmark-outline"){
+          this.setState({'pinIcon':"ios-bookmark"})
+        } else {
+          this.setState({'pinIcon':"ios-bookmark-outline"})
+        }
+
+      }
     }
 
     render() {
@@ -216,17 +313,17 @@ export default class FeedItem extends React.Component {
                 <View style={{height: 10}}/>
                 <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
                     <View style={{width: 15}}/>
-                    <TouchableHighlight>
-                        <Ionicons name="ios-thumbs-up-outline" size={30} />
+                    <TouchableHighlight onPress={this.upVote}>
+                        <Ionicons name={this.state.upVoteIcon} size={30} />
                     </TouchableHighlight>
                     <View style={{width: 17}}/>
-                    <TouchableHighlight>
-                        <Ionicons name="ios-thumbs-down-outline" size={30} />
+                    <TouchableHighlight onPress={this.downVote}>
+                        <Ionicons name={this.state.downVoteIcon} size={30} />
                     </TouchableHighlight>
                     <View style={{width: 15}}/>
                     <View style={{position: 'absolute', right: 20}}>
-                        <TouchableHighlight>
-                            <Ionicons name="ios-bookmark-outline" size={30} />
+                        <TouchableHighlight onPress={this.pin}>
+                            <Ionicons name={this.state.pinIcon} size={30} />
                         </TouchableHighlight>
                         <View style={{width: 15}}/>
                     </View>
