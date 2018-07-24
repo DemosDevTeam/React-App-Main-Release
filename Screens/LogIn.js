@@ -197,9 +197,9 @@ class LogIn extends Component {
         />
         </View>
 
-        <View style={{marginLeft: 130}}>
-        <TextInput placeholder="Email" onChangeText={this.handleEmail}/>
-        <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword}/>
+        <View>
+        <TextInput placeholder="Email" onChangeText={this.handleEmail} style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}}/>
+        <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword} style={{marginTop: 10, marginBottom: 15, marginLeft: 75, marginRight: 75, fontSize: 13, backgroundColor: '#ffffff', borderRadius: 3}}/>
         </View>
 
         <View style={styles.space2}></View>
