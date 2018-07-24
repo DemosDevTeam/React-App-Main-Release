@@ -20,7 +20,8 @@ class MainFeed extends React.Component {
     }
 
     state = {
-        articles: { }
+        articles: { },
+        keyTwo:0,
     }
 
     componentWillReceiveProps = () => {
@@ -32,7 +33,9 @@ class MainFeed extends React.Component {
       const offsetY = event.nativeEvent.contentOffset.y
       console.log(offsetY)
       if(offsetY < -4){
-        this.props.navigation.navigate('AuthLoading');
+        let keyTwo = this.state.keyTwo;
+        keyTwo = keyTwo+1;
+        this.setState({'keyTwo':keyTwo});
       }
     }
 
@@ -132,6 +135,7 @@ class MainFeed extends React.Component {
 
     render() {
       console.log("inside of render function");
+      console.disableYellowBox = true;
 
         const { articles } = this.state;
 
@@ -163,7 +167,7 @@ class MainFeed extends React.Component {
         }
 
         return (
-            <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll}>
+            <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll} key={this.state.keyTwo}>
                 {articlesJsx}
             </ScrollView>
         );

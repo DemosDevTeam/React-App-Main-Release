@@ -71,6 +71,7 @@ class CommentForm extends React.Component {
     }
 
     render() {
+        console.disableYellowBox = true;
         const article = this.props.article;
         let mcquestions = [];//will be array of arrays where 0th index is question, all others are answer choices
         let frquestions = [];

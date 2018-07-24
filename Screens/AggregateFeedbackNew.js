@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
 
 export default class AggregateFeedback extends React.Component {
   state = {
-    articles: { }
+    articles: { },
+    keyTwo: 0
   }
 
   constructor(props){
@@ -88,20 +89,15 @@ export default class AggregateFeedback extends React.Component {
     const offsetY = event.nativeEvent.contentOffset.y
     console.log(offsetY)
     if(offsetY < -4){
-      //replicate componentDidMount functionality so screen is updated to reflect current pinned posts
-      let err, articles;
-      [err, articles] = await to(this.fetchArticles());
-
-      if(!articles && err) {
-        throw new Error("Failed to fetch articles");
-      }
-
-      this.setState({ articles });
+      let keyTwo = this.state.keyTwo;
+      keyTwo = keyTwo+1;
+      this.setState({'keyTwo':keyTwo});
     }
   }
 
   render() {
     const { articles } = this.state;
+    console.disableYellowBox = true;
 
     let articlesJsx;
 
@@ -133,7 +129,7 @@ export default class AggregateFeedback extends React.Component {
     }
 
     return (
-      <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll}>
+      <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll} key={this.state.keyTwo}>
           {articlesJsx}
       </ScrollView>
     );
