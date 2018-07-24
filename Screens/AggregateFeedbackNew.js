@@ -83,6 +83,22 @@ export default class AggregateFeedback extends React.Component {
 
   }
 
+  handleScroll = async (event) => {
+    console.log("handling scroll!");
+    const offsetY = event.nativeEvent.contentOffset.y
+    console.log(offsetY)
+    if(offsetY < -4){
+      //replicate componentDidMount functionality so screen is updated to reflect current pinned posts
+      let err, articles;
+      [err, articles] = await to(this.fetchArticles());
+
+      if(!articles && err) {
+        throw new Error("Failed to fetch articles");
+      }
+
+      this.setState({ articles });
+    }
+  }
 
   render() {
     const { articles } = this.state;
@@ -117,7 +133,7 @@ export default class AggregateFeedback extends React.Component {
     }
 
     return (
-      <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
+      <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll}>
           {articlesJsx}
       </ScrollView>
     );

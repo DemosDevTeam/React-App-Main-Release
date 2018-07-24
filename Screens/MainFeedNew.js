@@ -23,7 +23,21 @@ class MainFeed extends React.Component {
         articles: { }
     }
 
+    componentWillReceiveProps = () => {
+      console.log("componentWillRecieveProps was called");
+    }
+
+    handleScroll = (event) => {
+      console.log("handling scroll!");
+      const offsetY = event.nativeEvent.contentOffset.y
+      console.log(offsetY)
+      if(offsetY < -4){
+        this.props.navigation.navigate('AuthLoading');
+      }
+    }
+
     componentDidMount = async () => {
+        console.log("Component Did Mount was called");
         // Fetch all recent articles
         let err, articles;
         [err, articles] = await to(this.fetchArticles());
@@ -117,7 +131,7 @@ class MainFeed extends React.Component {
     }
 
     render() {
-
+      console.log("inside of render function");
 
         const { articles } = this.state;
 
@@ -149,7 +163,7 @@ class MainFeed extends React.Component {
         }
 
         return (
-            <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
+            <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll}>
                 {articlesJsx}
             </ScrollView>
         );

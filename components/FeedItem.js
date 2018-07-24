@@ -41,6 +41,7 @@ export default class FeedItem extends React.Component {
 
     //Need to populate correct icons on mount to reflect users previous interactions with app
     componentDidMount = async () => {
+      console.log("inside of FeedItem componentDidMount");
       const user = await AsyncStorage.getItem('user');
       let articleId = this.props.article.id;
       let city = this.props.article.city;
@@ -247,6 +248,10 @@ export default class FeedItem extends React.Component {
           await database.ref('/Users/' + user + '/Pinned/' + articleId + '/').set(city);
         }
       })
+
+      if(this.props.updatePinnedPosts != undefined){
+        await this.props.updatePinnedPosts();
+      }
 
       this.updateIcons('pin');
     }

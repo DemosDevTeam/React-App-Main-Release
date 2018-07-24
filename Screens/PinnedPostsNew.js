@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, AsyncStorage, ScrollView } from 'react-native'
 import { to } from '../components/util'
 import { FeedItem } from '../components'
 import firebaseApp from '../firebaseApp'
+import {NavigationActions} from 'react-navigation'
 
 export default class PinnedPosts extends React.Component {
   state = {
@@ -61,6 +62,35 @@ export default class PinnedPosts extends React.Component {
     return articles;
   }
 
+  updatePinnedPosts = async () => {
+    //replicate componentDidMount functionality so screen is updated to reflect current pinned posts
+    let err, articles;
+    [err, articles] = await to(this.fetchArticles());
+
+    if(!articles && err) {
+      throw new Error("Failed to fetch articles");
+    }
+
+    this.setState({ articles });
+  }
+
+  handleScroll = async (event) => {
+    console.log("handling scroll!");
+    const offsetY = event.nativeEvent.contentOffset.y
+    console.log(offsetY)
+    if(offsetY < -4){
+      //replicate componentDidMount functionality so screen is updated to reflect current pinned posts
+      let err, articles;
+      [err, articles] = await to(this.fetchArticles());
+
+      if(!articles && err) {
+        throw new Error("Failed to fetch articles");
+      }
+
+      this.setState({ articles });
+    }
+  }
+
   render() {
     console.log("inside of render function");
     const { articles } = this.state;
@@ -81,6 +111,7 @@ export default class PinnedPosts extends React.Component {
 
       articlesJsx = Object.entries(articles).map(([articleId, article]) => (
         <FeedItem
+        updatePinnedPosts={this.updatePinnedPosts}
         key={articleId}
         article={article}
         onPress={() => navigation.navigate('Article', {
@@ -95,7 +126,7 @@ export default class PinnedPosts extends React.Component {
     }
 
     return (
-      <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
+      <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll}>
           {articlesJsx}
       </ScrollView>
     );
