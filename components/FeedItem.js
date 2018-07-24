@@ -208,7 +208,7 @@ export default class FeedItem extends React.Component {
               <TouchableOpacity onPress={onPress}>
                   <Image
                       // style={{height: 210, width, backgroundColor: 'powderBlue'}}
-                      style={{height, width, backgroundColor: 'powderBlue'}}
+                      style={{height, width}}
                       javaScriptEnabled={true}
                       source={{ uri: imageSource }}
                   />
