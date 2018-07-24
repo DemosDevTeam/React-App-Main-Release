@@ -9,6 +9,7 @@ class AnswerChoice extends React.Component {
   }*/
   //function to pass information back up to ArticleScreen to handle logic of incrementing firebase count
   selectAnswer = () => {
+    console.log("triggered touchable highlight mc question response");
     const answerString = this.props.answerString;
     const questionString = this.props.questionString;
     console.log("value of question inside of AnswerChoice.selectAnswer is " + questionString);
@@ -19,9 +20,9 @@ class AnswerChoice extends React.Component {
     const answerString = this.props.answerString;
     return (
       <View>
-        <TouchableOpacity onPress={this.selectAnswer}>
+        <TouchableHighlight onPress={this.selectAnswer}>
           <Text>{answerString}</Text>
-        </TouchableOpacity>
+        </TouchableHighlight>
       </View>
       )
     }
@@ -123,22 +124,28 @@ class CommentForm extends React.Component {
                 <View style={styles.space2}></View>
                 <View style={styles.space2}></View>
                 <View>{frquestions}</View>
-                <Button
-                  title="Up Vote"
-                  onPress={this.props.Upvote}
-                />
-                <Button
-                  title="Down Vote"
-                  onPress={this.props.Downvote}
-                />
+                <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
+                    <View style={{width: 15}}/>
+                    <TouchableHighlight onPress={this.props.Upvote}>
+                        <Ionicons name="ios-thumbs-up-outline" size={30} />
+                    </TouchableHighlight>
+                    <View style={{width: 17}}/>
+                    <TouchableHighlight onPress={this.props.Downvote}>
+                        <Ionicons name="ios-thumbs-down-outline" size={30} />
+                    </TouchableHighlight>
+                    <View style={{width: 15}}/>
+                    <View style={{position: 'absolute', right: 20}}>
+                        <TouchableHighlight onPress={this.props.onPin}>
+                            <Ionicons name="ios-bookmark-outline" size={30} />
+                        </TouchableHighlight>
+                        <View style={{width: 15}}/>
+                    </View>
+                </View>
                 <Button
                     title="Submit Feedback"
                     onPress={this.props.onSubmit}
                 />
-                <Button
-                  title="Pin Post"
-                  onPress={this.props.onPin}
-                />
+
             </View>
         );
     }
@@ -149,4 +156,18 @@ const styles = StyleSheet.create({
     height: 5,
   }
 });
+
+/*                <Button
+                  title="Pin Post"
+                  onPress={this.props.onPin}
+                />*/
+
+  /*              <Button
+                  title="Up Vote"
+                  onPress={this.props.Upvote}
+                />
+                <Button
+                  title="Down Vote"
+                  onPress={this.props.Downvote}
+                />*/
 export default CommentForm;

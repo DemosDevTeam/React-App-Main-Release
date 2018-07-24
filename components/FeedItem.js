@@ -6,6 +6,9 @@
 // Article
 //
 
+/* for reflecting previous responses just change Ionicons name="ios-thumbs-down-outline" to Ionicons name="ios-thumbs-down" */
+//Need to write componentDidMount to get current status
+
 import React from 'react'
 import { Dimensions, View, StyleSheet, TouchableOpacity, TouchableHighlight, Text, WebView, Image, AsyncStorage } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -192,6 +195,7 @@ export default class FeedItem extends React.Component {
         const { title, content } = article;
         const videoSource = article.urlvideo;
         const imageSource = article.urlpic;
+        const articleName = article.id;
 
         const pinned = false
 
@@ -200,6 +204,7 @@ export default class FeedItem extends React.Component {
 
         return (
             <View style={styles.container}>
+            <Text>{articleName}</Text>
               <TouchableOpacity onPress={onPress}>
                   <Image
                       // style={{height: 210, width, backgroundColor: 'powderBlue'}}

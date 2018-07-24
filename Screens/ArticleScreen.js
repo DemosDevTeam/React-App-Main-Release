@@ -174,6 +174,7 @@ class ArticleScreen extends React.Component {
     let database = firebaseApp.database();
 
     database.ref('/Users/' + user + '/Pinned/' + articleId + '/').set(city);
+
   }
 
   onComment = (comment) => {
