@@ -121,11 +121,11 @@ export default class RegistrationScreen1 extends Component {
           />
         </View>
         <View>
-        <View style={{marginLeft: 110}}>
-        <TextInput style={styles.userInputs} onChangeText={this.handleName}placeholder="name"/>
-        <TextInput style={styles.userInputs} onChangeText={this.handleEmail} placeholder="email"/>
-        <TextInput secureTextEntry={true} style={styles.userInputs} onChangeText={this.handlePassword} placeholder="password"/>
-        <TextInput style={styles.userInputs} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
+        <View>
+        <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handleName}placeholder="name"/>
+        <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handleEmail} placeholder="email"/>
+        <TextInput secureTextEntry={true} style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handlePassword} placeholder="password"/>
+        <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
         </View>
         <View style={{height: 32}}></View>
         <Button onPress={this.onSubmit} title="Register" />
