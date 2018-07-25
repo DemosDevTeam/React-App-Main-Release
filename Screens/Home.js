@@ -55,7 +55,7 @@ export default class Home extends Component {
           />
           <Image
             style={{width: 200, height: 120}}
-            source={{uri: 'https://user-images.githubusercontent.com/18129905/35842080-0e87b16e-0ace-11e8-9fc0-151043ca61fe.png'}}
+            source={{uri: 'https://user-images.githubusercontent.com/18129905/43050902-6fc94544-8dde-11e8-94fd-9bdfa1df6ead.png'}}
           />
           <Text style={styles.welcome2}>
           Your voice, your local government.
