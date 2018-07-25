@@ -81,6 +81,7 @@ export default class PinnedPosts extends React.Component {
     const offsetY = event.nativeEvent.contentOffset.y
     console.log(offsetY)
     if(offsetY < -4){
+      await this.componentDidMount();
       let keyTwo = this.state.keyTwo;
       keyTwo = keyTwo+1;
       this.setState({'keyTwo':keyTwo});
