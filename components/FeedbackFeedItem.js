@@ -97,11 +97,13 @@ export default class FeedbackFeedItem extends React.Component {
               feedback.push(
                 <View>
                   <View>
-                    <Text>{question.key}</Text>
+                    <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>{question.key}</Text>
                   </View>
-                  <View>
+                  <TouchableHighlight>
+                  <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
                     <Text>{question.val()}</Text>
                   </View>
+                  </TouchableHighlight>
                 </View>
               )
             })
@@ -110,11 +112,13 @@ export default class FeedbackFeedItem extends React.Component {
               feedback.push(
                 <View>
                   <View>
-                    <Text>{question.key}</Text>
+                    <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>{question.key}</Text>
                   </View>
-                  <View>
+                  <TouchableHighlight>
+                  <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
                     <Text>{question.val()}</Text>
                   </View>
+                  </TouchableHighlight>
                 </View>
             )
             })
@@ -122,12 +126,14 @@ export default class FeedbackFeedItem extends React.Component {
             snap.child('answers').child('frquestions').forEach(question => {
               feedback.push(
                 <View>
-                  <View>
+                  <View style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>
                     <Text>{question.key}</Text>
                   </View>
-                  <View>
+                  <TouchableHighlight>
+                  <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
                     <Text>{question.val()}</Text>
                   </View>
+                  </TouchableHighlight>
                 </View>
               )
             })
@@ -135,12 +141,14 @@ export default class FeedbackFeedItem extends React.Component {
             snap.child('answers').child('mcquestions').forEach(question => {
               feedback.push(
                 <View>
-                  <View>
+                  <View style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>
                     <Text>{question.key}</Text>
                   </View>
-                  <View>
+                  <TouchableHighlight>
+                  <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
                     <Text>{question.val()}</Text>
                   </View>
+                  </TouchableHighlight>
                 </View>
             )
           })
@@ -150,10 +158,11 @@ export default class FeedbackFeedItem extends React.Component {
           let comment = snap.child('comment');
           feedback.push(
             <View>
-              <View>
-                <Text>{comment.key}</Text>
+              <View style={{marginLeft: 19, marginTop: 1, marginRight: 15}}>
+              <Text>Comment:</Text>
               </View>
-              <View>
+              <View style={{height: 10}}/>
+              <View style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3, marginBottom: 15}}>
                 <Text>{comment.val()}</Text>
               </View>
             </View>
@@ -406,7 +415,13 @@ export default class FeedbackFeedItem extends React.Component {
         }else{
           return (
               <View style={styles.container}>
-              <Text>{articleName}</Text>
+              <TouchableOpacity onPress={onPress}>
+                  <Text style={{fontSize: 1}}>{title}</Text>
+              </TouchableOpacity>
+              <View style={{marginLeft: 10}}>
+              <Text style={{fontSize: 16}}>{articleName}</Text>
+              </View>
+              <View style={{height: 6}}/>
                 <TouchableOpacity onPress={onPress}>
                     <Image
                         // style={{height: 210, width, backgroundColor: 'powderBlue'}}
@@ -419,26 +434,30 @@ export default class FeedbackFeedItem extends React.Component {
                   <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
                       <View style={{width: 15}}/>
                       <TouchableHighlight onPress={this.upVote}>
-                          <Ionicons name={this.state.upVoteIcon} size={30} />
+                          <Ionicons name={this.state.upVoteIcon} color={'#F05758'} size={30} />
                       </TouchableHighlight>
                       <View style={{width: 17}}/>
                       <TouchableHighlight onPress={this.downVote}>
-                          <Ionicons name={this.state.downVoteIcon} size={30} />
+                          <Ionicons name={this.state.downVoteIcon} color={'#51585E'} size={30} />
                       </TouchableHighlight>
                       <View style={{width: 15}}/>
                       <View style={{position: 'absolute', right: 20}}>
                           <TouchableHighlight onPress={this.pin}>
-                              <Ionicons name={this.state.pinIcon} size={30} />
+                              <Ionicons name={this.state.pinIcon} color={'#49C7E3'} size={30} />
                           </TouchableHighlight>
                           <View style={{width: 15}}/>
                       </View>
                   </View>
-                  <View style={{height: 5}}/>
-                  <TouchableOpacity onPress={onPress}>
-                      <Text style={{fontSize: 12}}>{title}</Text>
-                  </TouchableOpacity>
-                  <View style={{height: 4, backgroundColor: '#d8d4d4'}}/>
+                  <View style={{height: 10}}/>
                   <View>{this.state.feedback}</View>
+                  <View style={{height: 8}}/>
+                  <View style={{alignItems: 'center'}}>
+                  <Image
+                      style={{height: 0.5, width: 330}}
+                      source={{ uri: 'https://user-images.githubusercontent.com/18129905/43154762-80b0b606-8f43-11e8-9fed-21922ca2ac85.png'}}
+                  />
+                  </View>
+
               </View>
           );
         }
