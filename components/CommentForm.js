@@ -6,7 +6,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 class AnswerChoice extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       backgroundColor: '#DFDFE2'
     }
@@ -52,7 +52,7 @@ class Answer extends React.Component {
       <View>
         <TextInput
         placeholder='    Put your response here'
-        style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3}}
+        style={{marginLeft: 19, marginRight: 19, marginTop: 15, marginBottom: 15, backgroundColor: '#55CFE0', borderRadius: 3}}
         editable={true}
         multiline={true}
         onChangeText={this.writeAnswer}/>
@@ -101,8 +101,8 @@ class CommentForm extends React.Component {
             <View>
             <View style={{alignItems: 'center'}}>
             <Image
-                style={{height: 0.5, width: 330}}
-                source={{ uri: 'https://user-images.githubusercontent.com/18129905/43154762-80b0b606-8f43-11e8-9fed-21922ca2ac85.png'}}
+                style={{height: 9, width: 330}}
+                source={{ uri: 'https://user-images.githubusercontent.com/18129905/43182624-11b1b79c-8fb0-11e8-9e05-4a4696346581.png'}}
             />
             </View>
             <View style={{height: 10}}/>
@@ -165,8 +165,8 @@ class CommentForm extends React.Component {
                 <View>{frquestions}</View>
                 <View style={{alignItems: 'center'}}>
                 <Image
-                    style={{height: 0.5, width: 330}}
-                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43154762-80b0b606-8f43-11e8-9fed-21922ca2ac85.png'}}
+                    style={{height: 9, width: 330}}
+                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43182624-11b1b79c-8fb0-11e8-9e05-4a4696346581.png'}}
                 />
                 </View>
                 <View style={{height: 10}}/>
