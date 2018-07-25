@@ -231,7 +231,7 @@ class ArticleScreen extends React.Component {
         //call function for writing commment to db
         await this.writeCommentToDB();
         //nav back to main feed
-        this.pops.navigation.navigate('MainFeed');
+        this.props.navigation.navigate('MainFeed');
       } else {
         Alert.alert("please ensure that you've answered all questions before submitting!");
       }

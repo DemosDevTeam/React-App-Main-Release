@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, StyleSheet, Text, AsyncStorage, ScrollView } from 'react-native'
 import { to } from '../components/util'
-import { FeedItem } from '../components'
+import FeedbackFeedItem from '../components/FeedbackFeedItem'
 import firebaseApp from '../firebaseApp'
 
 
@@ -114,7 +114,7 @@ export default class AggregateFeedback extends React.Component {
       const { navigation } = this.props
 
       articlesJsx = Object.entries(articles).map(([articleId, article]) => (
-        <FeedItem
+        <FeedbackFeedItem
         key={articleId}
         article={article}
         onPress={() => navigation.navigate('Article', {
