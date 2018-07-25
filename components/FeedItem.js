@@ -339,11 +339,10 @@ export default class FeedItem extends React.Component {
                     </View>
                 </View>
                 <View style={{height: 10}}/>
-                <View style={{height: 2}}/>
                 <View style={{alignItems: 'center'}}>
                 <Image
-                    style={{height: 0.5, width: 330}}
-                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43154762-80b0b606-8f43-11e8-9fed-21922ca2ac85.png'}}
+                    style={{height: 9, width: 330}}
+                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43182624-11b1b79c-8fb0-11e8-9e05-4a4696346581.png'}}
                 />
                 </View>
             </View>
