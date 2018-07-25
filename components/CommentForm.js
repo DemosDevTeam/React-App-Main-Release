@@ -1,15 +1,20 @@
 import React from 'react'
 
-import { View, Text, StyleSheet, Form, TextInput, TouchableHighlight, Button, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, Form, TextInput, TouchableHighlight, Button, Image, TouchableOpacity } from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 class AnswerChoice extends React.Component {
-  /*constructor(props) {
+  constructor(props) {
     super(props);
-  }*/
+    
+    this.state = {
+      backgroundColor: '#DFDFE2'
+    }
+  }
   //function to pass information back up to ArticleScreen to handle logic of incrementing firebase count
   selectAnswer = () => {
     console.log("triggered touchable highlight mc question response");
+    this.state.backgroundColor='#F05758';
     const answerString = this.props.answerString;
     const questionString = this.props.questionString;
     console.log("value of question inside of AnswerChoice.selectAnswer is " + questionString);
@@ -21,7 +26,9 @@ class AnswerChoice extends React.Component {
     return (
       <View>
         <TouchableHighlight onPress={this.selectAnswer}>
+        <View style={{marginTop: 4, marginBottom: 4, borderRadius: 5, alignItems: 'center', backgroundColor: this.state.backgroundColor}}>
           <Text>{answerString}</Text>
+        </View>
         </TouchableHighlight>
       </View>
       )
@@ -92,8 +99,15 @@ class CommentForm extends React.Component {
 
           mcquestions.push(
             <View>
+            <View style={{alignItems: 'center'}}>
+            <Image
+                style={{height: 0.5, width: 330}}
+                source={{ uri: 'https://user-images.githubusercontent.com/18129905/43154762-80b0b606-8f43-11e8-9fed-21922ca2ac85.png'}}
+            />
+            </View>
+            <View style={{height: 10}}/>
               <Text style={{marginLeft: 19, marginRight: 19}}>{question}</Text>
-              <TouchableOpacity style={{marginLeft: 19, marginRight: 19, marginTop: 15, marginBottom: 15, borderRadius: 4, padding: 7, activeTintColor: '#EE4C50', inactiveTintColor: '#EDEDED'}}>{answers}</TouchableOpacity>
+              <TouchableOpacity style={{marginLeft: 19, marginRight: 19, marginTop: 10, marginBottom: 10, borderRadius: 4, padding: 7, activeTintColor: '#EE4C50', inactiveTintColor: '#EDEDED'}}>{answers}</TouchableOpacity>
             </View>
           )
         }
@@ -111,8 +125,68 @@ class CommentForm extends React.Component {
         }
 
         return (
+                      <View>
+            <View style={{height: 10}}/>
+            <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
+                <View style={{width: 15}}/>
+                <TouchableHighlight onPress={this.props.Upvote}>
+                    <Ionicons name="ios-thumbs-up-outline" color={'#F05758'} size={30} />
+                </TouchableHighlight>
+                <View style={{width: 17}}/>
+                <TouchableHighlight onPress={this.props.Downvote}>
+                    <Ionicons name="ios-thumbs-down-outline" color={'#51585E'} size={30} />
+                </TouchableHighlight>
+                <View style={{width: 15}}/>
+                <View style={{position: 'absolute', right: 20}}>
+                    <TouchableHighlight onPress={this.props.onPin}>
+                        <Ionicons name="ios-bookmark-outline" color={'#49C7E3'} size={30} />
+                    </TouchableHighlight>
+                    <View style={{width: 15}}/>
+                </View>
+            </View>
+                <View style={{height: 10}}/>
+                <Text style={{fontSize: 16, textAlign: 'center', fontWeight: 'bold',}}>Share your thoughts and ideas.</Text>
+                <View style={{height: 10}}/>
+                <Text style={{marginLeft: 19}}>General Comments:</Text>
+                <View style={{height: 8}}/>
+                <TextInput
+                    placeholder='    Share your thoughts here'
+                    style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3}}
+                    value={this.state.comment}
+                    editable={true}
+                    multiline={true}
+                    onChangeText={(comment) => this.props.onComment(comment)}
+                />
+                <View style={{height: 15}}/>
+                <Text style={{fontSize: 14, textAlign: 'center', fontWeight: 'bold',}}>Please select one answer for each of the following questions.</Text>
+                <View style={{height: 10}}/>
+                <View>{mcquestions}</View>
+                <View style={styles.space2}></View>
+                <View>{frquestions}</View>
+                <View style={{alignItems: 'center'}}>
+                <Image
+                    style={{height: 0.5, width: 330}}
+                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43154762-80b0b606-8f43-11e8-9fed-21922ca2ac85.png'}}
+                />
+                </View>
+                <View style={{height: 10}}/>
+                <Button
+                    title="Submit Feedback"
+                    onPress={this.props.onSubmit}
+                    style={{backgroundColor: '#49C7E3'}}
+                />
+                <View style={{height: 10}}/>
+                <View style={{alignItems: 'center'}}>
+                <Image
+                    style={{height: 45, width: 80}}
+                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43050902-6fc94544-8dde-11e8-94fd-9bdfa1df6ead.png'}}
+                />
+                </View>
+                <View style={{height: 10}}/>
+            </View>
+          /*
             <View>
-<View style={{height: 13}}/>
+                <View style={{height: 13}}/>
                 <Text style={{fontSize: 16, textAlign: 'center', fontWeight: 'bold',}}>Share your thoughts and ideas.</Text>
                 <View style={{height: 10}}/>
                 <Text style={{marginLeft: 19}}>General Comments:</Text>
@@ -153,6 +227,7 @@ class CommentForm extends React.Component {
                 />
 
             </View>
+            */
         );
     }
   }
