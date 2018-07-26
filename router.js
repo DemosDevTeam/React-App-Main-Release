@@ -74,6 +74,9 @@ const AppTabs = TabNavigator({
     screen: ArticleStack,
     navigationOptions: {
       title: 'My Feed',
+      headerRight: (
+        <Ionicons name="ios-arrow-back" />
+    ),
     }
   },
   CouncilScreen: {

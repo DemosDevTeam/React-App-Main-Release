@@ -19,6 +19,10 @@ class ArticleScreen extends React.Component {
     }
   }
 
+  static navigationOptions = {
+    header: null,
+  }
+
   componentDidMount = () => {
     const { navigation } = this.props
 
