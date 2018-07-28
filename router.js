@@ -100,19 +100,22 @@ const AppTabs = TabNavigator({
       const { routeName } = navigation.state;
 
       let iconName = 'ios-warning';
+      let iconSize = 27;
 
       // ----- Set Tab Icons here ----- //
       if (routeName === 'MainFeed' ) {
         iconName = `ios-paper${focused ? '' : '-outline'}`;
       } else if (routeName === 'CouncilScreen') {
         iconName = `ios-people${focused ? '' : '-outline'}`;
+        iconSize = 34;
       } else if (routeName === 'AggregateFeedback' ) {
         iconName = `ios-chatbubbles${focused ? '' : '-outline'}`;
       } else if (routeName === 'PinnedPosts') {
         iconName = `ios-bookmark${focused ? '' : '-outline'}`;
+        iconSize = 28;
       }
 
-      return <Ionicons name={iconName} size={25} color={tintColor} />;
+      return <Ionicons name={iconName} size={iconSize} color={tintColor} />;
     }
   }),
   tabBarOptions: {
