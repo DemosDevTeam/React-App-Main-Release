@@ -41,6 +41,13 @@ class MainFeed extends React.Component {
 
     componentDidMount = async () => {
         console.log("Component Did Mount was called");
+
+        this.sub = this.props.navigation.addListener('didFocus', () => {
+          console.log("MainFeed came into focus");
+          let keyTwo = this.state.keyTwo;
+          keyTwo = keyTwo+1;
+          this.setState({'keyTwo':keyTwo});
+        })
         // Fetch all recent articles
         let err, articles;
         [err, articles] = await to(this.fetchArticles());
@@ -133,6 +140,11 @@ class MainFeed extends React.Component {
             })
     }
 
+
+    componentWillUnmount() {
+      this.sub.remove();
+    }
+    
     render() {
       console.log("inside of render function");
       console.disableYellowBox = true;

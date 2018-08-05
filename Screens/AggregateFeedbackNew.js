@@ -23,6 +23,13 @@ export default class AggregateFeedback extends React.Component {
 
   componentDidMount = async () => {
     console.log("inside of componentDidMount");
+
+    this.sub = this.props.navigation.addListener('didFocus', () => {
+      console.log("MainFeed came into focus");
+      let keyTwo = this.state.keyTwo;
+      keyTwo = keyTwo+1;
+      this.setState({'keyTwo':keyTwo});
+    })
     // Fetch all recent articles
     let err, articles;
     [err, articles] = await to(this.fetchArticles());
@@ -93,6 +100,10 @@ export default class AggregateFeedback extends React.Component {
       keyTwo = keyTwo+1;
       this.setState({'keyTwo':keyTwo});
     }
+  }
+
+  componentWillUnmount() {
+    this.sub.remove();
   }
 
   render() {

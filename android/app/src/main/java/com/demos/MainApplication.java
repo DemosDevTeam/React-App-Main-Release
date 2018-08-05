@@ -9,24 +9,9 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.react.ReactApplication;
 import com.oblador.vectoricons.VectorIconsPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -55,7 +40,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new VectorIconsPackage(),
             new RNGoogleSigninPackage(),
-            new ReactNativeYouTube(),
             new FBSDKPackage(mCallbackManager)
       );
     }

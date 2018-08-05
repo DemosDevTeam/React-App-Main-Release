@@ -17,6 +17,14 @@ export default class PinnedPosts extends React.Component {
 
   componentDidMount = async () => {
     console.log('inside of PinnedPostsNew');
+
+    this.sub = this.props.navigation.addListener('didFocus', () => {
+      console.log("MainFeed came into focus");
+      let keyTwo = this.state.keyTwo;
+      keyTwo = keyTwo+1;
+      this.setState({'keyTwo':keyTwo});
+    })
+
     let err, articles;
     [err, articles] = await to(this.fetchArticles());
 
@@ -74,6 +82,11 @@ export default class PinnedPosts extends React.Component {
     }
 
     this.setState({ articles });
+  }
+
+
+  componentWillUnmount() {
+    this.sub.remove();
   }
 
   handleScroll = async (event) => {
