@@ -90,9 +90,8 @@ export default class PinnedPosts extends React.Component {
   }
 
   handleScroll = async (event) => {
-    console.log("handling scroll!");
     const offsetY = event.nativeEvent.contentOffset.y
-    console.log(offsetY)
+
     if(offsetY < -4){
       await this.componentDidMount();
       let keyTwo = this.state.keyTwo;

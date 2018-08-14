@@ -1,39 +1,43 @@
-import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-  Image,
-  AsyncStorage,
-} from 'react-native';
-import sha1 from 'sha1';
+import React from 'react'
+import { View, StyleSheet, Text, AsyncStorage, ScrollView, TouchableOpacity, Image } from 'react-native'
+import { to } from '../components/util'
+import FeedbackFeedItem from '../components/FeedbackFeedItem'
 import firebaseApp from '../firebaseApp'
 
-export default class RegistrationScreen4 extends Component {
-  //userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail3 + "/");
-  preferences = [];
+export default class changeEngagementScreen extends React.Component {
+  state = {
+    engagement: []
+  }
+
+  constructor(props) {
+    super(props);
+  }
+
   //On submit verify inputs and navigate to next registration screen
   submit = async () => {
     var res;
     AsyncStorage.getItem('user')
     .then(result => res = result)
     .then(async () => {
-      for(var i=0; i<this.preferences.length; i++){
-        await firebaseApp.database().ref("/Users/" + res + "/engagement/").child(this.preferences[i]).set("");
+      if(this.state.engagement.length > 0) {
+        await firebaseApp.database().ref("/Users/" + res + "/engagement/").remove();
+        for(var i=0; i<this.state.engagement.length; i++){
+          await firebaseApp.database().ref("/Users/" + res + "/engagement/").child(this.state.engagement[i]).set("");
+        }
+        this.props.navigation.navigate('Settings');
+      } else {
+        Alert.alert("Please make sure to select at least one engagement type!");
       }
-      this.props.navigation.navigate('RegistrationScreen5');
+
     });
   }
 
   handleSelection = (text) => {
-    if(this.preferences.indexOf(text) < 0){
-      this.preferences.push(text);
+    if(this.state.engagement.indexOf(text) < 0){
+      this.state.engagement.push(text);
     }
   }
+
 
   render() {
     console.disableYellowBox = true;

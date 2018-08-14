@@ -10,11 +10,8 @@ import RegistrationScreen2 from './Screens/RegistrationScreen2';
 import RegistrationScreen3 from './Screens/RegistrationScreen3';
 import RegistrationScreen4 from './Screens/RegistrationScreen4';
 import RegistrationScreen5 from './Screens/RegistrationScreen5';
-
-// import MainFeed from './Screens/MainFeed';
 import MainFeed from './Screens/MainFeedNew';
 import ArticleScreen from './Screens/ArticleScreen'
-
 import CouncilScreen from './Screens/CouncilScreen';
 import UpdateProfile from './Screens/UpdateProfile';
 import TextView from './Popups/TextView';
@@ -22,11 +19,14 @@ import VideoPlayer from './Popups/VideoPlayer';
 import UpdateDemographics from './Popups/UpdateDemographics';
 import UpdateInterests from './Popups/UpdateInterests';
 import UpdateUpdatePreferences from './Popups/UpdateUpdatePreferences';
-//import AggregateFeedback from './Screens/AggregateFeedback';
 import AggregateFeedback from './Screens/AggregateFeedbackNew';
 import RegistrationScreen6 from './Screens/RegistrationScreen6';
-//import PinnedPosts from './Screens/PinnedPosts';
-import PinnedPosts from './Screens/PinnedPostsNew'
+import PinnedPosts from './Screens/PinnedPostsNew';
+import SettingsScreen from './Screens/SettingsScreen';
+import changeDemographicsScreen from './Screens/changeDemographicsScreen';
+import changeEngagementScreen from './Screens/changeEngagementScreen';
+import changeInterestsScreen from './Screens/changeInterestsScreen';
+import changeUpdatePeferencesScreen from './Screens/changeUpdatePreferencesScreen';
 
 // const ProfileStack = TabNavigator({
 //   UpdateProfile: {
@@ -53,7 +53,6 @@ import PinnedPosts from './Screens/PinnedPostsNew'
 //       title: 'Update Navigation Preferences'
 //     }
 //   },
-
 // })
 
 const ArticleStack = StackNavigator ({
@@ -66,6 +65,24 @@ const ArticleStack = StackNavigator ({
 }, {
   navigationOptions: {
     visible: false
+  }
+})
+
+const SettingsStack = SwitchNavigator ({
+  Settings: {
+    screen: SettingsScreen
+  },
+  ChangeDemographics: {
+    screen: changeDemographicsScreen
+  },
+  ChangeEngagement: {
+    screen: changeEngagementScreen
+  },
+  ChangeInterests: {
+    screen: changeInterestsScreen
+  },
+  ChangeUpdatePreferences: {
+    screen: changeUpdatePeferencesScreen
   }
 })
 
@@ -93,7 +110,13 @@ const AppTabs = TabNavigator({
     navigationOptions: {
       title: 'My Bookmarks'
     }
-  }
+  },
+  Settings: {
+    screen: SettingsStack,
+    navigationOptions: {
+      title: 'Settings'
+    }
+  },
 }, {
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {

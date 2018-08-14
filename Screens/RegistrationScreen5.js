@@ -22,9 +22,9 @@ export default class RegistrationScreen5 extends Component {
     var res;
     AsyncStorage.getItem('user')
     .then(result => res = result)
-    .then(() => {
+    .then(async () => {
       for(var i=0; i<this.preferences.length; i++){
-        firebaseApp.database().ref('/Users/' + res + '/update preferences/').child(this.preferences[i]).set("");
+        await firebaseApp.database().ref('/Users/' + res + '/update preferences/').child(this.preferences[i]).set("");
       }
       this.props.navigation.navigate('RegistrationScreen6');
     })

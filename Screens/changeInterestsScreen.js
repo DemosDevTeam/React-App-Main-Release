@@ -6,6 +6,7 @@ import {
   Button,
   TouchableOpacity,
   TextInput,
+  Alert,
   ScrollView,
   Image,
   AsyncStorage,
@@ -13,45 +14,51 @@ import {
 import sha1 from 'sha1';
 import firebaseApp from '../firebaseApp'
 
-export default class RegistrationScreen4 extends Component {
-  //userRef = firebaseApp.database().ref('/Users/' + this.props.navigation.state.params.hashemail3 + "/");
-  preferences = [];
-  //On submit verify inputs and navigate to next registration screen
+export default class changeInterestsScreen extends Component {
+  state = {
+    interests: []
+  }
+
+  constructor(props) {
+    super(props);
+  }
+
   submit = async () => {
     var res;
     AsyncStorage.getItem('user')
     .then(result => res = result)
     .then(async () => {
-      for(var i=0; i<this.preferences.length; i++){
-        await firebaseApp.database().ref("/Users/" + res + "/engagement/").child(this.preferences[i]).set("");
+      for(var i=0; i<this.state.interests.length; i++){
+        await firebaseApp.database().ref("/Users/" + res + "/interests/").child(this.state.interests[i]).set("");
       }
-      this.props.navigation.navigate('RegistrationScreen5');
-    });
+      this.props.navigation.navigate('Settings');
+    })
   }
 
   handleSelection = (text) => {
-    if(this.preferences.indexOf(text) < 0){
-      this.preferences.push(text);
+    //Check array to see if value has already been added; if it hasn't been then write to the array using 'text' variable
+    if(this.state.interests.indexOf(text) < 0){
+      this.state.interests.push(text);
     }
   }
 
   render() {
     console.disableYellowBox = true;
     return (
-      <ScrollView>
+       <ScrollView>
       <View style={styles.container}>
       <Image
         style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
         source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
       />
-        <Text>What do you want your engagement level to look like?</Text>
-        <Text>(Choose as many as you would like)</Text>
+      <Text>Please select some of the issues that mean the most to you.</Text>
+      <Text>(Choose as many as you would like)</Text>
       </View>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz2}>
-          <TouchableOpacity onPress={() => this.handleSelection("online polls")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Taking Online Polls</Text>
+          <TouchableOpacity onPress={() => this.handleSelection("Housing")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Housing</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -59,16 +66,8 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.bspace}></View>
         <View style={styles.container}>
         <View style={styles.buttonz2}>
-          <TouchableOpacity onPress={() => this.handleSelection("learn about local gov")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Learning about Local Government</Text>
-          </TouchableOpacity>
-        </View>
-        </View>
-        <View style={styles.bspace}></View>
-        <View style={styles.container}>
-        <View style={styles.buttonz2}>
-          <TouchableOpacity onPress={() => this.handleSelection("contact council")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Contacting Your Council</Text>
+          <TouchableOpacity onPress={() => this.handleSelection("Public Spaces")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Public Spaces</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -76,8 +75,8 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.bspace}></View>
         <View style={styles.container}>
         <View style={styles.buttonz2}>
-          <TouchableOpacity onPress={() => this.handleSelection("meet with council")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Meeting with Your Council</Text>
+          <TouchableOpacity onPress={() => this.handleSelection("Health and Wellness")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Health and Wellness</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -85,11 +84,30 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.bspace}></View>
         <View style={styles.container}>
         <View style={styles.buttonz2}>
-          <TouchableOpacity onPress={() => this.handleSelection("events")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Attending an Event</Text>
+          <TouchableOpacity onPress={() => this.handleSelection("Transportation")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Transportation</Text>
           </TouchableOpacity>
         </View>
         </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Environment")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Environment</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
+        <View style={styles.bspace}></View>
+        <View style={styles.container}>
+        <View style={styles.buttonz2}>
+          <TouchableOpacity onPress={() => this.handleSelection("Economic Development")}>
+            <Text style={{fontSize: 13, textAlign: 'center'}}>Economic Development</Text>
+          </TouchableOpacity>
+        </View>
+        </View>
+
         <View style={styles.space}></View>
         <View style={styles.space}></View>
         <View style={styles.container}>
@@ -126,7 +144,6 @@ var styles = StyleSheet.create({
   button: {
     flex: 0,
     marginBottom: 5,
-    marginTop: 10,
   },
   space: {
     height: 2,
@@ -145,6 +162,7 @@ var styles = StyleSheet.create({
     height: 40,
     borderRadius: 4,
     width: 320,
+    marginBottom: 30,
     backgroundColor: '#49C7E3',
     alignItems: 'center',
     justifyContent: 'center',

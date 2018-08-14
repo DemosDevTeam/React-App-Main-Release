@@ -22,8 +22,6 @@ export default class AggregateFeedback extends React.Component {
   }
 
   componentDidMount = async () => {
-    console.log("inside of componentDidMount");
-
     this.sub = this.props.navigation.addListener('didFocus', () => {
       console.log("MainFeed came into focus");
       let keyTwo = this.state.keyTwo;
