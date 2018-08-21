@@ -83,6 +83,12 @@ export default class SettingsScreen extends React.Component {
     this.props.navigation.navigate('ChangeUpdatePreferences');
   }
 
+  signOut = async () => {
+    console.log('called signOut');
+    await AsyncStorage.setItem('user', '');
+    this.props.navigation.navigate('Home');
+  }
+
   render() {
     if(this.state.loading){
       return (
@@ -144,6 +150,8 @@ export default class SettingsScreen extends React.Component {
           <View>{updatePreferencesJsx}</View>
           <TouchableOpacity onPress={this.updateUpdatePreferences}><Text>Change update preferences</Text></TouchableOpacity>
           <View style={styles.space}></View>
+
+          <TouchableOpacity onPress={this.signOut}><Text>Sign Out</Text></TouchableOpacity>
 
         </ScrollView>
       )

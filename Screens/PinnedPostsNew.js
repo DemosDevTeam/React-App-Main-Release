@@ -18,8 +18,17 @@ export default class PinnedPosts extends React.Component {
   componentDidMount = async () => {
     console.log('inside of PinnedPostsNew');
 
-    this.sub = this.props.navigation.addListener('didFocus', () => {
+    this.sub = this.props.navigation.addListener('didFocus', async () => {
       console.log("MainFeed came into focus");
+      let err, articles;
+      [err, articles] = await to(this.fetchArticles());
+
+      if (!articles && err) {
+        throw new Error("Failed to fetch articles")
+      }
+
+      this.setState({ articles });
+
       let keyTwo = this.state.keyTwo;
       keyTwo = keyTwo+1;
       this.setState({'keyTwo':keyTwo});
