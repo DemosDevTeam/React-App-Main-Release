@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, AsyncStorage, ScrollView, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, Text, AsyncStorage, Image, ScrollView, TouchableOpacity } from 'react-native'
 import { to } from '../components/util'
 import FeedbackFeedItem from '../components/FeedbackFeedItem'
 import firebaseApp from '../firebaseApp'
