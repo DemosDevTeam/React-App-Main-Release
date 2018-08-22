@@ -122,37 +122,109 @@ export default class SettingsScreen extends React.Component {
       console.log(this.state);
       return (
         <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
-          <Text>SETTINGS AND PREFERENCES</Text>
+
+        <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+          <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5, fontWeight: 'bold', fontSize: 14, borderRadius: 5, width: 400, backgroundColor: '#49C7E3', textAlign: 'center', justifyContent: 'center', paddingTop: 12, paddingBottom: 12}}>SETTINGS AND PREFERENCES</Text>
           <View style={styles.space}></View>
-          <Text>Demographic Information</Text>
+          <Text style={{fontWeight: 'bold'}}>My Demographic Information</Text>
+        </View>
+        <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+          <Text style={{fontWeight: 'bold'}}>Gender:</Text>
           <View>{gender}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Race:</Text>
           <View>{race}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Household Income Range:</Text>
           <View>{income}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Age Range:</Text>
           <View>{age}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Employment Area:</Text>
           <View>{occupation}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Education Level:</Text>
           <View>{education}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Number of Children:</Text>
           <View>{children}</View>
+          <View style={{height: 10}}></View>
+          <Text style={{fontWeight: 'bold'}}>Marital Status:</Text>
           <View>{marital}</View>
-          <TouchableOpacity onPress={this.updateDemographics}><Text>Update demographics</Text></TouchableOpacity>
-          <View style={styles.space}></View>
-
-          <Text>Your engagement preferences</Text>
+          <View style={{height: 4}}></View>
+          </View>
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
+          <TouchableOpacity onPress={this.updateDemographics}><Text>Update Demographics</Text></TouchableOpacity>
+          </View>
+          <View style={{height: 10}}></View>
+          <View
+            style={{
+                borderBottomColor: '#A9A9A9',
+                borderBottomWidth: 0.75,
+            }}
+          />
+          <View style={{height: 10}}></View>
+          <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+          <Text style={{fontWeight: 'bold'}}>My Engagement Preferences</Text>
+          <View style={{height: 3}}></View>
           <View>{engagementJsx}</View>
-          <TouchableOpacity onPress={this.updateEngagement}><Text>Update engagement preferences</Text></TouchableOpacity>
+          </View>
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
+          <TouchableOpacity onPress={this.updateEngagement}><Text>Update Engagement Preferences</Text></TouchableOpacity>
+          </View>
+          <View style={{height: 10}}></View>
+          <View
+            style={{
+                borderBottomColor: '#A9A9A9',
+                borderBottomWidth: 0.75,
+            }}
+          />
           <View style={styles.space}></View>
-
-          <Text>Your interests</Text>
+          <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+          <Text style={{fontWeight: 'bold'}}>My Interests</Text>
+          <View style={{height: 3}}></View>
           <View>{interestsJsx}</View>
-          <TouchableOpacity onPress={this.updateInterests}><Text>Change interests</Text></TouchableOpacity>
+          </View>
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
+          <TouchableOpacity onPress={this.updateInterests}><Text>Change Interests</Text></TouchableOpacity>
+          </View>
+          <View style={{height: 10}}></View>
+          <View
+            style={{
+                borderBottomColor: '#A9A9A9',
+                borderBottomWidth: 0.75,
+            }}
+          />
           <View style={styles.space}></View>
-
-          <Text>Your update preferences</Text>
+          <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+          <Text style={{fontWeight: 'bold'}}>My Update Preferences</Text>
+          <View style={{height: 3}}></View>
           <View>{updatePreferencesJsx}</View>
-          <TouchableOpacity onPress={this.updateUpdatePreferences}><Text>Change update preferences</Text></TouchableOpacity>
+          </View>
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
+          <TouchableOpacity onPress={this.updateUpdatePreferences}><Text>Change Update Preferences</Text></TouchableOpacity>
+          </View>
+          <View style={{height: 10}}></View>
+          <View
+            style={{
+                borderBottomColor: '#A9A9A9',
+                borderBottomWidth: 0.75,
+            }}
+          />
           <View style={styles.space}></View>
-
+          <View style={{height: 6}}></View>
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#C8C8C8', paddingTop: 3, paddingBottom: 3}}>
           <TouchableOpacity onPress={this.signOut}><Text>Sign Out</Text></TouchableOpacity>
-
+          </View>
+          <View style={{height: 3}}></View>
+          <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+          <Image
+              style={{height: 45, width: 80}}
+              source={{ uri: 'https://user-images.githubusercontent.com/18129905/43050902-6fc94544-8dde-11e8-94fd-9bdfa1df6ead.png'}}
+          />
+          </View>
+          <View style={{height: 8}}></View>
         </ScrollView>
       )
     }
