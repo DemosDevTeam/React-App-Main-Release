@@ -4,6 +4,7 @@ import {
   Platform,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
   Text,
   Image,
   View,
@@ -48,6 +49,7 @@ export default class Home extends Component {
     );
     **/
     return (
+      <ScrollView>
       <View style={{alignItems: 'center'}}>
           <Image
             style={{width: 200, height: 200, marginTop: 75, marginBottom: 40 }}
@@ -66,6 +68,7 @@ export default class Home extends Component {
             onPress={() => navigation.navigate('LogIn')}
           />
           </View>
+        </ScrollView>
     );
   }
 }
@@ -97,7 +100,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
     paddingTop: -20,
-    paddingBottom: 90,
+    paddingBottom: 70,
   },
   instructions: {
     textAlign: 'center',
