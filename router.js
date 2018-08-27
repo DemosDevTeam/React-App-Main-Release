@@ -136,6 +136,9 @@ const AppTabs = TabNavigator({
       } else if (routeName === 'PinnedPosts') {
         iconName = `ios-bookmark${focused ? '' : '-outline'}`;
         iconSize = 28;
+      } else if (routeName === 'Settings') {
+        iconName = `ios-cog${focused ? '' : ''}`;
+        iconSize = 28;
       }
 
       return <Ionicons name={iconName} size={iconSize} color={tintColor} />;
