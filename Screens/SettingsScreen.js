@@ -123,7 +123,7 @@ export default class SettingsScreen extends React.Component {
       return (
         <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
 
-        <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
+        <View style={{marginLeft: 19, marginRight: 19, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
           <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5, fontWeight: 'bold', fontSize: 14, borderRadius: 5, width: 400, backgroundColor: '#49C7E3', textAlign: 'center', justifyContent: 'center', paddingTop: 12, paddingBottom: 12}}>SETTINGS AND PREFERENCES</Text>
           <View style={styles.space}></View>
           <Text style={{fontWeight: 'bold'}}>My Demographic Information</Text>
