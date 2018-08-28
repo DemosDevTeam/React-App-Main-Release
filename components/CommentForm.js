@@ -176,6 +176,9 @@ class CommentForm extends React.Component {
                     style={{backgroundColor: '#49C7E3'}}
                 />
                 <View style={{height: 10}}/>
+
+                <TouchableOpacity onPress={this.props.goBack}><Text>Back</Text></TouchableOpacity>
+
                 <View style={{alignItems: 'center'}}>
                 <Image
                     style={{height: 45, width: 80}}

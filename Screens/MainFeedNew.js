@@ -15,10 +15,7 @@ import { FeedItem } from '../components'
 import { to } from '../components/util';
 
 class MainFeed extends React.Component {
-    static navigationOptions = {
-        visible: false
-    }
-
+  
     state = {
         articles: { },
         keyTwo:0,
@@ -144,7 +141,7 @@ class MainFeed extends React.Component {
     componentWillUnmount() {
       this.sub.remove();
     }
-    
+
     render() {
       console.log("inside of render function");
       console.disableYellowBox = true;

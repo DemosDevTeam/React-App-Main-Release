@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Dimensions, StyleSheet, View, Text, ScrollView, ActivityIndicator, AsyncStorage, WebView, Alert } from 'react-native'
+import { Dimensions, StyleSheet, View, Text, ScrollView, ActivityIndicator, AsyncStorage, WebView, Alert, TouchableOpacity} from 'react-native'
 
 import Article  from '../components/Article'
 
@@ -437,6 +437,9 @@ class ArticleScreen extends React.Component {
     //can now get state by calling this.state[question.toString()]
   }
 
+  goBack = () => {
+    this.props.navigation.navigate('MainFeed');
+  }
 
   render() {
     console.disableYellowBox = true;
@@ -462,6 +465,7 @@ class ArticleScreen extends React.Component {
         article={article}
         handleMCAnswer={this.handleMCAnswer}
         handleFRAnswer={this.handleFRAnswer}
+        goBack={this.goBack}
         ></CommentForm>
         </ScrollView>
       );

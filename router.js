@@ -63,8 +63,9 @@ const ArticleStack = StackNavigator ({
     screen: ArticleScreen
   }
 }, {
+  headerMode: 'none',
   navigationOptions: {
-    visible: false
+    visible: false,
   }
 })
 
