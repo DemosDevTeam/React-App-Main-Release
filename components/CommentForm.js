@@ -170,11 +170,9 @@ class CommentForm extends React.Component {
                 />
                 </View>
                 <View style={{height: 10}}/>
-                <Button
-                    title="Submit Feedback"
-                    onPress={this.props.onSubmit}
-                    style={{backgroundColor: '#49C7E3'}}
-                />
+                <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 3, paddingBottom: 3}}>
+                  <TouchableOpacity onPress={this.props.onSubmit}><Text>Submit Feedback</Text></TouchableOpacity>
+                </View>
                 <View style={{height: 10}}/>
 
                 <TouchableOpacity onPress={this.props.goBack}><Text>Back</Text></TouchableOpacity>
