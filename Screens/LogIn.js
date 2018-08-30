@@ -189,10 +189,11 @@ class LogIn extends Component {
 
     console.disableYellowBox = true;
    return (
+      <ScrollView>
       <View style={styles.container}>
         <View style={{alignItems: 'center'}}>
         <Image
-          style={{width: 200, height: 200, marginTop: 75, marginBottom: 40}}
+          style={{width: 200, height: 200, marginTop: 75, marginBottom: 35}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
         </View>
@@ -204,11 +205,9 @@ class LogIn extends Component {
 
         <View style={styles.space2}></View>
 
-        <Button
-          title="Login"
-          color={loginButtonColor}
-          onPress={this.onSubmit}
-        />
+        <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 6, paddingBottom: 6}}>
+        <TouchableOpacity onPress={this.onSubmit}><Text>Log In</Text></TouchableOpacity>
+        </View>
 
         <View style={styles.space3}></View>
 
@@ -218,11 +217,9 @@ class LogIn extends Component {
 
         <View style={styles.space3}></View>
 
-        <Button
-          title="Login with Facebook"
-          color={fbButtonColor}
-          onPress={this.fbAuth}
-        />
+        <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#3B5998', paddingTop: 6, paddingBottom: 6}}>
+        <TouchableOpacity onPress={this.fbAuth}><Text style={{color: 'white'}}>Log In with Facebook</Text></TouchableOpacity>
+        </View>
 
         <View style={styles.space3}></View>
         <View style={styles.space}></View>
@@ -239,12 +236,12 @@ class LogIn extends Component {
         <View style={styles.space}></View>
         <View style={styles.space}></View>
 
-        <Button
-          title="Register"
-          onPress={() => navigation.navigate('Registration')}
-          color={registerButtonColor}
-        />
+        <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 6, paddingBottom: 6}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Registration')}><Text>Register</Text></TouchableOpacity>
+        </View>
+
       </View>
+      </ScrollView>
     );
   }
 }
