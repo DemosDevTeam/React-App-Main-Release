@@ -62,11 +62,11 @@ export default class Home extends Component {
           <Text style={styles.welcome2}>
           Your voice, your local government.
           </Text>
-          <Button
-            title="Act Now"
-            color="#49c7e3"
-            onPress={() => navigation.navigate('LogIn')}
-          />
+
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 6, paddingBottom: 6, paddingRight: 100, paddingLeft: 100}}>
+          <TouchableOpacity onPress={() => navigation.navigate('LogIn')}><Text style={{fontSize: 17}}>Act Now</Text></TouchableOpacity>
+          </View>
+
           </View>
         </ScrollView>
     );
