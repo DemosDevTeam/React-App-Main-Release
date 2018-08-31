@@ -265,7 +265,7 @@ var styles = StyleSheet.create({
     margin: 10,
   },
   instructions: {
-    textAlign: 'center',
+    textAlign: 'left',
     color: '#333333',
     marginBottom: 40,
     // backgroundColor: '#F5FCFF',
