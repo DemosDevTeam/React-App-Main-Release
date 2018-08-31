@@ -125,7 +125,7 @@ class CommentForm extends React.Component {
         }
 
         return (
-                      <View>
+         <View>
             <View style={{height: 10}}/>
             <View style={{width: 100+"%", height: 35, flexDirection: "row"}}>
                 <View style={{width: 15}}/>
@@ -144,6 +144,15 @@ class CommentForm extends React.Component {
                     <View style={{width: 15}}/>
                 </View>
             </View>
+            <View style={{width: 100+"%", height: 30, flexDirection: "row", backgroundColor: '#DFDFE2'}}>
+            <View style={{width: 19}}/>
+             <TouchableHighlight onPress={this.props.goBack}>
+              <Ionicons name="ios-arrow-back" color={'#51585E'} size={30} />
+             </TouchableHighlight>
+            <View style={{textAlign: 'center', alignItems: 'center'}}>
+            <Text style={{fontSize: 14, textAlign: 'center', paddingLeft: 22, paddingTop: 7}}>Main Feed</Text>
+           </View>
+           </View>
                 <View style={{height: 10}}/>
                 <Text style={{fontSize: 16, textAlign: 'center', fontWeight: 'bold',}}>Share your thoughts and ideas.</Text>
                 <View style={{height: 10}}/>
@@ -170,14 +179,10 @@ class CommentForm extends React.Component {
                 />
                 </View>
                 <View style={{height: 10}}/>
-                <Button
-                    title="Submit Feedback"
-                    onPress={this.props.onSubmit}
-                    style={{backgroundColor: '#49C7E3'}}
-                />
+                <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 6, paddingBottom: 6}}>
+                  <TouchableOpacity onPress={this.props.onSubmit}><Text>Submit Feedback</Text></TouchableOpacity>
+                </View>
                 <View style={{height: 10}}/>
-
-                <TouchableOpacity onPress={this.props.goBack}><Text>Back</Text></TouchableOpacity>
 
                 <View style={{alignItems: 'center'}}>
                 <Image
