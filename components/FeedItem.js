@@ -41,7 +41,6 @@ export default class FeedItem extends React.Component {
 
     //Need to populate correct icons on mount to reflect users previous interactions with app
     componentDidMount = async () => {
-      console.log("inside of FeedItem componentDidMount");
       const user = await AsyncStorage.getItem('user');
       let articleId = this.props.article.id;
       let city = this.props.article.city;
@@ -103,12 +102,9 @@ export default class FeedItem extends React.Component {
             })
 
             if(reactionChanged){
-              console.log("inside of reaction changed if statement");
               await database.ref('/videos/' + city + '/' + articleId + '/').once('value').then((snap) => {
                 let currentNegativeReviews = snap.child("Negative Reactions").val();
-                console.log("current neg reviews: " + currentNegativeReviews);
                 currentNegativeReviews = currentNegativeReviews - 1;
-                console.log("new neg reviews: " + currentNegativeReviews);
 
 
                 database.ref('/videos/' + city + '/' + articleId + '/Negative Reactions/').set(currentNegativeReviews);
@@ -158,7 +154,6 @@ export default class FeedItem extends React.Component {
     }
 
     downVote = async () => {
-      console.log("inside of downVote function");
       const user = await AsyncStorage.getItem('user');
       let articleId = await this.props.article.id;
       let city = await this.props.article.city;
@@ -181,7 +176,6 @@ export default class FeedItem extends React.Component {
             })
 
             if(reactionChanged){
-              console.log("inside of reaction changed if statement");
               database.ref('/videos/' + city + '/' + articleId + '/').once('value').then((snap) => {
                 let currentPositiveReviews = snap.child("Positive Reactions").val();
                 currentPositiveReviews = currentPositiveReviews - 1;

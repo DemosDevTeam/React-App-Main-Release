@@ -1,10 +1,3 @@
-/**
- * Main Feed (smart)
- * Molecule
- * Displays list of relevant articles to the user
- * requires authentication
- */
-
 import React from 'react'
 
 import { View, ScrollView, Text, AsyncStorage } from 'react-native'
@@ -15,7 +8,7 @@ import { FeedItem } from '../components'
 import { to } from '../components/util';
 
 class MainFeed extends React.Component {
-  
+
     state = {
         articles: { },
         keyTwo:0,
@@ -37,7 +30,11 @@ class MainFeed extends React.Component {
     }
 
     componentDidMount = async () => {
-        console.log("Component Did Mount was called");
+      console.log("running test of isWithinTwoWeeks");
+      console.log("expected output - false");
+      testResult = this.isWithinTwoWeeks(2018, 8, 10, 2018, 9, 20)
+      console.log("actual output:");
+      console.log(testResult);
 
         this.sub = this.props.navigation.addListener('didFocus', () => {
           console.log("MainFeed came into focus");
@@ -57,6 +54,14 @@ class MainFeed extends React.Component {
     }
 
     fetchArticles = async () => {
+      var today = new Date();
+
+      var currentDay = today.getDate();
+      var currentMonth = parseInt(today.getMonth()+1);
+      var currentYear = today.getFullYear();
+      var currentHour = today.getHours();
+      console.log(currentYear + "/" + currentMonth + "/" + currentDay + ":" + currentHour);
+
       var userCities = [];
       var articles = {};
       var userPreferences = [];
@@ -81,17 +86,30 @@ class MainFeed extends React.Component {
                 }
 
                 child.forEach(secondChild => {
-                  let videoURL = secondChild.val().urlvideo;
-                  let picURL = secondChild.val().urlpic;
-                  let videoName = secondChild.val().name;
-                  //console.log(videoName);
-                  var tags = [];
-                  secondChild.child("tags").forEach(tag => {
-                    tags.push(tag.key);
-                  })
-                  let matchScore = 0;
-                  var video = [secondChild.val(), tags, matchScore, cityName, secondChild.key];
-                  videos.push(video);
+                  //parse date string from db into year, month, day and hour
+                  let date = secondChild.val().date;
+                  let dateArr = date.split("/");
+                  let year = dateArr[0];
+                  let month = dateArr[1];
+                  let dayArr = dateArr[2].split(":");
+                  let day = dayArr[0];
+                  let hour = dayArr[1];
+
+                  //ignore any uploads that were made outside of the past two weeks.
+                  if(this.isWithinTwoWeeks(currentYear, currentMonth, currentDay, year, month, day)){
+                    let videoURL = secondChild.val().urlvideo;
+                    let picURL = secondChild.val().urlpic;
+                    let videoName = secondChild.val().name;
+                    var tags = [];
+                    secondChild.child("tags").forEach(tag => {
+                      tags.push(tag.key);
+                    })
+                    let matchScore = 0;
+                    var video = [secondChild.val(), tags, matchScore, cityName, secondChild.key];
+                    videos.push(video);
+                  }
+
+
                 })
               })
             })
@@ -137,6 +155,34 @@ class MainFeed extends React.Component {
             })
     }
 
+    /*function for checking if two dates are more than 14 days apart. args are in form of year, month, day, year, month, day*/
+    isWithinTwoWeeks = (currentYear, currentMonth, currentDay, argYear, argMonth, argDay) => {
+      //when currentYear and argYear are different not within two weeks
+      if(currentYear != argYear){
+        return false;
+      }
+      //when currentMonth and argMonth are the same need to check days
+      if(currentMonth == argMonth){
+        //If currentDay - argDay is greater than 14 return false else return true
+        if(currentDay - argDay > 14) {
+          return false;
+        } else {
+          return true;
+        }
+
+      } else if (currentMonth - argMonth < 2){
+        let difference = currentDay + (31 - argDay);
+        //if diff is > 14 return false otherwise return true
+        if(difference > 14) {
+          return false;
+        } else {
+          return true;
+        }
+      } else {
+        //when difference between currentMonth and argMonth is > 1 always return false
+        return false;
+      }
+    }
 
     componentWillUnmount() {
       this.sub.remove();
