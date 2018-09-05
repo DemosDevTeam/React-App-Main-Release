@@ -184,6 +184,10 @@ class LogIn extends Component {
     this.setState({password: text});
   }
 
+  doNothing = () => {
+
+  }
+
   render() {
     const { navigation } = this.props;
 
@@ -218,7 +222,7 @@ class LogIn extends Component {
         <View style={styles.space3}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#3B5998', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={this.fbAuth}><Text style={{color: 'white'}}>Log In with Facebook</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.doNothing}><Text style={{color: 'white'}}>Log In with Facebook (coming soon)</Text></TouchableOpacity>
         </View>
 
         <View style={styles.space3}></View>
