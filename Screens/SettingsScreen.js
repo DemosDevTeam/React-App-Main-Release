@@ -83,6 +83,10 @@ export default class SettingsScreen extends React.Component {
     this.props.navigation.navigate('ChangeUpdatePreferences');
   }
 
+  giveFeedback = () => {
+    this.props.navigation.navigate('AppFeedback');
+  }
+
   signOut = async () => {
     console.log('called signOut');
     await AsyncStorage.setItem('user', '');
@@ -226,6 +230,7 @@ export default class SettingsScreen extends React.Component {
           />
           </View>
           <View style={{height: 8}}></View>
+          <TouchableOpacity onPress={this.giveFeedback}><Text>Give Feedback to the Acta Team</Text></TouchableOpacity>
         </ScrollView>
       )
     }

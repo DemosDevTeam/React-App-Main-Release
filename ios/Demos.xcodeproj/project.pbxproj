@@ -1274,6 +1274,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Civis;
 				PRODUCT_NAME = Demos;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1296,6 +1297,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.Civis;
 				PRODUCT_NAME = Demos;
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

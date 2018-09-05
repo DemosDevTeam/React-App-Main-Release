@@ -27,6 +27,7 @@ import changeDemographicsScreen from './Screens/changeDemographicsScreen';
 import changeEngagementScreen from './Screens/changeEngagementScreen';
 import changeInterestsScreen from './Screens/changeInterestsScreen';
 import changeUpdatePeferencesScreen from './Screens/changeUpdatePreferencesScreen';
+import AppFeedbackScreen from './Screens/AppFeedbackScreen';
 
 // const ProfileStack = TabNavigator({
 //   UpdateProfile: {
@@ -84,6 +85,9 @@ const SettingsStack = SwitchNavigator ({
   },
   ChangeUpdatePreferences: {
     screen: changeUpdatePeferencesScreen
+  },
+  AppFeedback: {
+    screen: AppFeedbackScreen
   }
 })
 
