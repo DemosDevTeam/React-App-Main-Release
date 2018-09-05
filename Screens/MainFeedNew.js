@@ -224,6 +224,14 @@ class MainFeed extends React.Component {
         return (
             <ScrollView styles={{flex: 1, justifyContent: 'space-between'}} onScroll={this.handleScroll} key={this.state.keyTwo}>
                 {articlesJsx}
+                <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                <View style={{height: 10}}></View>
+                <Image
+                    style={{height: 45, width: 80}}
+                    source={{ uri: 'https://user-images.githubusercontent.com/18129905/43050902-6fc94544-8dde-11e8-94fd-9bdfa1df6ead.png'}}
+                />
+                <View style={{height: 10}}></View>
+                </View>
             </ScrollView>
         );
 
