@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { View, ScrollView, Text, AsyncStorage } from 'react-native'
+import { View, ScrollView, Text, AsyncStorage, Image } from 'react-native'
 
 import firebaseApp from '../firebaseApp'
 
