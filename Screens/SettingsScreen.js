@@ -219,6 +219,10 @@ export default class SettingsScreen extends React.Component {
           />
           <View style={styles.space}></View>
           <View style={{height: 6}}></View>
+          <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 7, paddingBottom: 7}}>
+          <TouchableOpacity onPress={this.giveFeedback}><Text>Give Feedback to the Acta Team</Text></TouchableOpacity>
+          </View>
+          <View style={{height: 6}}></View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#C8C8C8', paddingTop: 3, paddingBottom: 3}}>
           <TouchableOpacity onPress={this.signOut}><Text>Sign Out</Text></TouchableOpacity>
           </View>
@@ -230,7 +234,6 @@ export default class SettingsScreen extends React.Component {
           />
           </View>
           <View style={{height: 8}}></View>
-          <TouchableOpacity onPress={this.giveFeedback}><Text>Give Feedback to the Acta Team</Text></TouchableOpacity>
         </ScrollView>
       )
     }
