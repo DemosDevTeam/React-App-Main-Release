@@ -1,5 +1,5 @@
 configurations.all {
     resolutionStrategy {
-        force 'com.android.support:support-v4:27.1.0'
+        force 'com.android.support:support-v4:26.0.3'
     }
 }
