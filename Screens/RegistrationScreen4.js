@@ -44,14 +44,16 @@ export default class RegistrationScreen4 extends Component {
         style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
         source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
       />
-        <Text>What do you want your engagement level to look like?</Text>
-        <Text>(Choose as many as you would like)</Text>
+        <Text style={{fontSize: 16}}>What do you want your engagement level to look like?</Text>
+        <Text style={{fontSize: 15}}>(Choose as many as you would like)</Text>
       </View>
+      <View style={styles.space}></View>
+      <View style={styles.space}></View>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("online polls")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Taking Online Polls</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Taking Online Polls</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -60,7 +62,7 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("learn about local gov")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Learning about Local Government</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Learning about Local Government</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -68,7 +70,7 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("contact council")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Contacting Your Council</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Contacting Your Council</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -77,7 +79,7 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("meet with council")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Meeting with Your Council</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Meeting with Your Council</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -86,10 +88,11 @@ export default class RegistrationScreen4 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("events")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Attending an Event</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Attending an Event</Text>
           </TouchableOpacity>
         </View>
         </View>
+        <View style={styles.space}></View>
         <View style={styles.space}></View>
         <View style={styles.space}></View>
         <View style={styles.container}>
