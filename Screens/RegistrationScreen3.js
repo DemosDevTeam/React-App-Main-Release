@@ -46,14 +46,16 @@ export default class RegistrationScreen3 extends Component {
         style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
         source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
       />
-      <Text>Please select some of the issues that mean the most to you.</Text>
-      <Text>(Choose as many as you would like)</Text>
+      <Text style={{fontSize: 16}}>Please select some of the issues that mean the most to you.</Text>
+      <Text style={{fontSize: 15}}>(Choose as many as you would like)</Text>
+      <View style={styles.space}></View>
+      <View style={styles.space}></View>
       </View>
         <View style={styles.space}></View>
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("Housing")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Housing</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Housing</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -62,7 +64,7 @@ export default class RegistrationScreen3 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("Public Spaces")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Public Spaces</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Public Spaces</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -71,7 +73,7 @@ export default class RegistrationScreen3 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("Health and Wellness")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Health and Wellness</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Health and Wellness</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -80,7 +82,7 @@ export default class RegistrationScreen3 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("Transportation")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Transportation</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Transportation</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -89,7 +91,7 @@ export default class RegistrationScreen3 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("Environment")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Environment</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Environment</Text>
           </TouchableOpacity>
         </View>
         </View>
@@ -98,11 +100,12 @@ export default class RegistrationScreen3 extends Component {
         <View style={styles.container}>
         <View style={styles.buttonz2}>
           <TouchableOpacity onPress={() => this.handleSelection("Economic Development")}>
-            <Text style={{fontSize: 13, textAlign: 'center'}}>Economic Development</Text>
+            <Text style={{fontSize: 15, textAlign: 'center'}}>Economic Development</Text>
           </TouchableOpacity>
         </View>
         </View>
 
+        <View style={styles.space}></View>
         <View style={styles.space}></View>
         <View style={styles.space}></View>
         <View style={styles.container}>
