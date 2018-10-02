@@ -210,7 +210,7 @@ class LogIn extends Component {
         <View style={styles.space2}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={this.onSubmit}><Text style={{fontSize: 15}}>Log In</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.onSubmit}><Text style={{fontSize: 16}}>Log In</Text></TouchableOpacity>
         </View>
 
         <View style={styles.space3}></View>
@@ -222,7 +222,7 @@ class LogIn extends Component {
         <View style={styles.space3}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#3B5998', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={this.doNothing}><Text style={{color: 'white', fontSize: 15}}>Log In with Facebook (coming soon)</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.doNothing}><Text style={{color: 'white', fontSize: 16}}>Log In with Facebook (coming soon)</Text></TouchableOpacity>
         </View>
 
         <View style={styles.space3}></View>
@@ -241,7 +241,7 @@ class LogIn extends Component {
         <View style={styles.space}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Registration')}><Text style={{fontSize: 15}}>Register</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Registration')}><Text style={{fontSize: 16}}>Register</Text></TouchableOpacity>
         </View>
 
       </View>
