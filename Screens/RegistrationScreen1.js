@@ -91,18 +91,20 @@ export default class RegistrationScreen1 extends Component {
             />
           </View>
           <View>
+          <View>
+          <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 15, borderRadius: 3}} onChangeText={this.handleName}placeholder="name"/>
+          <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 15, borderRadius: 3}} onChangeText={this.handleEmail} placeholder="email"/>
+          <TextInput secureTextEntry={true} style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 15, borderRadius: 3}} onChangeText={this.handlePassword} placeholder="password"/>
+          <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 15, borderRadius: 3}} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
           <View style={styles.container}>
-          <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handleName}placeholder="name"/>
-          <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handleEmail} placeholder="email"/>
-          <TextInput secureTextEntry={true} style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handlePassword} placeholder="password"/>
-          <TextInput style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}} onChangeText={this.handlePhone} placeholder="phone number (optional)"/>
-          <Text style={{marginTop: 15, alignItems: 'center', textAlign: 'center', marginLeft: 75, marginRight: 75}}>Please make sure that your password is at least 6 characters long.</Text>
+          <Text style={{marginTop: 15, alignItems: 'center', textAlign: 'center', marginLeft: 75, marginRight: 75, fontSize: 15}}>Please make sure that your password is at least 6 characters long.</Text>
           <View style={{height: 32, justifyContent: 'center', alignItems: 'center'}}></View>
           <View style={styles.buttonz}>
             <TouchableOpacity onPress={this.onSubmit}>
               <Text style={{fontSize: 16, textAlign: 'center'}}>Submit and Continue</Text>
             </TouchableOpacity>
           </View>
+         </View>
          </View>
           {/* <View style={styles.buttonz}>
             <TouchableOpacity onPress={this.onSubmit}>
