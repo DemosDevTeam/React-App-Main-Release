@@ -93,7 +93,7 @@ export default class RegistrationScreen2 extends Component {
           style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
-        <Text style={{marginLeft: 30, marginRight: 30, textAlign: 'center'}}>The civis team is dedicated to our mission to connect you with unbiased, informative, and relevant local news and updates. We request the demographic information of our users in order to get to know those who are using our platform. The more familiar we are with you and what you value, the more accurate our algorithms are. Please fill in as much information as you feel comfortable sharing with us. We are committed to protecting your privacy.</Text>
+        <Text style={{marginLeft: 30, marginRight: 30, textAlign: 'center', fontSize: 16}}>The civis team is dedicated to our mission to connect you with unbiased, informative, and relevant local news and updates. We request the demographic information of our users in order to get to know those who are using our platform. The more familiar we are with you and what you value, the more accurate our algorithms are. Please fill in as much information as you feel comfortable sharing with us. We are committed to protecting your privacy.</Text>
       <View>
       <Picker
           style={styles.userInputs}
