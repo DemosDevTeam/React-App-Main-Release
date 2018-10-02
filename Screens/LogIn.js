@@ -197,20 +197,20 @@ class LogIn extends Component {
       <View style={styles.container}>
         <View style={{alignItems: 'center'}}>
         <Image
-          style={{width: 200, height: 200, marginTop: 75, marginBottom: 35}}
+          style={{width: 200, height: 200, marginTop: 75, marginBottom: 20}}
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
         </View>
 
         <View>
-        <TextInput placeholder="Email" onChangeText={this.handleEmail} style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 13, borderRadius: 3}}/>
-        <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword} style={{marginTop: 10, marginBottom: 15, marginLeft: 75, marginRight: 75, fontSize: 13, backgroundColor: '#ffffff', borderRadius: 3}}/>
+        <TextInput placeholder="Email" onChangeText={this.handleEmail} style={{marginTop: 15, marginBottom: 10, marginLeft: 75, marginRight: 75, backgroundColor: '#FFFFFF', fontSize: 15, borderRadius: 3}}/>
+        <TextInput secureTextEntry={true} placeholder="Password" onChangeText={this.handlePassword} style={{marginTop: 10, marginBottom: 15, marginLeft: 75, marginRight: 75, fontSize: 15, backgroundColor: '#ffffff', borderRadius: 3}}/>
         </View>
 
         <View style={styles.space2}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={this.onSubmit}><Text>Log In</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.onSubmit}><Text style={{fontSize: 15}}>Log In</Text></TouchableOpacity>
         </View>
 
         <View style={styles.space3}></View>
@@ -222,7 +222,7 @@ class LogIn extends Component {
         <View style={styles.space3}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#3B5998', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={this.doNothing}><Text style={{color: 'white'}}>Log In with Facebook (coming soon)</Text></TouchableOpacity>
+        <TouchableOpacity onPress={this.doNothing}><Text style={{color: 'white', fontSize: 15}}>Log In with Facebook (coming soon)</Text></TouchableOpacity>
         </View>
 
         <View style={styles.space3}></View>
@@ -241,7 +241,7 @@ class LogIn extends Component {
         <View style={styles.space}></View>
 
         <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 6, paddingBottom: 6}}>
-        <TouchableOpacity onPress={() => navigation.navigate('Registration')}><Text>Register</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Registration')}><Text style={{fontSize: 15}}>Register</Text></TouchableOpacity>
         </View>
 
       </View>
