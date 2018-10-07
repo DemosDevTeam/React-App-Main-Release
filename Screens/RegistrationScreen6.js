@@ -40,7 +40,7 @@ export default class RegistrationScreen6 extends Component {
         console.log(cities[i]);
         //Debugging the following line
         this.cityComponents.push(
-          <View><TouchableOpacity key={cities[i]} onPress={this.addCity(cities[i])}><Text>{cities[i]}</Text></TouchableOpacity></View>
+          <View><TouchableOpacity key={cities[i]} onPress={this.addCity(cities[i])}><Text style={{fontSize: 16}}>{cities[i]}</Text></TouchableOpacity></View>
         );
       }
     }).then(() => {
@@ -83,8 +83,13 @@ export default class RegistrationScreen6 extends Component {
           source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
         />
 
-
         <View>{this.cityComponents}</View>
+
+        <View style={styles.space}></View>
+        <View style={styles.space}></View>
+        <View style={styles.space}></View>
+        <View style={styles.space}></View>
+        <View style={styles.space}></View>
 
           <View style={styles.buttonz}>
             <TouchableOpacity onPress={this.submit}>
