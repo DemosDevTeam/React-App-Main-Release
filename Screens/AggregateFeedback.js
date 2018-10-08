@@ -127,7 +127,7 @@ export default class AggregateFeedback extends Component {
       <ScrollView>
          <View style={styles.space}></View>
          <View style={styles.space}></View>
-         <Text style={{fontSize: 14, textAlign: 'center'}}>This page allows for you to view your personal feedback for previously viewed videos.</Text>
+         <Text style={{fontSize: 15, textAlign: 'center'}}>This page allows for you to view your personal feedback for previously viewed videos.</Text>
          <View style={styles.space}></View>
          <View style={styles.container}>{this.videosArr}</View>
          <View style={styles.space}></View>
