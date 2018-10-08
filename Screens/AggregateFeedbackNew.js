@@ -115,7 +115,7 @@ export default class AggregateFeedback extends React.Component {
       console.log("inside of empty check for articles");
       articlesJsx = (
         <View>
-        <Text>Oh no! The political sphere is ruminating... (No articles available)</Text>
+        <Text style={{fontSize: 15}}>Oh no! The political sphere is ruminating... (No articles available)</Text>
         </View>
       )
     } else {
