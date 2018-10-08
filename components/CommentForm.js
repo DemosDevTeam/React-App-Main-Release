@@ -27,7 +27,7 @@ class AnswerChoice extends React.Component {
       <View>
         <TouchableHighlight onPress={this.selectAnswer}>
         <View style={{marginTop: 4, marginBottom: 4, borderRadius: 5, alignItems: 'center', backgroundColor: this.state.backgroundColor}}>
-          <Text>{answerString}</Text>
+          <Text style={{fontSize: 15}}>{answerString}</Text>
         </View>
         </TouchableHighlight>
       </View>
@@ -52,7 +52,7 @@ class Answer extends React.Component {
       <View>
         <TextInput
         placeholder='    Put your response here'
-        style={{marginLeft: 19, marginRight: 19, marginTop: 15, marginBottom: 15, backgroundColor: '#55CFE0', borderRadius: 3}}
+        style={{marginLeft: 19, marginRight: 19, marginTop: 15, marginBottom: 15, backgroundColor: '#55CFE0', borderRadius: 3, fontSize: 15}}
         editable={true}
         multiline={true}
         onChangeText={this.writeAnswer}/>
@@ -106,7 +106,7 @@ class CommentForm extends React.Component {
             />
             </View>
             <View style={{height: 10}}/>
-              <Text style={{marginLeft: 19, marginRight: 19}}>{question}</Text>
+              <Text style={{marginLeft: 19, marginRight: 19, fontSize: 15}}>{question}</Text>
               <TouchableOpacity style={{marginLeft: 19, marginRight: 19, marginTop: 10, marginBottom: 10, borderRadius: 4, padding: 7, activeTintColor: '#EE4C50', inactiveTintColor: '#EDEDED'}}>{answers}</TouchableOpacity>
             </View>
           )
@@ -118,7 +118,7 @@ class CommentForm extends React.Component {
           const questionString = question.toString();
           frquestions.push(
             <View>
-              <Text>{question}</Text>
+              <Text style={{fontSize: 15}}>{question}</Text>
               <Answer handleFRAnswer={this.props.handleFRAnswer} questionString={questionString}/>
             </View>
           )
@@ -150,24 +150,24 @@ class CommentForm extends React.Component {
               <Ionicons name="ios-arrow-back" color={'#51585E'} size={30} />
              </TouchableHighlight>
             <View style={{textAlign: 'center', alignItems: 'center'}}>
-            <Text style={{fontSize: 14, textAlign: 'center', paddingLeft: 22, paddingTop: 7}}>Main Feed</Text>
+            <Text style={{fontSize: 15, textAlign: 'center', paddingLeft: 22, paddingTop: 7}}>Main Feed</Text>
            </View>
            </View>
                 <View style={{height: 10}}/>
-                <Text style={{fontSize: 16, textAlign: 'center', fontWeight: 'bold',}}>Share your thoughts and ideas.</Text>
+                <Text style={{fontSize: 16, textAlign: 'center', fontWeight: 'bold'}}>Share your thoughts and ideas.</Text>
                 <View style={{height: 10}}/>
-                <Text style={{marginLeft: 19}}>General Comments:</Text>
+                <Text style={{marginLeft: 19, fontSize: 15}}>General Comments:</Text>
                 <View style={{height: 8}}/>
                 <TextInput
                     placeholder='    Share your thoughts here'
-                    style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3}}
+                    style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3, fontSize: 15}}
                     value={this.state.comment}
                     editable={true}
                     multiline={true}
                     onChangeText={(comment) => this.props.onComment(comment)}
                 />
                 <View style={{height: 15}}/>
-                <Text style={{fontSize: 14, textAlign: 'center', fontWeight: 'bold',}}>Please select one answer for each of the following questions.</Text>
+                <Text style={{fontSize: 15, textAlign: 'center', fontWeight: 'bold',}}>Please select one answer for each of the following questions.</Text>
                 <View style={{height: 10}}/>
                 <View>{mcquestions}</View>
                 <View style={styles.space2}></View>
@@ -180,7 +180,7 @@ class CommentForm extends React.Component {
                 </View>
                 <View style={{height: 10}}/>
                 <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 6, paddingBottom: 6}}>
-                  <TouchableOpacity onPress={this.props.onSubmit}><Text>Submit Feedback</Text></TouchableOpacity>
+                  <TouchableOpacity onPress={this.props.onSubmit}><Text style={{fontSize: 16}}>Submit Feedback</Text></TouchableOpacity>
                 </View>
                 <View style={{height: 10}}/>
 
