@@ -10,7 +10,7 @@ class Article extends React.Component {
 
         return (
             <View>
-                <Text>{JSON.stringify(article)}</Text>
+                <Text style={{fontSize: 15}}>{JSON.stringify(article)}</Text>
                 {/* 
                 <Text>{title}</Text>
                 <View>
