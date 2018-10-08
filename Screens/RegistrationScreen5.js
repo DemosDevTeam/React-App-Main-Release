@@ -47,6 +47,8 @@ export default class RegistrationScreen5 extends Component {
       />
         <Text style={{fontSize: 16}}>How would you like to recieve updates?</Text>
         <Text style={{fontSize: 15}}>(Choose as many as you would like)</Text>
+        <View style={styles.space}></View>
+        <View style={styles.space}></View>
       </View>
       <View style={styles.space}></View>
       <View style={styles.space}></View>
