@@ -101,14 +101,14 @@ export default class SettingsScreen extends React.Component {
         </View>
       )
     } else {
-      const gender = <View><Text>{this.state.gender}</Text></View>
-      const race = <View><Text>{this.state.race}</Text></View>
-      const income = <View><Text>{this.state.income}</Text></View>
-      const age = <View><Text>{this.state.age}</Text></View>
-      const occupation = <View><Text>{this.state.occupation}</Text></View>
-      const education = <View><Text>{this.state.education}</Text></View>
-      const children = <View><Text>{this.state.children}</Text></View>
-      const marital = <View><Text>{this.state.children}</Text></View>
+      const gender = <View><Text style={{fontSize: 15}}>{this.state.gender}</Text></View>
+      const race = <View><Text style={{fontSize: 15}}>{this.state.race}</Text></View>
+      const income = <View><Text style={{fontSize: 15}}>{this.state.income}</Text></View>
+      const age = <View><Text style={{fontSize: 15}}>{this.state.age}</Text></View>
+      const occupation = <View><Text style={{fontSize: 15}}>{this.state.occupation}</Text></View>
+      const education = <View><Text style={{fontSize: 15}}>{this.state.education}</Text></View>
+      const children = <View><Text style={{fontSize: 15}}>{this.state.children}</Text></View>
+      const marital = <View><Text style={{fontSize: 15}}>{this.state.children}</Text></View>
 
       console.log("engagement obj:");
       console.log(this.state.engagement);
@@ -128,39 +128,39 @@ export default class SettingsScreen extends React.Component {
         <ScrollView styles={{flex: 1, justifyContent: 'space-between'}}>
 
         <View style={{marginLeft: 19, marginRight: 19, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
-          <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5, fontWeight: 'bold', fontSize: 14, borderRadius: 5, width: 400, backgroundColor: '#49C7E3', textAlign: 'center', justifyContent: 'center', paddingTop: 12, paddingBottom: 12}}>SETTINGS AND PREFERENCES</Text>
+          <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5, fontWeight: 'bold', fontSize: 16, borderRadius: 5, width: 400, backgroundColor: '#49C7E3', textAlign: 'center', justifyContent: 'center', paddingTop: 12, paddingBottom: 12}}>SETTINGS AND PREFERENCES</Text>
           <View style={styles.space}></View>
           <View style={{height: 7}}></View>
-          <Text style={{fontWeight: 'bold'}}>My Demographic Information</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 16}}>My Demographic Information</Text>
         </View>
         <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold'}}>Gender:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Gender:</Text>
           <View>{gender}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Race:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Race:</Text>
           <View>{race}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Household Income Range:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Household Income Range:</Text>
           <View>{income}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Age Range:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Age Range:</Text>
           <View>{age}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Employment Area:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Employment Area:</Text>
           <View>{occupation}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Education Level:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Education Level:</Text>
           <View>{education}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Number of Children:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Number of Children:</Text>
           <View>{children}</View>
           <View style={{height: 10}}></View>
-          <Text style={{fontWeight: 'bold'}}>Marital Status:</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 15}}>Marital Status:</Text>
           <View>{marital}</View>
           <View style={{height: 4}}></View>
           </View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
-          <TouchableOpacity onPress={this.updateDemographics}><Text>Update Demographics</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.updateDemographics}><Text style={{fontSize: 16}}>Update Demographics</Text></TouchableOpacity>
           </View>
           <View style={{height: 10}}></View>
           <View
@@ -171,12 +171,12 @@ export default class SettingsScreen extends React.Component {
           />
           <View style={{height: 10}}></View>
           <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold'}}>My Engagement Preferences</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 16}}>My Engagement Preferences</Text>
           <View style={{height: 3}}></View>
           <View>{engagementJsx}</View>
           </View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
-          <TouchableOpacity onPress={this.updateEngagement}><Text>Update Engagement Preferences</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.updateEngagement}><Text syle={{fontSize: 16}}>Update Engagement Preferences</Text></TouchableOpacity>
           </View>
           <View style={{height: 10}}></View>
           <View
@@ -187,12 +187,12 @@ export default class SettingsScreen extends React.Component {
           />
           <View style={styles.space}></View>
           <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold'}}>My Interests</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 16}}>My Interests</Text>
           <View style={{height: 3}}></View>
           <View>{interestsJsx}</View>
           </View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
-          <TouchableOpacity onPress={this.updateInterests}><Text>Change Interests</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.updateInterests}><Text style={{fontSize: 16}}>Change Interests</Text></TouchableOpacity>
           </View>
           <View style={{height: 10}}></View>
           <View
@@ -203,12 +203,12 @@ export default class SettingsScreen extends React.Component {
           />
           <View style={styles.space}></View>
           <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
-          <Text style={{fontWeight: 'bold'}}>My Update Preferences</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 16}}>My Update Preferences</Text>
           <View style={{height: 3}}></View>
           <View>{updatePreferencesJsx}</View>
           </View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758', paddingTop: 3, paddingBottom: 3}}>
-          <TouchableOpacity onPress={this.updateUpdatePreferences}><Text>Change Update Preferences</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.updateUpdatePreferences}><Text style={{fontSize: 16}}>Change Update Preferences</Text></TouchableOpacity>
           </View>
           <View style={{height: 10}}></View>
           <View
@@ -220,11 +220,11 @@ export default class SettingsScreen extends React.Component {
           <View style={styles.space}></View>
           <View style={{height: 6}}></View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#55CFE0', paddingTop: 7, paddingBottom: 7}}>
-          <TouchableOpacity onPress={this.giveFeedback}><Text>Give Feedback to the Acta Team</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.giveFeedback}><Text style={{fontSize: 16}}>Give Feedback to the Acta Team</Text></TouchableOpacity>
           </View>
           <View style={{height: 6}}></View>
           <View style={{marginLeft: 30, marginRight: 30, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#C8C8C8', paddingTop: 3, paddingBottom: 3}}>
-          <TouchableOpacity onPress={this.signOut}><Text>Sign Out</Text></TouchableOpacity>
+          <TouchableOpacity onPress={this.signOut}><Text style={{fontSize: 15}}>Sign Out</Text></TouchableOpacity>
           </View>
           <View style={{height: 3}}></View>
           <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center'}}>
