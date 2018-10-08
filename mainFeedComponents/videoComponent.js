@@ -140,7 +140,7 @@ export default class VideoComponent extends Component<{}>{
           <View style={{flex:1}}>
           <View style={styles.container}>
             <TouchableOpacity onPress={this.openVideoPlayer}>
-              <Text style={{fontSize: 10, marginLeft: 7, marginTop: -7, marginBottom: 3}}>{this.props.videoName}</Text>
+              <Text style={{fontSize: 13, marginLeft: 7, marginTop: -7, marginBottom: 3}}>{this.props.videoName}</Text>
               <Image source={{uri: this.props.picUrl}} style={{width: 348, height: 196}}/>
             </TouchableOpacity>
           </View>
