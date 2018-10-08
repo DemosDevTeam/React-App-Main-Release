@@ -50,6 +50,8 @@ export default class changeEngagementScreen extends React.Component {
       />
         <Text style={{fontSize: 16}}>What do you want your engagement level to look like?</Text>
         <Text style={{fontSize: 15}}>(Choose as many as you would like)</Text>
+        <View style={styles.space}></View>
+        <View style={styles.space}></View>
       </View>
         <View style={styles.space}></View>
         <View style={styles.container}>
