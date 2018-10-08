@@ -17,7 +17,7 @@ export default class TextComponent extends Component<{}>{
     return (
       <View onPress={() => Linking.openURL(this.props.textUrl)}>
         <Image source={{uri: this.props.picURL}} style={{width: 100, height: 100}}/>
-        <Text>{this.props.textName}</Text>
+        <Text style={{fontSize: 14}}>{this.props.textName}</Text>
       </View>
     )
   }
