@@ -48,14 +48,16 @@ export default class changeUpdatePreferencesScreen extends React.Component {
          style={{width: 100, height: 100, marginTop: 40, marginBottom: 20}}
          source={{uri: 'https://user-images.githubusercontent.com/18129905/35187343-734d21b4-fdf0-11e7-8799-761570dea412.png'}}
        />
-         <Text>How would you like to recieve updates?</Text>
-         <Text>(Choose as many as you would like)</Text>
+         <Text style={{fontSize: 16}}>How would you like to recieve updates?</Text>
+         <Text style={{fontSize: 15}}>(Choose as many as you would like)</Text>
+         <View style={styles.space}></View>
+         <View style={styles.space}></View>
        </View>
        <View style={styles.space}></View>
          <View style={styles.container}>
          <View style={styles.buttonz2}>
            <TouchableOpacity onPress={() => this.handleSelection("text")}>
-             <Text style={{fontSize: 13, textAlign: 'center'}}>Text me!</Text>
+             <Text style={{fontSize: 15, textAlign: 'center'}}>Text me!</Text>
            </TouchableOpacity>
          </View>
          </View>
@@ -64,7 +66,7 @@ export default class changeUpdatePreferencesScreen extends React.Component {
          <View style={styles.container}>
          <View style={styles.buttonz2}>
            <TouchableOpacity onPress={() => this.handleSelection("email")}>
-             <Text style={{fontSize: 13, textAlign: 'center'}}>Email me</Text>
+             <Text style={{fontSize: 15, textAlign: 'center'}}>Email me</Text>
            </TouchableOpacity>
          </View>
          </View>
@@ -72,7 +74,7 @@ export default class changeUpdatePreferencesScreen extends React.Component {
          <View style={styles.container}>
          <View style={styles.buttonz2}>
            <TouchableOpacity onPress={() => this.handleSelection("push notification")}>
-             <Text style={{fontSize: 13, textAlign: 'center'}}>Send me push notifications</Text>
+             <Text style={{fontSize: 15, textAlign: 'center'}}>Send me push notifications</Text>
            </TouchableOpacity>
          </View>
          </View>
@@ -80,10 +82,11 @@ export default class changeUpdatePreferencesScreen extends React.Component {
          <View style={styles.container}>
          <View style={styles.buttonz2}>
            <TouchableOpacity onPress={() => this.handleSelection("check app")}>
-             <Text style={{fontSize: 13, textAlign: 'center'}}>I will just check the app</Text>
+             <Text style={{fontSize: 15, textAlign: 'center'}}>I will just check the app</Text>
            </TouchableOpacity>
          </View>
          </View>
+         <View style={styles.space}></View>
          <View style={styles.space}></View>
          <View style={styles.space}></View>
          <View style={styles.container}>
