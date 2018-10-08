@@ -97,11 +97,11 @@ export default class FeedbackFeedItem extends React.Component {
               feedback.push(
                 <View>
                   <View>
-                    <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>{question.key}</Text>
+                    <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5, fontSize: 15}}>{question.key}</Text>
                   </View>
                   <TouchableHighlight>
                   <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
-                    <Text>{question.val()}</Text>
+                    <Text style={{fontSize: 15}}>{question.val()}</Text>
                   </View>
                   </TouchableHighlight>
                 </View>
@@ -112,11 +112,11 @@ export default class FeedbackFeedItem extends React.Component {
               feedback.push(
                 <View>
                   <View>
-                    <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>{question.key}</Text>
+                    <Text style={{marginLeft: 19, marginRight: 19, marginBottom: 5, fontSize: 15}}>{question.key}</Text>
                   </View>
                   <TouchableHighlight>
                   <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
-                    <Text>{question.val()}</Text>
+                    <Text style={{fontSize: 15}}>{question.val()}</Text>
                   </View>
                   </TouchableHighlight>
                 </View>
@@ -127,11 +127,11 @@ export default class FeedbackFeedItem extends React.Component {
               feedback.push(
                 <View>
                   <View style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>
-                    <Text>{question.key}</Text>
+                    <Text style={{fontSize: 15}}>{question.key}</Text>
                   </View>
                   <TouchableHighlight>
                   <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
-                    <Text>{question.val()}</Text>
+                    <Text style={{fontSize: 15}}>{question.val()}</Text>
                   </View>
                   </TouchableHighlight>
                 </View>
@@ -142,11 +142,11 @@ export default class FeedbackFeedItem extends React.Component {
               feedback.push(
                 <View>
                   <View style={{marginLeft: 19, marginRight: 19, marginBottom: 5}}>
-                    <Text>{question.key}</Text>
+                    <Text style={{fontSize: 15}}>{question.key}</Text>
                   </View>
                   <TouchableHighlight>
                   <View style={{marginLeft: 19, marginRight: 19, marginTop: 5, marginBottom: 5, borderRadius: 5, alignItems: 'center', backgroundColor: '#F05758'}}>
-                    <Text>{question.val()}</Text>
+                    <Text style={{fontSize: 15}}>{question.val()}</Text>
                   </View>
                   </TouchableHighlight>
                 </View>
@@ -159,17 +159,15 @@ export default class FeedbackFeedItem extends React.Component {
           feedback.push(
             <View>
               <View style={{marginLeft: 19, marginTop: 1, marginRight: 15}}>
-              <Text>Comment:</Text>
+              <Text style={{fontSize: 15}}>Comment:</Text>
               </View>
               <View style={{height: 10}}/>
               <View style={{marginLeft: 19, marginRight: 19, backgroundColor: '#55CFE0', borderRadius: 3, marginBottom: 15}}>
-                <Text>{comment.val()}</Text>
+                <Text style={{fontSize: 15}}>{comment.val()}</Text>
               </View>
             </View>
           )
         }
-
-
     }
   })
   console.log(feedback);
@@ -409,7 +407,7 @@ export default class FeedbackFeedItem extends React.Component {
         if(this.state.loading){
           return (
             <View style={styles.container}>
-              <Text>loading...please wait</Text>
+              <Text style={{fontSize: 15}}>loading...please wait</Text>
             </View>
           )
         }else{
@@ -457,9 +455,9 @@ export default class FeedbackFeedItem extends React.Component {
                       source={{ uri: 'https://user-images.githubusercontent.com/18129905/43182624-11b1b79c-8fb0-11e8-9e05-4a4696346581.png'}}
                   />
                   </View>
-
               </View>
           );
         }
     }
 }
+
