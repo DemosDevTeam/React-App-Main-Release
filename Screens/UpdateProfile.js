@@ -52,25 +52,25 @@ export default class UpdateProfile extends Component<{}>{
       //Need to update the UI with all this info
       if(this.interestsArr.length != undefined){
         for(var i=0; i<this.interestsArr.length; i++){
-          this.interestsArr[i] = <View><View style={styles.space}></View><Text>{this.interestsArr[i]}</Text></View>
+          this.interestsArr[i] = <View><View style={styles.space}></View><Text style={{fontSize: 15}}>{this.interestsArr[i]}</Text></View>
         }
       }
 
       if(this.engagementArr != undefined){
         for(var i=0; i<this.engagementArr.length; i++){
-          this.engagementArr[i] = <View><View style={styles.space}></View><Text>{this.engagementArr[i]}</Text></View>
+          this.engagementArr[i] = <View><View style={styles.space}></View><Text style={{fontSize: 15}}>{this.engagementArr[i]}</Text></View>
         }
       }
 
       if(this.updatePrefArr != undefined){
         for(var i=0; i<this.updatePrefArr.length; i++){
-          this.updatePrefArr[i] = <View><View style={styles.space}></View><Text>{this.updatePrefArr[i]}</Text></View>
+          this.updatePrefArr[i] = <View><View style={styles.space}></View><Text style={{fontSize: 15}}>{this.updatePrefArr[i]}</Text></View>
         }
       }
 
       if(this.demographicsArr != undefined){
         for(var i=0; i<this.demographicsArr.length; i++){
-          this.demographicsArr[i] = <View><View style={styles.space}></View><Text>{this.demographicsArr[i]}</Text></View>
+          this.demographicsArr[i] = <View><View style={styles.space}></View><Text style={{fontSize: 15}}>{this.demographicsArr[i]}</Text></View>
         }
       }
     }).then(() => {
